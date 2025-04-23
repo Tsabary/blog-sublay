@@ -17,7 +17,7 @@ function FeaturedArticle() {
 
   const path = article
     ? getArticlePath({
-        title: article.title || "article",
+        title: article.title,
         shortId: article.shortId,
       })
     : "";

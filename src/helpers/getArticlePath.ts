@@ -9,10 +9,10 @@ export function getArticlePath({
   title,
   shortId,
 }: {
-  title: string;
+  title: string | null;
   shortId: string;
 }): string {
-  const slug = slugify(title, {
+  const slug = slugify(title || "article", {
     lower: true,
     strict: true, // removes characters like ':', '&', etc.
   });

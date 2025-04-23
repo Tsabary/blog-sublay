@@ -80,7 +80,10 @@ export default async function BlogPost({
   if (!article) return notFound();
 
   // 3) NOW do your slug check / redirect outside of the catch
-  const correctSlug = slugify(article.title, { lower: true });
+  const correctSlug = getArticlePath({
+    title: article.title,
+    shortId: article.shortId,
+  });
   if (slugPart !== correctSlug) {
     // this will throw Next.js’s built-in redirect exception
     redirect(`/articles/${correctSlug}-${shortId}`);

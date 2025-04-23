@@ -18,7 +18,7 @@ import { getArticlePath } from "../../helpers/getArticlePath";
 
 function ArticleCard({ article }: { article: Entity }) {
   const path = getArticlePath({
-    title: article.title || "article",
+    title: article.title,
     shortId: article.shortId,
   });
   return (
