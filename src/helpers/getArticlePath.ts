@@ -1,18 +1,12 @@
 // lib/articles.ts
 import slugify from "slugify";
 
-export function getArticleSlug({
-  title,
-  shortId,
-}: {
-  title: string | null;
-  shortId: string;
-}): string {
+export function getArticleSlug({ title }: { title: string | null }): string {
   const slug = slugify(title || "article", {
     lower: true,
     strict: true, // removes characters like ':', '&', etc.
   });
-  return `${slug}-${shortId}`;
+  return slug;
 }
 
 /**
@@ -26,6 +20,6 @@ export function getArticlePath({
   title: string | null;
   shortId: string;
 }): string {
-  const slugAndId = getArticleSlug({ title, shortId });
-  return `/articles/${slugAndId}`;
+  const slugAndId = getArticleSlug({ title });
+  return `/articles/${slugAndId}-${shortId}`;
 }
