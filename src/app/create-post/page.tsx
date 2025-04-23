@@ -5,6 +5,8 @@ import { useCreateEntity, useUploadFile, useUser } from "@replyke/react-js";
 import dynamic from "next/dynamic";
 import { Loader2, ImageIcon } from "lucide-react";
 import { toast } from "sonner";
+import imageCompression from "browser-image-compression";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Card,
@@ -125,7 +127,15 @@ export default function NewPost() {
     setIsSubmitting(true);
 
     try {
-      const uploadResponse = await uploadFile(file, ["blog"]);
+      const options = {
+        maxSizeMB: 0.5, // target < 0.5 MB
+        maxWidthOrHeight: 1024,
+        useWebWorker: true,
+        fileType: "image/webp",
+      };
+      const compressedFile = await imageCompression(file, options);
+
+      const uploadResponse = await uploadFile(compressedFile, ["blog"]);
       const attachments = [{ ...uploadResponse }];
 
       // Simulate API call
