@@ -34,6 +34,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "../../lib/utils";
 import { useRouter } from "next/navigation";
 import Layout from "../../components/Layout";
+import { getArticlePath } from "../../helpers/getArticlePath";
 
 // Prevent SSR issues with the markdown editor
 const MDEditor = dynamic(
@@ -156,7 +157,7 @@ export default function NewPost() {
       const attachments = [{ ...uploadResponse }];
 
       // Simulate API call
-      const entity = await createEntity({
+      const article = await createEntity({
         resourceId: "blog",
         title,
         content,
@@ -165,7 +166,11 @@ export default function NewPost() {
       });
 
       toast("Success! Your blog post has been published");
-      router.push("/articles/" + entity.shortId);
+      const path = getArticlePath({
+        title: article.title,
+        shortId: article.shortId,
+      });
+      router.push(path);
 
       // Redirect to posts list or the new post
       // router.push('/dashboard/posts');
