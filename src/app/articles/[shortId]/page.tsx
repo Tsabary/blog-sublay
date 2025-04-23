@@ -1,3 +1,4 @@
+import { handleError } from "@replyke/core";
 import { ReplykeClient } from "@replyke/js";
 import { remark } from "remark";
 import html from "remark-html";
@@ -5,16 +6,14 @@ import Layout from "../../../components/Layout";
 import ArticleImage from "../../../components/article/ArticleImage";
 import ArticleDetails from "../../../components/article/ArticleDetails";
 import NavigateHomeButton from "../../../components/article/NavigateHomeButton";
-import { handleError } from "@replyke/core";
 
 export default async function BlogPost({
   params,
 }: {
   params: Promise<{ shortId: string }>;
 }) {
+  console.log("Project ID:", process.env.NEXT_PUBLIC_REPLYKE_PROJECT_ID);
   try {
-    console.log("Project ID:", process.env.NEXT_PUBLIC_REPLYKE_PROJECT_ID);
-
     const replykeClient = await ReplykeClient.init({
       projectId: process.env.NEXT_PUBLIC_REPLYKE_PROJECT_ID!,
     });
