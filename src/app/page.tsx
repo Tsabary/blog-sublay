@@ -6,7 +6,7 @@ import LatestArticles from "../components/home/LatestArticles";
 export default function Home() {
   return (
     <Layout>
-      <FeedProvider resourceId="blog" limit={4}>
+      <FeedProvider resourceId="blog" limit={4} sortBy="new">
         <div className="flex-1">
           <FeaturedArticle />
           <LatestArticles />
