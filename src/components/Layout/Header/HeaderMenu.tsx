@@ -107,9 +107,7 @@ export function HeaderMenu() {
             asChild
             className={navigationMenuTriggerStyle() + " bg-transparent"}
           >
-            <a href="https://discord.com/invite/REKxnCJzPz" target="_blank">
-              Community
-            </a>
+            <a href="https://discord.com/invite/REKxnCJzPz">Community</a>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -117,9 +115,7 @@ export function HeaderMenu() {
             asChild
             className={navigationMenuTriggerStyle() + " bg-transparent"}
           >
-            <a href="https://roadmap.replyke.com" target="_blank">
-              Roadmap
-            </a>
+            <a href="https://roadmap.replyke.com">Roadmap</a>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -127,9 +123,7 @@ export function HeaderMenu() {
             asChild
             className={navigationMenuTriggerStyle() + " bg-transparent"}
           >
-            <a href="https://docs.replyke.com" target="_blank">
-              Documentation
-            </a>
+            <a href="https://docs.replyke.com">Documentation</a>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -137,9 +131,7 @@ export function HeaderMenu() {
             asChild
             className={navigationMenuTriggerStyle() + " bg-transparent"}
           >
-            <a href="https://blog.replyke.com" target="_blank">
-              Blog
-            </a>
+            <a href="https://blog.replyke.com">Blog</a>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
@@ -175,13 +167,7 @@ const ListItem = React.forwardRef<
             </a>
           </Link>
         ) : (
-          <a
-            ref={ref}
-            href={href}
-            {...props}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a ref={ref} href={href} {...props} rel="noopener noreferrer">
             {content}
           </a>
         )}
