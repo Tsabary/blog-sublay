@@ -151,8 +151,6 @@ export default function NewPost() {
               { type: compressed.type }
             );
 
-      console.log("typeof uploadable", typeof uploadable);
-      console.log({ uploadable });
       const uploadResponse = await uploadFile(uploadable, ["blog"]);
 
       const attachments = [{ ...uploadResponse }];
