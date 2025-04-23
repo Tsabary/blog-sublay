@@ -4,10 +4,10 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useFeed } from "@replyke/react-js";
-import { ArrowRight, HeartIcon, MessageCircleIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { HeartIcon, MessageCircleIcon } from "lucide-react";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";
 import { formatDate2 } from "../../lib/time-formatters";
+import UserAvatar from "../Layout/Header/UserAvatar";
 
 function FeaturedArticle() {
   const { entities } = useFeed();
@@ -51,18 +51,7 @@ function FeaturedArticle() {
               {isLoading ? (
                 <div className="w-10 h-10 rounded-full bg-muted animate-pulse" />
               ) : (
-                <Image
-                  src={
-                    article.user!.avatar ??
-                    `https://api.dicebear.com/9.x/identicon/svg?seed=${
-                      article.user!.id
-                    }`
-                  }
-                  alt={article.user!.name || "Author Name"}
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
+                <UserAvatar user={article.user!} />
               )}
               <div className="flex items-center gap-5">
                 {isLoading ? (

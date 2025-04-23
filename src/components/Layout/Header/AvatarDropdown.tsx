@@ -14,6 +14,7 @@ import useAuth from "@/hooks/useAuth";
 import UserAvatar from "./UserAvatar";
 import ShinyText from "./ShinyButton";
 import { AuthDialog } from "../../AuthDialog";
+import Link from "next/link";
 
 function AvatarDropdown() {
   const { client, signOut } = useAuth();
@@ -60,8 +61,13 @@ function AvatarDropdown() {
 
         <p className="text-xs text-gray-400 p-2.5">{user.email}</p>
 
+        {user && ["admin", "editor"].includes(user.role) && (
+          <DropdownMenuItem className="cursor-pointer" asChild>
+            <Link href="/create-post">Create post</Link>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem className="cursor-pointer" asChild>
-          <a href="https://dashboard.replyke.com">Go to Dashboard</a>
+          <a href="https://dash.replyke.com">Go to Dashboard</a>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={signOut} className="cursor-pointer">

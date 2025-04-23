@@ -11,7 +11,7 @@ function Header() {
   return (
     <header className="fixed top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6 py-4">
       <div className="flex items-center gap-6 mx-auto max-w-6xl">
-        <Link href="/" className="flex gap-2 items-end">
+        <Link href="https://replyke.com" className="flex gap-2 items-end">
           <Image
             src="/logo.webp"
             alt="logo"
@@ -19,7 +19,6 @@ function Header() {
             width={128}
             height={32}
           />
-          {/* <span className="font-medium text-sm text-gray-500 mb-0.5">Blog</span> */}
         </Link>
         <div className="flex-1">
           <div className="hidden md:block">
@@ -28,7 +27,7 @@ function Header() {
         </div>
 
         {user && ["admin", "editor"].includes(user.role) && (
-          <Link href="/create-post" className="text-sm">
+          <Link href="/create-post" className="text-sm hidden md:block">
             + Create Post
           </Link>
         )}

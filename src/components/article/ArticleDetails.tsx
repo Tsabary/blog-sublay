@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { formatDate2 } from "../../lib/time-formatters";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";
+import UserAvatar from "../Layout/Header/UserAvatar";
 
 function ArticleDetails({ article }: { article: Entity }) {
   return (
@@ -21,18 +22,7 @@ function ArticleDetails({ article }: { article: Entity }) {
       </h2>
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
-          <Image
-            src={
-              article.user!.avatar ??
-              `https://api.dicebear.com/9.x/identicon/svg?seed=${
-                article.user!.id
-              }`
-            }
-            alt={article.user!.name || "User avatar"}
-            width={40}
-            height={40}
-            className="rounded-full"
-          />
+          <UserAvatar user={article.user!} size={40} />
           <div>
             <p className="text-sm font-medium">{article.user!.name}</p>
           </div>

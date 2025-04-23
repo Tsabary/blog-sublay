@@ -1,12 +1,12 @@
 import type React from "react";
 import { Outfit } from "next/font/google";
+import { Metadata } from "next";
+import Head from "next/head";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "../context/auth-context";
 import PopulatedReplykeProvider from "../context/populated-replyke-provider";
-import { Metadata } from "next";
-import Head from "next/head";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
