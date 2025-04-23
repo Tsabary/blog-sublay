@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useCreateEntity, useUploadFile, useUser } from "@replyke/react-js";
+import {
+  handleError,
+  useCreateEntity,
+  useUploadFile,
+  useUser,
+} from "@replyke/react-js";
 import dynamic from "next/dynamic";
 import { Loader2, ImageIcon } from "lucide-react";
 import { toast } from "sonner";
@@ -133,9 +138,23 @@ export default function NewPost() {
         useWebWorker: true,
         fileType: "image/webp",
       };
-      const compressedFile = await imageCompression(file, options);
+      const compressed: File | Blob = await imageCompression(file, options);
 
-      const uploadResponse = await uploadFile(compressedFile, ["blog"]);
+      // ensure it’s a File
+      const uploadable =
+        compressed instanceof File
+          ? compressed
+          : new File(
+              [compressed],
+              // change the extension on your original filename:
+              file!.name.replace(/\.\w+$/, ".webp"),
+              { type: compressed.type }
+            );
+
+      console.log("typeof uploadable", typeof uploadable);
+      console.log({ uploadable });
+      const uploadResponse = await uploadFile(uploadable, ["blog"]);
+
       const attachments = [{ ...uploadResponse }];
 
       // Simulate API call
@@ -147,15 +166,13 @@ export default function NewPost() {
         metadata: { category, excerpt },
       });
 
-      // Here you would call your server action to save the post
-      // await savePost(formData);
-
       toast("Success! Your blog post has been published");
       router.push("/articles/" + entity.shortId);
 
       // Redirect to posts list or the new post
       // router.push('/dashboard/posts');
     } catch (error) {
+      handleError(error, "Failed to post new article");
       toast.error(
         "Something went wrong. Your post couldn't be published. Please try again."
       );
