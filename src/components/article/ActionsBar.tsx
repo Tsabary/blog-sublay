@@ -8,6 +8,8 @@ import { MessageCircleIcon, ShareIcon } from "lucide-react";
 import { useParams } from "next/navigation";
 import { ShareButton } from "./ShareButton";
 import DiscussionSheet from "./DiscussionSheet";
+import { AdminOptions } from "./AdminOptions";
+import { Button } from "../ui/button";
 
 const AnimatedHeartButton = dynamic(() => import("./AnimatedHeartButton"), {
   ssr: false,
@@ -48,8 +50,8 @@ function InnerActionsBar() {
         isSheetOpen={isSheetOpen}
         onClose={() => setIsSheetOpen(false)}
       />
-      <div className="border-t border-b flex gap-4 py-3">
-        <div className="flex items-center gap-1">
+      <div className="border-t border-b flex py-1">
+        <div className="flex items-center gap-1 mr-4">
           <AnimatedHeartButton
             liked={!!userUpvotedEntity}
             onClick={handleLike}
@@ -67,8 +69,11 @@ function InnerActionsBar() {
           <span className="text-sm text-gray-400">{article?.repliesCount}</span>
         </button>
         <div className="flex-1" />
+        {user && ["admin", "editor"].includes(user.role) && <AdminOptions />}
         <ShareButton>
-          <ShareIcon className="size-5 text-gray-400" />
+          <Button variant="ghost" size="icon">
+            <ShareIcon className="size-5 text-gray-400" />
+          </Button>
         </ShareButton>
       </div>
     </>
