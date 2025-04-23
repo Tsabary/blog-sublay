@@ -76,8 +76,13 @@ function InnerActionsBar() {
 }
 
 function ActionsBar() {
-  const { shortId } = useParams();
-  if (typeof shortId !== "string") return null;
+  const { slugAndId } = useParams();
+  if (typeof slugAndId !== "string") return null;
+
+  const hyphen = slugAndId.lastIndexOf("-");
+  if (hyphen < 0) return null;
+
+  const shortId = slugAndId.slice(hyphen + 1);
 
   return (
     <EntityProvider shortId={shortId}>

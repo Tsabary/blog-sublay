@@ -2,7 +2,6 @@ import { handleError } from "@replyke/core";
 import { ReplykeClient } from "@replyke/js";
 import { remark } from "remark";
 import html from "remark-html";
-import slugify from "slugify";
 
 import Layout from "../../../components/Layout";
 import ArticleImage from "../../../components/article/ArticleImage";
@@ -13,6 +12,7 @@ import {
   getArticlePath,
   getArticleSlug,
 } from "../../../helpers/getArticlePath";
+import ActionsBar from "../../../components/article/ActionsBar";
 
 export const revalidate = 60; // ISR: regenerate at most once per minute
 
@@ -94,7 +94,7 @@ export default async function BlogPost({
 
     console.log({ slugPart, correctSlug });
     // this will throw Next.js’s built-in redirect exception
-    // redirect(path);
+    redirect(path);
   }
 
   // 4) Your rendering/HTML-processing can go here (or in another try/catch if you like)
@@ -108,7 +108,7 @@ export default async function BlogPost({
           <div className="space-y-4">
             <NavigateHomeButton />
             <ArticleDetails article={article} />
-            {/* <ActionsBar /> */}
+            <ActionsBar />
           </div>
           <ArticleImage article={article} />
           <div className="prose prose-gray max-w-none dark:prose-invert">
