@@ -13,6 +13,8 @@ import {
   getArticleSlug,
 } from "../../../helpers/getArticlePath";
 import ActionsBar from "../../../components/article/ActionsBar";
+import { Metadata } from "next";
+import { headers } from "next/headers";
 
 export const revalidate = 60; // ISR: regenerate at most once per minute
 
@@ -20,13 +22,18 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slugAndId: string }>;
-}): Promise<{ alternates: { canonical: string } }> {
+}): Promise<Metadata> {
   const { slugAndId } = await Promise.resolve(params);
+
+  // Extract base URL from headers
+  const hdrs = await headers();
+  const host = hdrs.get("x-forwarded-host") || hdrs.get("host");
+  const protocol = hdrs.get("x-forwarded-proto") || "https";
+  const baseUrl = `${protocol}://${host}`;
 
   // pull out the ID
   const hyphen = slugAndId.lastIndexOf("-");
-  if (hyphen < 0)
-    return { alternates: { canonical: "https://blog.replyke.com" } };
+  if (hyphen < 0) return { alternates: { canonical: baseUrl } };
 
   const shortId = slugAndId.slice(hyphen + 1);
   const client = await ReplykeClient.init({
@@ -34,12 +41,44 @@ export async function generateMetadata({
   });
   const article = await client.entities.fetchEntityByShortId({ shortId });
   if (!article)
-    return { alternates: { canonical: "https://blog.replyke.com" } };
+    return {
+      alternates: { canonical: baseUrl },
+    };
 
   const path = getArticlePath(article);
+  const canonicalUrl = `${baseUrl}${path}`;
   return {
+    title: article.title || "Article",
+    description: article.metadata.excerpt,
     alternates: {
-      canonical: `https://blog.replyke.com${path}`,
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: article.title,
+      description: article.metadata.excerpt,
+      url: canonicalUrl, // adjust if needed
+      type: "website",
+      images: [
+        {
+          url: article.attachments[0].publicPath,
+          width: 1200,
+          height: 630,
+          alt: "Cover photo",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.metadata.excerpt,
+      images: [
+        {
+          url: article.attachments[0].publicPath,
+          alt: "Cover photo",
+        },
+      ],
+      // site: "",
+      // creator: "",
     },
   };
 }
@@ -91,8 +130,6 @@ export default async function BlogPost({
       title: article.title,
       shortId,
     });
-
-    console.log({ slugPart, correctSlug });
     // this will throw Next.js’s built-in redirect exception
     redirect(path);
   }
