@@ -8,11 +8,19 @@ import { HeartIcon, MessageCircleIcon } from "lucide-react";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";
 import { formatDate2 } from "../../lib/time-formatters";
 import UserAvatar from "../Layout/Header/UserAvatar";
+import { getArticlePath } from "../../helpers/getArticlePath";
 
 function FeaturedArticle() {
   const { entities } = useFeed();
   const article = entities?.[0];
   const isLoading = !article;
+
+  const path = article
+    ? getArticlePath({
+        title: article.title || "article",
+        shortId: article.shortId,
+      })
+    : "";
 
   return (
     <section className="w-full mt-6 bg-white px-4 md:px-6 min-h-screen flex items-center">
@@ -31,7 +39,7 @@ function FeaturedArticle() {
               {isLoading ? (
                 <div className="h-10 w-3/4 rounded bg-muted animate-pulse" />
               ) : (
-                <Link href={`/articles/${article.shortId}`}>
+                <Link href={path}>
                   <h1 className="text-3xl font-bold tracking-tight sm:text-5xl xl:text-6xl/none hover:underline">
                     {article.title}
                   </h1>

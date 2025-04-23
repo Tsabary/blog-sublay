@@ -2,15 +2,49 @@ import { handleError } from "@replyke/core";
 import { ReplykeClient } from "@replyke/js";
 import { remark } from "remark";
 import html from "remark-html";
+import slugify from "slugify";
+
 import Layout from "../../../components/Layout";
 import ArticleImage from "../../../components/article/ArticleImage";
 import ArticleDetails from "../../../components/article/ArticleDetails";
 import NavigateHomeButton from "../../../components/article/NavigateHomeButton";
+import { notFound, redirect } from "next/navigation";
+import { getArticlePath } from "../../../helpers/getArticlePath";
+
+export const revalidate = 60; // ISR: regenerate at most once per minute
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slugAndId: string }>;
+}): Promise<{ alternates: { canonical: string } }> {
+  const { slugAndId } = await Promise.resolve(params);
+
+  // pull out the ID
+  const hyphen = slugAndId.lastIndexOf("-");
+  if (hyphen < 0)
+    return { alternates: { canonical: "https://blog.replyke.com" } };
+
+  const shortId = slugAndId.slice(hyphen + 1);
+  const client = await ReplykeClient.init({
+    projectId: process.env.NEXT_PUBLIC_REPLYKE_PROJECT_ID!,
+  });
+  const article = await client.entities.fetchEntityByShortId({ shortId });
+  if (!article)
+    return { alternates: { canonical: "https://blog.replyke.com" } };
+
+  const path = getArticlePath(article);
+  return {
+    alternates: {
+      canonical: `https://blog.replyke.com${path}`,
+    },
+  };
+}
 
 export default async function BlogPost({
   params,
 }: {
-  params: Promise<{ shortId: string }>;
+  params: Promise<{ slugAndId: string }>;
 }) {
   console.log("Project ID:", process.env.NEXT_PUBLIC_REPLYKE_PROJECT_ID);
   try {
@@ -18,13 +52,27 @@ export default async function BlogPost({
       projectId: process.env.NEXT_PUBLIC_REPLYKE_PROJECT_ID!,
     });
 
-    const { shortId } = await Promise.resolve(params);
+    const { slugAndId } = await Promise.resolve(params);
+
+    // 1) split the URL segment into [slug]-[id]
+    const hyphen = slugAndId.lastIndexOf("-");
+    if (hyphen < 0) return notFound();
+
+    const slugPart = slugAndId.slice(0, hyphen);
+    const shortId = slugAndId.slice(hyphen + 1);
+
     const article = await replykeClient.entities.fetchEntityByShortId({
       shortId,
     });
 
     if (!article) {
       return null;
+    }
+
+    // 3) if the slug doesn’t match your title, redirect to the “correct” URL
+    const correctSlug = slugify(article.title, { lower: true });
+    if (slugPart !== correctSlug) {
+      return redirect(`/articles/${correctSlug}-${shortId}`);
     }
 
     const processed = await remark().use(html).process(article.content);

@@ -14,10 +14,15 @@ import { formatDate2 } from "../../lib/time-formatters";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";
 import { HeartIcon, MessageCircleIcon } from "lucide-react";
 import UserAvatar from "../Layout/Header/UserAvatar";
+import { getArticlePath } from "../../helpers/getArticlePath";
 
 function ArticleCard({ article }: { article: Entity }) {
+  const path = getArticlePath({
+    title: article.title || "article",
+    shortId: article.shortId,
+  });
   return (
-    <Link href={`/posts/${article.shortId}`} className="group">
+    <Link href={path} className="group">
       <Card className="overflow-hidden transition-all hover:shadow-lg">
         <div className="aspect-video w-full overflow-hidden">
           <Image
