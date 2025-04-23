@@ -140,7 +140,7 @@ export default function EditPost() {
       return;
     }
 
-    if (!file) {
+    if (!file && !initialImage) {
       toast.error("Your blog post needs an image");
       return;
     }
