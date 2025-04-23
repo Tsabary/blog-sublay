@@ -46,66 +46,68 @@ export default async function BlogPost({
 }: {
   params: Promise<{ slugAndId: string }>;
 }) {
-  console.log("Project ID:", process.env.NEXT_PUBLIC_REPLYKE_PROJECT_ID);
+  const { slugAndId } = await Promise.resolve(params);
+
+  const hyphen = slugAndId.lastIndexOf("-");
+  if (hyphen < 0) return notFound();
+
+  const slugPart = slugAndId.slice(0, hyphen);
+  const shortId = slugAndId.slice(hyphen + 1);
+
+  // 1) Isolate your network call in its own try/catch:
+  let article;
+
   try {
     const replykeClient = await ReplykeClient.init({
       projectId: process.env.NEXT_PUBLIC_REPLYKE_PROJECT_ID!,
     });
-
-    const { slugAndId } = await Promise.resolve(params);
-
-    // 1) split the URL segment into [slug]-[id]
-    const hyphen = slugAndId.lastIndexOf("-");
-    if (hyphen < 0) return notFound();
-
-    const slugPart = slugAndId.slice(0, hyphen);
-    const shortId = slugAndId.slice(hyphen + 1);
-
-    const article = await replykeClient.entities.fetchEntityByShortId({
-      shortId,
-    });
-
-    if (!article) {
-      return null;
-    }
-
-    // 3) if the slug doesn’t match your title, redirect to the “correct” URL
-    const correctSlug = slugify(article.title, { lower: true });
-    if (slugPart !== correctSlug) {
-      return redirect(`/articles/${correctSlug}-${shortId}`);
-    }
-
-    const processed = await remark().use(html).process(article.content);
-    const contentHtml = processed.toString();
-
-    return (
-      <Layout>
-        <div className="flex-1 pt-16 bg-white">
-          <article className="container max-w-3xl py-6 lg:py-12">
-            <div className="space-y-4">
-              <NavigateHomeButton />
-              <ArticleDetails article={article} />
-              {/* <ActionsBar /> */}
-            </div>
-            <ArticleImage article={article} />
-            <div className="prose prose-gray max-w-none dark:prose-invert">
-              <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
-            </div>
-            {/* <BackToArticlesButton /> */}
-          </article>
-          {/* <RelatedArticles/> */}
-          {/* <Subscribe /> */}
-        </div>
-      </Layout>
-    );
-  } catch (error) {
-    handleError(error, "Failed to load article:");
+    article = await replykeClient.entities.fetchEntityByShortId({ shortId });
+  } catch (networkError) {
+    // only catches init/fetch failures
+    handleError(networkError, "Failed to fetch article");
     return (
       <Layout>
         <div className="flex items-center justify-center h-screen">
-          <p className="text-lg text-red-500">Sorry, something went wrong.</p>
+          <p className="text-lg text-red-500">
+            Sorry, we couldn’t load that article right now.
+          </p>
         </div>
       </Layout>
     );
   }
+
+  // 2) Handle “not found”:
+  if (!article) return notFound();
+
+  // 3) NOW do your slug check / redirect outside of the catch
+  const correctSlug = slugify(article.title, { lower: true });
+  if (slugPart !== correctSlug) {
+    // this will throw Next.js’s built-in redirect exception
+    redirect(`/articles/${correctSlug}-${shortId}`);
+  }
+
+  // 4) Your rendering/HTML-processing can go here (or in another try/catch if you like)
+  const processed = await remark().use(html).process(article.content);
+  const contentHtml = processed.toString();
+
+  return (
+    <Layout>
+      <div className="flex-1 pt-16 bg-white">
+        <article className="container max-w-3xl py-6 lg:py-12">
+          <div className="space-y-4">
+            <NavigateHomeButton />
+            <ArticleDetails article={article} />
+            {/* <ActionsBar /> */}
+          </div>
+          <ArticleImage article={article} />
+          <div className="prose prose-gray max-w-none dark:prose-invert">
+            <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+          </div>
+          {/* <BackToArticlesButton /> */}
+        </article>
+        {/* <RelatedArticles/> */}
+        {/* <Subscribe /> */}
+      </div>
+    </Layout>
+  );
 }

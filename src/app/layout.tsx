@@ -1,7 +1,6 @@
 import type React from "react";
 import { Outfit } from "next/font/google";
 import { Metadata } from "next";
-import Head from "next/head";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -67,10 +66,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <Head>
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <body className={outfit.className}>
         <Toaster />
         <AuthProvider>
