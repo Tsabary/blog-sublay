@@ -418,17 +418,17 @@ export default function EditPost() {
               </CardContent>
 
               <CardFooter className="flex justify-between">
-                <Button variant="outline" type="button">
+                {/* <Button variant="outline" type="button">
                   Save Draft
-                </Button>
+                </Button> */}
                 <Button type="submit" disabled={isSubmitting}>
                   {isSubmitting ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Publishing...
+                      Sending Update...
                     </>
                   ) : (
-                    "Publish Post"
+                    "Update Post"
                   )}
                 </Button>
               </CardFooter>

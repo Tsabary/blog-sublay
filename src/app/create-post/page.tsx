@@ -355,9 +355,9 @@ export default function NewPost() {
               </CardContent>
 
               <CardFooter className="flex justify-between">
-                <Button variant="outline" type="button">
+                {/* <Button variant="outline" type="button">
                   Save Draft
-                </Button>
+                </Button> */}
                 <Button type="submit" disabled={isSubmitting}>
                   {isSubmitting ? (
                     <>
