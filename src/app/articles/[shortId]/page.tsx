@@ -5,6 +5,7 @@ import Layout from "../../../components/Layout";
 import ArticleImage from "../../../components/article/ArticleImage";
 import ArticleDetails from "../../../components/article/ArticleDetails";
 import NavigateHomeButton from "../../../components/article/NavigateHomeButton";
+import { handleError } from "@replyke/core";
 
 export default async function BlogPost({
   params,
@@ -51,7 +52,7 @@ export default async function BlogPost({
       </Layout>
     );
   } catch (error) {
-    console.error("Failed to load article:", error);
+    handleError(error, "Failed to load article:");
     return (
       <Layout>
         <div className="flex items-center justify-center h-screen">
