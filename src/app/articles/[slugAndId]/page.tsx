@@ -9,7 +9,10 @@ import ArticleImage from "../../../components/article/ArticleImage";
 import ArticleDetails from "../../../components/article/ArticleDetails";
 import NavigateHomeButton from "../../../components/article/NavigateHomeButton";
 import { notFound, redirect } from "next/navigation";
-import { getArticlePath } from "../../../helpers/getArticlePath";
+import {
+  getArticlePath,
+  getArticleSlug,
+} from "../../../helpers/getArticlePath";
 
 export const revalidate = 60; // ISR: regenerate at most once per minute
 
@@ -80,13 +83,17 @@ export default async function BlogPost({
   if (!article) return notFound();
 
   // 3) NOW do your slug check / redirect outside of the catch
-  const correctSlug = getArticlePath({
+  const correctSlug = getArticleSlug({
     title: article.title,
     shortId: article.shortId,
   });
   if (slugPart !== correctSlug) {
+    const path = getArticleSlug({
+      title: article.title,
+      shortId: article.shortId,
+    });
     // this will throw Next.js’s built-in redirect exception
-    redirect(`/articles/${correctSlug}-${shortId}`);
+    redirect(path);
   }
 
   // 4) Your rendering/HTML-processing can go here (or in another try/catch if you like)
