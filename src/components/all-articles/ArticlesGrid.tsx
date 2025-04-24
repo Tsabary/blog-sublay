@@ -5,9 +5,24 @@ import { useFeed } from "@replyke/react-js";
 import ArticleCard from "../home/ArticleCard";
 
 function ArticlesGrid() {
-  const { entities } = useFeed();
+  const { entities, loading } = useFeed();
 
-  if (!entities) return "null";
+  const isFirstLoad = loading && (!entities || entities.length === 0);
+
+  // return (
+  //   <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/50">
+  //     <div className="container">
+  //       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
+  //         {Array.from({ length: 6 }).map((_, idx) => (
+  //           <div
+  //             key={idx}
+  //             className="h-60 rounded-md bg-gray-300 animate-pulse"
+  //           />
+  //         ))}
+  //       </div>
+  //     </div>
+  //   </section>
+  // );
 
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/50">
@@ -27,18 +42,17 @@ function ArticlesGrid() {
           </div>
         </div>
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
-          {entities.map((article) => (
-            <ArticleCard article={article} key={article.id} />
-          ))}
+          {isFirstLoad
+            ? Array.from({ length: 6 }).map((_, idx) => (
+                <div
+                  key={idx}
+                  className="h-60 rounded-md bg-gray-300 animate-pulse"
+                />
+              ))
+            : entities?.map((article) => (
+                <ArticleCard article={article} key={article.id} />
+              ))}
         </div>
-        {/* <div className="flex justify-center">
-          <Link href="/blog" passHref>
-            <Button variant="outline" className="gap-1">
-              View All Articles
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-          </Link>
-        </div> */}
       </div>
     </section>
   );
