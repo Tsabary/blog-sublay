@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { UserLean, useUser } from "@replyke/react-js";
+import { useAuth as useAuthReplyke, useUser } from "@replyke/react-js";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,7 +17,8 @@ import { AuthDialog } from "../../AuthDialog";
 import Link from "next/link";
 
 function AvatarDropdown() {
-  const { client, signOut } = useAuth();
+  const { signOut } = useAuth();
+  const { signOut: signOutReplyke } = useAuthReplyke();
   const { user } = useUser();
   const [open, setOpen] = useState(false);
 
@@ -70,7 +71,13 @@ function AvatarDropdown() {
           <a href="https://dash.replyke.com">Go to Dashboard</a>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={signOut} className="cursor-pointer">
+        <DropdownMenuItem
+          onClick={() => {
+            signOut?.();
+            signOutReplyke?.();
+          }}
+          className="cursor-pointer"
+        >
           Logout
         </DropdownMenuItem>
       </DropdownMenuContent>
