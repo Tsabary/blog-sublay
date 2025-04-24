@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { EntityProvider, useEntity, useUser } from "@replyke/react-js";
 import { toast } from "sonner";
 import dynamic from "next/dynamic";
-import { MessageCircleIcon, ShareIcon } from "lucide-react";
+import { MessageCircleIcon, Share2Icon } from "lucide-react";
 import { useParams } from "next/navigation";
 import { ShareButton } from "./ShareButton";
 import DiscussionSheet from "./DiscussionSheet";
@@ -72,7 +72,7 @@ function InnerActionsBar() {
         {user && ["admin", "editor"].includes(user.role) && <AdminOptions />}
         <ShareButton>
           <Button variant="ghost" size="icon">
-            <ShareIcon className="size-5 text-gray-400" />
+            <Share2Icon className="size-5 text-gray-400" />
           </Button>
         </ShareButton>
       </div>

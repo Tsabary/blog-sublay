@@ -15,6 +15,7 @@ import {
 import ActionsBar from "../../../components/article/ActionsBar";
 import { Metadata } from "next";
 import { headers } from "next/headers";
+import BackToArticlesButton from "../../../components/article/BackToArticlesButton";
 
 export const revalidate = 60; // ISR: regenerate at most once per minute
 
@@ -151,7 +152,7 @@ export default async function BlogPost({
           <div className="prose prose-gray max-w-none dark:prose-invert">
             <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
           </div>
-          {/* <BackToArticlesButton /> */}
+          <BackToArticlesButton />
         </article>
         {/* <RelatedArticles/> */}
         {/* <Subscribe /> */}
