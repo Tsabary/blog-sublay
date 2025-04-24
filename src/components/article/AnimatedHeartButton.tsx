@@ -3,13 +3,16 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { HeartIcon } from "lucide-react";
+import { cn } from "../../lib/utils";
 
 export default function AnimatedHeartButton({
   liked,
   onClick,
+  size = 20,
 }: {
   liked: boolean;
   onClick: () => void;
+  size: number;
 }) {
   return (
     <motion.button
@@ -28,7 +31,8 @@ export default function AnimatedHeartButton({
       >
         <HeartIcon
           fill={liked ? "#ff2056" : "#fff"}
-          className={`size-5 ${liked ? "text-rose-500" : "text-gray-400"}`}
+          className={cn(liked ? "text-rose-500" : "text-gray-400")}
+          size={size}
         />
       </motion.div>
     </motion.button>
