@@ -7,7 +7,7 @@ import ArticleCard from "../home/ArticleCard";
 function ArticlesGrid() {
   const { entities } = useFeed();
 
-  if (!entities) return null;
+  if (!entities) return "null";
 
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/50">

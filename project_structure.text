@@ -1,0 +1,150 @@
+- .env
+- .gitignore
+- analyzeMetaJson.js
+- components.json
+- next-env.d.ts
+- next.config.mjs
+- package-lock.json
+- package.json
+- postcss.config.mjs
+- public
+  - github.svg
+  - google.svg
+  - logo.webp
+  - og-image.png
+  - placeholder-logo.png
+  - placeholder-logo.svg
+  - placeholder-user.jpg
+  - placeholder.jpg
+  - placeholder.svg
+- src
+  - app
+    - articles
+      - page.tsx
+      - [slugAndId]
+        - edit
+          - page.tsx
+        - page.tsx
+    - auth-success
+      - page.tsx
+    - create-post
+      - page.tsx
+    - favicon.ico
+    - globals.css
+    - layout.tsx
+    - page.tsx
+  - components
+    - all-articles
+      - ArticlesGrid.tsx
+    - article
+      - ActionsBar.tsx
+      - AdminOptions.tsx
+      - AnimatedHeartButton.tsx
+      - ArticleDetails.tsx
+      - ArticleImage.tsx
+      - BackToArticlesButton.tsx
+      - DiscussionSheet.tsx
+      - NavigateHomeButton.tsx
+      - RelatedArticles.tsx
+      - ShareButton.tsx
+    - AuthDialog
+      - AuthDialog.tsx
+      - GitHubButton.tsx
+      - GoogleButton.tsx
+      - index.ts
+      - SignInForm.tsx
+      - SignUpForm.tsx
+    - home
+      - ArticleCard.tsx
+      - FeaturedArticle.tsx
+      - LatestArticles.tsx
+      - Subscribe.tsx
+    - Layout
+      - Footer
+        - Footer.tsx
+        - index.ts
+      - Header
+        - AvatarDropdown.tsx
+        - Header.tsx
+        - HeaderMenu.tsx
+        - index.ts
+        - ShinyButton.tsx
+        - UserAvatar.tsx
+      - index.ts
+      - Layout.tsx
+    - theme-provider.tsx
+    - ui
+      - accordion.tsx
+      - alert-dialog.tsx
+      - alert.tsx
+      - aspect-ratio.tsx
+      - avatar.tsx
+      - badge.tsx
+      - breadcrumb.tsx
+      - button.tsx
+      - calendar.tsx
+      - card.tsx
+      - carousel.tsx
+      - chart.tsx
+      - checkbox.tsx
+      - collapsible.tsx
+      - command.tsx
+      - context-menu.tsx
+      - dialog.tsx
+      - drawer.tsx
+      - dropdown-menu.tsx
+      - form.tsx
+      - hover-card.tsx
+      - input-otp.tsx
+      - input.tsx
+      - label.tsx
+      - menubar.tsx
+      - navigation-menu.tsx
+      - pagination.tsx
+      - popover.tsx
+      - progress.tsx
+      - radio-group.tsx
+      - resizable.tsx
+      - scroll-area.tsx
+      - select.tsx
+      - separator.tsx
+      - sheet.tsx
+      - sidebar.tsx
+      - skeleton.tsx
+      - slider.tsx
+      - sonner.tsx
+      - switch.tsx
+      - table.tsx
+      - tabs.tsx
+      - textarea.tsx
+      - toast.tsx
+      - toggle-group.tsx
+      - toggle.tsx
+      - tooltip.tsx
+      - use-mobile.tsx
+      - use-toast.ts
+  - config
+    - axios.ts
+    - useAxiosPrivate.ts
+  - context
+    - auth-context.tsx
+    - populated-replyke-provider.tsx
+  - helpers
+    - calculateReadingTimeFromMarkdown.ts
+    - getArticlePath.ts
+  - hooks
+    - use-mobile.tsx
+    - useAuth.tsx
+    - useMediaQuery.tsx
+    - usePublicKey.tsx
+  - lib
+    - rsaEncryptBase64.ts
+    - time-formatters.ts
+    - utils.ts
+  - styles
+    - globals.css
+  - types
+    - Client.ts
+- tailwind.config.ts
+- tsconfig.json
+- tsconfig.tsbuildinfo

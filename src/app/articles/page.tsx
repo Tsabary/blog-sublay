@@ -1,7 +1,7 @@
 import { FeedProvider } from "@replyke/core";
-import { Layout } from "lucide-react";
 import React from "react";
 import ArticlesGrid from "../../components/all-articles/ArticlesGrid";
+import Layout from "../../components/Layout";
 
 function ArticlesPage() {
   return (
