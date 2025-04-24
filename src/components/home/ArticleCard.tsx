@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { HeartIcon, MessageCircleIcon } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -12,7 +13,6 @@ import {
 import { Entity } from "@replyke/react-js";
 import { formatDate2 } from "../../lib/time-formatters";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";
-import { HeartIcon, MessageCircleIcon } from "lucide-react";
 import UserAvatar from "../Layout/Header/UserAvatar";
 import { getArticlePath } from "../../helpers/getArticlePath";
 
