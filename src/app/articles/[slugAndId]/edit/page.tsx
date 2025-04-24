@@ -150,15 +150,14 @@ export default function EditPost() {
 
     try {
       const updatePayload: any = {};
-      if (formData.title !== entity.title) updatePayload.title = formData.title;
-      if (formData.content !== entity.content)
-        updatePayload.content = formData.content;
-      if (formData.excerpt !== entity.metadata.excerpt)
+      if (title !== entity.title) updatePayload.title = formData.title;
+      if (content !== entity.content) updatePayload.content = formData.content;
+      if (excerpt !== entity.metadata.excerpt)
         updatePayload.metadata = {
           ...(updatePayload.metadata ?? {}),
           excerpt: formData.excerpt,
         };
-      if (formData.category !== entity.metadata.category)
+      if (category !== entity.metadata.category)
         updatePayload.metadata = {
           ...(updatePayload.metadata ?? {}),
           category: formData.category,
@@ -201,7 +200,6 @@ export default function EditPost() {
       toast.error(
         "Something went wrong. Your post couldn't be published. Please try again."
       );
-    } finally {
       setIsSubmitting(false);
     }
   }

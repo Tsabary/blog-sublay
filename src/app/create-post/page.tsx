@@ -171,15 +171,11 @@ export default function NewPost() {
         shortId: article.shortId,
       });
       router.push(path);
-
-      // Redirect to posts list or the new post
-      // router.push('/dashboard/posts');
     } catch (error) {
       handleError(error, "Failed to post new article");
       toast.error(
         "Something went wrong. Your post couldn't be published. Please try again."
       );
-    } finally {
       setIsSubmitting(false);
     }
   }
