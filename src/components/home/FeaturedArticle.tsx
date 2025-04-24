@@ -25,7 +25,7 @@ function FeaturedArticle() {
   return (
     <section className="w-full mt-6 bg-white px-4 md:px-6 min-h-screen flex items-center">
       <div className="max-w-3xl lg:max-w-6xl w-full mx-auto">
-        <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px] py-28 lg:py-0">
+        <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px] py-28 lg:py-0 items-center">
           <div className="flex flex-col justify-center space-y-4">
             <div className="flex flex-col gap-4 items-start">
               {isLoading ? (
