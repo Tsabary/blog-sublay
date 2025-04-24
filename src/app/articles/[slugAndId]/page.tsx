@@ -16,6 +16,7 @@ import ActionsBar from "../../../components/article/ActionsBar";
 import { Metadata } from "next";
 import { headers } from "next/headers";
 import BackToArticlesButton from "../../../components/article/BackToArticlesButton";
+import remarkLinkTargetBlank from "../../../helpers/remarkLinkTargtBlank";
 
 export const revalidate = 60; // ISR: regenerate at most once per minute
 
@@ -136,7 +137,10 @@ export default async function BlogPost({
   }
 
   // 4) Your rendering/HTML-processing can go here (or in another try/catch if you like)
-  const processed = await remark().use(html).process(article.content);
+  const processed = await remark()
+    .use(remarkLinkTargetBlank)
+    .use(html)
+    .process(article.content);
   const contentHtml = processed.toString();
 
   return (
