@@ -4,16 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { MoreHorizontal } from "lucide-react";
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -23,17 +13,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useEntity } from "@replyke/core";
 import { getArticleSlug } from "../../helpers/getArticlePath";
-
+import DeleteArticleDialog from "./DeleteArticleDialog";
 
 export function AdminOptions() {
   const { entity } = useEntity();
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-
-  const handleDelete = () => {
-    // Implement your delete logic here
-    // console.log(`Deleting article ${articleId}`);
-    // After successful deletion, you might want to redirect or update the UI
-  };
 
   if (!entity) return null;
   return (
@@ -64,26 +48,10 @@ export function AdminOptions() {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete the
-              article.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction
-              onClick={handleDelete}
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-            >
-              Delete
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <DeleteArticleDialog
+        showDeleteDialog={showDeleteDialog}
+        setShowDeleteDialog={setShowDeleteDialog}
+      />
     </>
   );
 }
