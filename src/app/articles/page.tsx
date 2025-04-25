@@ -11,10 +11,8 @@ function ArticlesPage() {
         <div className="pt-24 px-8">
           <NavigateHomeButton />
         </div>
-        <div className="flex-1">
-          <ArticlesGrid />
-          {/* <Subscribe /> */}
-        </div>
+        <ArticlesGrid />
+        {/* <Subscribe /> */}
       </FeedProvider>
     </Layout>
   );
