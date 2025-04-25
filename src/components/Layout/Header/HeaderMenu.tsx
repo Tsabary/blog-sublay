@@ -22,26 +22,31 @@ const components: {
 }[] = [
   {
     title: "Comment Section (Web & Mobile)",
-    path: "comment-section",
+    href: "https://replyke.com/comment-section",
     description:
       "A comment section implementation built with ReactJS & TailwindCSS.",
   },
   {
     title: "Roadmap",
-    path: "roadmap",
+    href: "https://replyke.com/roadmap",
     description: "A public roadmap component built with ReactJS & TailwindCSS.",
   },
   {
-    title: "Social Network App",
-    href: "https://github.com/replyke/reel-snap",
-    description: "A social network app built with Expo & NativeWind.",
+    title: "Discord Board",
+    href: "https://replyke.com/discord-bot",
+    description: "Use your Discord server's activity for improved SEO.",
   },
   {
     title: "Community forum",
-    path: "forum",
+    href: "https://replyke.com/forum",
     description:
       "A community forum built with ReactJS & Shadcn UI. Supports multiple topics.",
   },
+  // {
+  //   title: "Social Network App",
+  //   href: "https://github.com/replyke/reel-snap",
+  //   description: "A social network app built with Expo & NativeWind.",
+  // },
 ];
 
 export function HeaderMenu() {
@@ -83,9 +88,9 @@ export function HeaderMenu() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem> */}
-        <NavigationMenuItem>
-          <NavigationMenuTrigger className="bg-transparent">
-            Starter Projects
+        <NavigationMenuItem className="hidden md:block">
+          <NavigationMenuTrigger className="bg-transparent px-2 py-1 lg:px-4 lg:py-2">
+            Ready Apps
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
@@ -105,7 +110,10 @@ export function HeaderMenu() {
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className={navigationMenuTriggerStyle() + " bg-transparent"}
+            className={
+              navigationMenuTriggerStyle() +
+              " bg-transparent px-2 py-1 lg:px-4 lg:py-2"
+            }
           >
             <a href="https://discord.com/invite/REKxnCJzPz">Community</a>
           </NavigationMenuLink>
@@ -113,7 +121,10 @@ export function HeaderMenu() {
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className={navigationMenuTriggerStyle() + " bg-transparent"}
+            className={
+              navigationMenuTriggerStyle() +
+              " bg-transparent px-2 py-1 lg:px-4 lg:py-2"
+            }
           >
             <a href="https://roadmap.replyke.com">Roadmap</a>
           </NavigationMenuLink>
@@ -121,7 +132,10 @@ export function HeaderMenu() {
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className={navigationMenuTriggerStyle() + " bg-transparent"}
+            className={
+              navigationMenuTriggerStyle() +
+              " bg-transparent px-2 py-1 lg:px-4 lg:py-2"
+            }
           >
             <a href="https://docs.replyke.com">Documentation</a>
           </NavigationMenuLink>
@@ -129,7 +143,10 @@ export function HeaderMenu() {
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className={navigationMenuTriggerStyle() + " bg-transparent"}
+            className={
+              navigationMenuTriggerStyle() +
+              " bg-transparent px-2 py-1 lg:px-4 lg:py-2"
+            }
           >
             <a href="https://blog.replyke.com">Blog</a>
           </NavigationMenuLink>
@@ -161,7 +178,7 @@ const ListItem = React.forwardRef<
     <li>
       <NavigationMenuLink asChild>
         {path ? (
-          <Link href={`/${path}`} passHref>
+          <Link href={`/${path}`} passHref legacyBehavior>
             <a ref={ref} {...props}>
               {content}
             </a>
