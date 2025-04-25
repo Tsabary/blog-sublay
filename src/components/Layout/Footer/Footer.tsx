@@ -57,6 +57,12 @@ function Footer() {
               >
                 Roadmap
               </a>
+              <a
+                href="https://blog.replyke.com"
+                className="block transition-colors hover:text-primary"
+              >
+                Blog
+              </a>
             </nav>
           </div>
           {/* <div>

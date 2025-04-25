@@ -25,7 +25,7 @@ function ArticlesGrid() {
   // );
 
   return (
-    <section className="flex-1 w-full py-12 bg-muted/50">
+    <section className="flex-1 w-full py-4 bg-muted/50">
       <div className="container">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
