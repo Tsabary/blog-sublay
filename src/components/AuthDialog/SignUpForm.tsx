@@ -41,6 +41,7 @@ export default function SignupForm({
         credentials.email,
         credentials.password
       );
+      setOpen(false);
     } catch (err: unknown) {
       if (err instanceof Error) {
         let errorMessage = err.message;
@@ -75,12 +76,28 @@ export default function SignupForm({
           id="email-signup"
           type="email"
           placeholder="name@replyke.com"
+          onChange={(event) =>
+            setCredentials((cs) => ({
+              ...cs,
+              email: event.target.value.trim(),
+            }))
+          }
           required
         />
       </div>
       <div className="space-y-2">
         <Label htmlFor="password-signup">Password</Label>
-        <Input id="password-signup" type="password" required />
+        <Input
+          id="password-signup"
+          type="password"
+          required
+          onChange={(event) =>
+            setCredentials((cs) => ({
+              ...cs,
+              password: event.target.value.trim(),
+            }))
+          }
+        />
       </div>
       <Button type="submit" className="w-full">
         Create Account
