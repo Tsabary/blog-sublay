@@ -38,7 +38,7 @@
     "@radix-ui/react-toggle": "1.1.1",
     "@radix-ui/react-toggle-group": "1.1.1",
     "@radix-ui/react-tooltip": "1.1.6",
-    "@replyke/comments-social-react-js": "^4.0.13",
+    "@replyke/comments-social-react-js": "5.0.0-beta.2",
     "@replyke/core": "5.0.0-beta.18",
     "@replyke/js": "5.0.0-beta.0",
     "@replyke/react-js": "5.0.0-beta.18",

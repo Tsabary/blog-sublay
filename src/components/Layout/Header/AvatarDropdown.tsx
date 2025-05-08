@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useAuth as useAuthReplyke, useUser } from "@replyke/react-js";
 import {
   DropdownMenu,
@@ -14,7 +15,6 @@ import useAuth from "@/hooks/useAuth";
 import UserAvatar from "./UserAvatar";
 import ShinyText from "./ShinyButton";
 import { AuthDialog } from "../../AuthDialog";
-import Link from "next/link";
 
 function AvatarDropdown() {
   const { signOut } = useAuth();
