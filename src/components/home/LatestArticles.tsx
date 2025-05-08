@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
-import { useFeed } from "@replyke/react-js";
+import { useEntityList } from "@replyke/react-js";
 import ArticleCard from "./ArticleCard";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 
 function LatestArticles() {
-  const { entities } = useFeed();
+  const { entities } = useEntityList();
 
   if (!entities) return null;
 

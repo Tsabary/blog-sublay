@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useFeed } from "@replyke/react-js";
+import { useEntityList } from "@replyke/react-js";
 import { HeartIcon, MessageCircleIcon } from "lucide-react";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";
 import { formatDate2 } from "../../lib/time-formatters";
@@ -11,7 +11,7 @@ import UserAvatar from "../Layout/Header/UserAvatar";
 import { getArticlePath } from "../../helpers/getArticlePath";
 
 function FeaturedArticle() {
-  const { entities } = useFeed();
+  const { entities } = useEntityList();
   const article = entities?.[0];
   const isLoading = !article;
 

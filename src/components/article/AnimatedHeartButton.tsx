@@ -12,7 +12,7 @@ export default function AnimatedHeartButton({
 }: {
   liked: boolean;
   onClick: () => void;
-  size: number;
+  size?: number;
 }) {
   return (
     <motion.button

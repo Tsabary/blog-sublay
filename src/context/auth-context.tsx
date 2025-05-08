@@ -4,8 +4,6 @@ import { useState, useEffect, createContext, useCallback } from "react";
 import { handleError } from "@replyke/react-js";
 
 import axios from "@/config/axios";
-import usePublicKey from "@/hooks/usePublicKey";
-import rsaEncryptBase64 from "@/lib/rsaEncryptBase64";
 import { Client } from "@/types/Client";
 
 type AuthContextProps = {
@@ -37,8 +35,6 @@ type AuthContextProps = {
 export const AuthContext = createContext<Partial<AuthContextProps>>({});
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const publicKeyBase64 = usePublicKey();
-
   const [client, setClient] = useState<Client | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>();
 
@@ -48,19 +44,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     email: string,
     password: string
   ) => {
-    if (!publicKeyBase64) throw new Error("No public key received from server");
-
-    const encryptedBase64Email = rsaEncryptBase64(email, publicKeyBase64);
-    const encryptedBase64Password = rsaEncryptBase64(password, publicKeyBase64);
-
     try {
-      const path = `/clients-auth/sign-up`;
+      const path = `/auth/sign-up`;
 
       const response = await axios.post(
         path,
         {
-          email: encryptedBase64Email,
-          password: encryptedBase64Password,
+          email,
+          password,
         },
         { withCredentials: true }
       );
@@ -77,20 +68,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     email: string,
     password: string
   ) => {
-    if (!publicKeyBase64) throw new Error("No public key received from server");
-
-    // Encode the encrypted data to Base64
-    const encryptedBase64Email = rsaEncryptBase64(email, publicKeyBase64);
-    const encryptedBase64Password = rsaEncryptBase64(password, publicKeyBase64);
-
     try {
-      const path = `/clients-auth/sign-in`;
+      const path = `/auth/sign-in`;
 
       const response = await axios.post(
         path,
         {
-          email: encryptedBase64Email,
-          password: encryptedBase64Password,
+          email,
+          password,
         },
         { withCredentials: true }
       );
@@ -105,7 +90,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signOut = async () => {
     try {
-      const path = `/clients-auth/sign-out`;
+      const path = `/auth/sign-out`;
 
       await axios.post(path, undefined, { withCredentials: true });
       setAccessToken(null);
@@ -119,27 +104,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (!client) throw new Error("No client is logged in");
     if (!client.email)
       throw new Error("Didn't authenticate using email and password");
-    if (!publicKeyBase64) throw new Error("No public key received from server");
-
-    const encryptedBase64Email = rsaEncryptBase64(
-      client.email,
-      publicKeyBase64
-    );
-    const encryptedBase64Password = rsaEncryptBase64(password, publicKeyBase64);
-    const encryptedBase64NewPassword = rsaEncryptBase64(
-      newPassword,
-      publicKeyBase64
-    );
 
     try {
-      const path = `/clients-auth/change-password`;
+      const path = `/auth/change-password`;
 
       await axios.post(
         path,
         {
-          email: encryptedBase64Email,
-          password: encryptedBase64Password,
-          newPassword: encryptedBase64NewPassword,
+          password,
+          newPassword,
         },
         { withCredentials: true }
       );
@@ -150,7 +123,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const getNewAccessToken = useCallback(async () => {
     try {
-      const path = `/clients-auth/request-new-access-token`;
+      const path = `/auth/request-new-access-token`;
 
       const response = await axios.post(path, undefined, {
         withCredentials: true,

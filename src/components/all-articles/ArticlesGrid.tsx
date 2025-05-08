@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { useFeed } from "@replyke/react-js";
+import { useEntityList } from "@replyke/react-js";
 import ArticleCard from "../home/ArticleCard";
 
 function ArticlesGrid() {
-  const { entities, loading } = useFeed();
+  const { entities, loading } = useEntityList();
 
   const isFirstLoad = loading && (!entities || entities.length === 0);
 

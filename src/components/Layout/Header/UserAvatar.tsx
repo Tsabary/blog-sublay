@@ -1,11 +1,11 @@
-import { UserLean } from "@replyke/react-js";
+import { User } from "@replyke/react-js";
 
 function UserAvatar({
   user,
   size = 32,
   borderRadius,
 }: {
-  user: Partial<UserLean> | undefined;
+  user: Partial<User> | undefined;
   size?: number | undefined;
   borderRadius?: number | undefined;
   colors?: string[] | undefined;

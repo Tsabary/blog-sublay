@@ -158,7 +158,7 @@ export default function NewPost() {
 
       // Simulate API call
       const article = await createEntity({
-        resourceId: "blog",
+        sourceId: "blog",
         title,
         content,
         attachments,
