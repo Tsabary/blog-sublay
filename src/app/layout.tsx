@@ -6,6 +6,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "../context/auth-context";
 import PopulatedReplykeProvider from "../context/populated-replyke-provider";
+import { PostHogProvider } from "./providers";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -67,19 +68,21 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={outfit.className}>
-        <Toaster />
-        <AuthProvider>
-          <PopulatedReplykeProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="light"
-              enableSystem
-              disableTransitionOnChange
-            >
-              {children}
-            </ThemeProvider>
-          </PopulatedReplykeProvider>
-        </AuthProvider>
+        <PostHogProvider>
+          <Toaster />
+          <AuthProvider>
+            <PopulatedReplykeProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="light"
+                enableSystem
+                disableTransitionOnChange
+              >
+                {children}
+              </ThemeProvider>
+            </PopulatedReplykeProvider>
+          </AuthProvider>
+        </PostHogProvider>
       </body>
     </html>
   );
