@@ -43,7 +43,13 @@ const MDEditor = dynamic(
 );
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
-const CATEGORIES = ["tutorial", "announcement"];
+const CATEGORIES = [
+  "tutorial",
+  "announcement",
+  "product",
+  // "insights",
+  // "updates",
+];
 
 export default function NewPost() {
   const { user } = useUser();

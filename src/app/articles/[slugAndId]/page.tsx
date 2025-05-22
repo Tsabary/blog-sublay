@@ -1,10 +1,11 @@
 import { handleError } from "@replyke/core";
 import { ReplykeClient } from "@replyke/js";
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
-import rehypeExternalLinks from 'rehype-external-links';
-import rehypeStringify from 'rehype-stringify';
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm"; // ← add this
+import remarkRehype from "remark-rehype";
+import rehypeExternalLinks from "rehype-external-links";
+import rehypeStringify from "rehype-stringify";
 import { Metadata } from "next";
 import { headers } from "next/headers";
 
@@ -140,14 +141,15 @@ export default async function BlogPost({
 
   // 4) Your rendering/HTML-processing can go here (or in another try/catch if you like)
   const processed = await unified()
-  .use(remarkParse)
-  .use(remarkRehype)
-  .use(rehypeExternalLinks, {
-    target: '_blank',
-    rel: ['noopener', 'noreferrer'],
-  })
-  .use(rehypeStringify)
-  .process(article.content);
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeExternalLinks, {
+      target: "_blank",
+      rel: ["noopener", "noreferrer"],
+    })
+    .use(rehypeStringify)
+    .process(article.content);
   const contentHtml = processed.toString();
 
   return (

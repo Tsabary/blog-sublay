@@ -7,13 +7,14 @@ import { HeaderMenu } from "./HeaderMenu";
 import AvatarDropdown from "./AvatarDropdown";
 import logo from "@/assets/logo.webp";
 import logoR from "@/assets/logo-r.webp";
+
 function Header() {
   const { user } = useUser();
   return (
     <header className="fixed top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6 py-4">
       <div className="flex items-center gap-6 mx-auto max-w-6xl">
         <Link href="https://replyke.com" className="flex gap-2 items-end">
-        <Image
+          <Image
             src={logo}
             alt="logo"
             className="w-auto h-8 shrink-0 hidden lg:block"
