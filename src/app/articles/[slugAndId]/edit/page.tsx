@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import {
   Entity,
   handleError,
-  useCreateEntity,
   useFetchEntityByShortId,
   useUpdateEntity,
   useUploadFile,
@@ -38,15 +37,13 @@ import { cn } from "@/lib/utils";
 import { redirect, useParams, useRouter } from "next/navigation";
 import Layout from "@/components/Layout";
 import { getArticlePath } from "@/helpers/getArticlePath";
+import { ACCEPTED_IMAGE_TYPES, CATEGORIES } from "../../../../constants";
 
 // Prevent SSR issues with the markdown editor
 const MDEditor = dynamic(
   () => import("@uiw/react-md-editor").then((m) => m.default),
   { ssr: false }
 );
-
-const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
-const CATEGORIES = ["tutorial", "announcement"];
 
 export default function EditPost() {
   const { slugAndId } = useParams();
