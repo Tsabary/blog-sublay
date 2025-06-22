@@ -21,12 +21,19 @@ function ArticleCard({ article }: { article: Entity }) {
     title: article.title,
     shortId: article.shortId,
   });
+
+  const image = article.attachments[0]?.publicPath
+    ? convertFilesToProxiedUrl(article.attachments[0]?.publicPath)
+    : "/placeholder.svg";
+
+  console.log({ image });
+
   return (
     <Link href={path} className="group">
       <Card className="overflow-hidden transition-all hover:shadow-lg">
         <div className="aspect-video w-full overflow-hidden">
           <Image
-            src={article.attachments[0].publicPath || "/placeholder.svg"}
+            src={image}
             alt={article.title || "Cover image"}
             width={600}
             height={400}

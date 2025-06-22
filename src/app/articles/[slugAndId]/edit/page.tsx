@@ -229,8 +229,10 @@ export default function EditPost() {
           category: entity.metadata.category,
         });
 
-        if (entity.attachments?.[0]?.publicPath) {
-          setInitialImage(entity.attachments[0].publicPath);
+        if (convertFilesToProxiedUrl(entity.attachments?.[0]?.publicPath)) {
+          setInitialImage(
+            convertFilesToProxiedUrl(entity.attachments[0].publicPath)
+          );
         }
       } catch (err) {
         handleError(err, "Fetching entity failed");

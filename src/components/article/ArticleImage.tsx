@@ -3,10 +3,15 @@ import Image from "next/image";
 import { Entity } from "@replyke/core";
 
 function ArticleImage({ article }: { article: Entity }) {
+  const image = article.attachments[0]?.publicPath
+    ? convertFilesToProxiedUrl(article.attachments[0]?.publicPath)
+    : "/placeholder.svg";
+
+  console.log({ image });
   return (
     <div className="my-8 aspect-video overflow-hidden rounded-lg">
       <Image
-        src={article.attachments[0]?.publicPath || "/placeholder.svg"}
+        src={image}
         alt={article.title || "Cover Image"}
         width={1200}
         height={600}

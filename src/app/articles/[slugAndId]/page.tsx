@@ -65,7 +65,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: article.attachments[0].publicPath,
+          url: convertFilesToProxiedUrl(article.attachments[0].publicPath),
           width: 1200,
           height: 630,
           alt: "Cover photo",
@@ -78,7 +78,7 @@ export async function generateMetadata({
       description: article.metadata.excerpt,
       images: [
         {
-          url: article.attachments[0].publicPath,
+          url: convertFilesToProxiedUrl(article.attachments[0].publicPath),
           alt: "Cover photo",
         },
       ],

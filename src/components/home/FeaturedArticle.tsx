@@ -22,6 +22,10 @@ function FeaturedArticle() {
       })
     : "";
 
+  const image = article?.attachments[0]?.publicPath
+    ? convertFilesToProxiedUrl(article.attachments[0]?.publicPath)
+    : "/placeholder.svg";
+
   return (
     <section className="w-full mt-6 bg-white px-4 md:px-6 min-h-screen flex items-center">
       <div className="max-w-3xl lg:max-w-6xl w-full mx-auto">
@@ -123,7 +127,7 @@ function FeaturedArticle() {
               <div className="w-full h-full bg-muted animate-pulse rounded-xl" />
             ) : article.attachments[0] ? (
               <Image
-                src={article.attachments[0].publicPath || "/placeholder.svg"}
+                src={image}
                 alt={article.title || "Cover image"}
                 width={1200}
                 height={600}
