@@ -38,6 +38,7 @@ import { redirect, useParams, useRouter } from "next/navigation";
 import Layout from "@/components/Layout";
 import { getArticlePath } from "@/helpers/getArticlePath";
 import { ACCEPTED_IMAGE_TYPES, CATEGORIES } from "../../../../constants";
+import { convertFilesToProxiedUrl } from "../../../../lib/convert-files-to-proxied-url";
 
 // Prevent SSR issues with the markdown editor
 const MDEditor = dynamic(

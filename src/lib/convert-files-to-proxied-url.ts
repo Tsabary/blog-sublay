@@ -1,4 +1,4 @@
-function convertFilesToProxiedUrl(url: string): string {
+export function convertFilesToProxiedUrl(url: string): string {
   const SUPABASE_PUBLIC_PREFIX =
     "supabase.co/storage/v1/object/public/projects-public/";
   const PROXY_PREFIX = "https://api.replyke.com/internal/files/";

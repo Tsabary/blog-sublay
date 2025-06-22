@@ -9,6 +9,7 @@ import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTime
 import { formatDate2 } from "../../lib/time-formatters";
 import UserAvatar from "../Layout/Header/UserAvatar";
 import { getArticlePath } from "../../helpers/getArticlePath";
+import { convertFilesToProxiedUrl } from "../../lib/convert-files-to-proxied-url";
 
 function FeaturedArticle() {
   const { entities } = useEntityList();

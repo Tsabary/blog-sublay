@@ -20,6 +20,7 @@ import {
 } from "../../../helpers/getArticlePath";
 import ActionsBar from "../../../components/article/ActionsBar";
 import BackToArticlesButton from "../../../components/article/BackToArticlesButton";
+import { convertFilesToProxiedUrl } from "../../../lib/convert-files-to-proxied-url";
 
 export const revalidate = 60; // ISR: regenerate at most once per minute
 

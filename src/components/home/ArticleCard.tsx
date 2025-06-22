@@ -15,6 +15,7 @@ import { formatDate2 } from "../../lib/time-formatters";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";
 import UserAvatar from "../Layout/Header/UserAvatar";
 import { getArticlePath } from "../../helpers/getArticlePath";
+import { convertFilesToProxiedUrl } from "../../lib/convert-files-to-proxied-url";
 
 function ArticleCard({ article }: { article: Entity }) {
   const path = getArticlePath({
