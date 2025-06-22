@@ -27,8 +27,6 @@ function ArticleCard({ article }: { article: Entity }) {
     ? convertFilesToProxiedUrl(article.attachments[0]?.publicPath)
     : "/placeholder.svg";
 
-  console.log({ image });
-
   return (
     <Link href={path} className="group">
       <Card className="overflow-hidden transition-all hover:shadow-lg">

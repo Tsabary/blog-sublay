@@ -8,7 +8,6 @@ function ArticleImage({ article }: { article: Entity }) {
     ? convertFilesToProxiedUrl(article.attachments[0]?.publicPath)
     : "/placeholder.svg";
 
-  console.log({ image });
   return (
     <div className="my-8 aspect-video overflow-hidden rounded-lg">
       <Image
