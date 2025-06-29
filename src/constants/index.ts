@@ -3,6 +3,7 @@ export const CATEGORIES = [
   "tutorial",
   "announcement",
   "product",
+  "comparisons",
   // "insights",
   // "updates",
 ];
