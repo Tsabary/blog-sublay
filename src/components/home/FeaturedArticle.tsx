@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useEntityList } from "@replyke/react-js";
@@ -15,6 +15,7 @@ function FeaturedArticle() {
   const { entities } = useEntityList();
   const article = entities?.[0];
   const isLoading = !article;
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   const path = article
     ? getArticlePath({
@@ -124,17 +125,25 @@ function FeaturedArticle() {
           </div>
 
           <div className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:mt-0">
-            {isLoading ? (
-              <div className="w-full h-full bg-muted animate-pulse rounded-xl" />
-            ) : article.attachments[0] ? (
+            {/* 3. Skeleton placeholder */}
+            {/** Only show while loading AND before the image has loaded */}
+            {(isLoading || !imgLoaded) && (
+              <div className="absolute inset-0 bg-muted animate-pulse rounded-xl" />
+            )}
+
+            {/* 4. Next.js Image with onLoadingComplete */}
+            {!isLoading && article.attachments[0] && (
               <Image
                 src={image}
                 alt={article.title || "Cover image"}
                 width={1200}
                 height={600}
-                className="aspect-video object-cover"
+                className="aspect-video object-cover rounded-xl"
+                onLoadingComplete={() => setImgLoaded(true)}
+                // optional: if you want no layout shift
+                placeholder="empty"
               />
-            ) : null}
+            )}
           </div>
         </div>
       </div>
