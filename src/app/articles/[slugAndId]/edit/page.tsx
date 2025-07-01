@@ -180,7 +180,7 @@ export default function EditPost() {
       }
 
       let updated: Entity = entity;
-      if (Object.keys(updatePayload).length > 0) {
+      if (Object.keys(updatePayload)?.length ?? 0 > 0) {
         updated = await updateEntity({
           entityId: entity.id,
           update: updatePayload,
@@ -277,7 +277,7 @@ export default function EditPost() {
                     maxLength={160}
                   />
                   <p className="text-sm text-muted-foreground text-right">
-                    {formData.excerpt.length}/160
+                    {formData.excerpt?.length ?? 0}/160
                   </p>
                 </div>
 
