@@ -113,9 +113,7 @@ export default function EditPost() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    if (!entity) {
-      return;
-    }
+    if (!entity) return;
 
     // Validate form
     if (!formData.title.trim()) {
@@ -150,16 +148,21 @@ export default function EditPost() {
       const updatePayload: any = {};
       if (title !== entity.title) updatePayload.title = formData.title;
       if (content !== entity.content) updatePayload.content = formData.content;
-      if (excerpt !== entity.metadata.excerpt)
-        updatePayload.metadata = {
-          ...(updatePayload.metadata ?? {}),
-          excerpt: formData.excerpt,
-        };
-      if (category !== entity.metadata.category)
-        updatePayload.metadata = {
-          ...(updatePayload.metadata ?? {}),
-          category: formData.category,
-        };
+      // if (excerpt !== entity.metadata.excerpt)
+      //   updatePayload.metadata = {
+      //     ...(updatePayload.metadata ?? {}),
+      //     excerpt: formData.excerpt,
+      //   };
+      // if (category !== entity.metadata.category)
+      //   updatePayload.metadata = {
+      //     ...(updatePayload.metadata ?? {}),
+      //     category: formData.category,
+      //   };
+      updatePayload.metadata = {
+        ...(updatePayload.metadata ?? {}),
+        excerpt: formData.excerpt,
+        category: formData.category,
+      };
 
       // if they've picked a new file, compress & upload it, then send attachments
       if (file) {
