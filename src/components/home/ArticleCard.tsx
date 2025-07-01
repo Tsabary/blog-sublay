@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { HeartIcon, MessageCircleIcon } from "lucide-react";
@@ -18,6 +20,8 @@ import { getArticlePath } from "../../helpers/getArticlePath";
 import { convertFilesToProxiedUrl } from "../../lib/convert-files-to-proxied-url";
 
 function ArticleCard({ article }: { article: Entity }) {
+  const [imgLoaded, setImgLoaded] = useState(false);
+
   const path = getArticlePath({
     title: article.title,
     shortId: article.shortId,
@@ -30,13 +34,19 @@ function ArticleCard({ article }: { article: Entity }) {
   return (
     <Link href={path} className="group">
       <Card className="overflow-hidden transition-all hover:shadow-lg">
-        <div className="aspect-video w-full overflow-hidden">
+        <div className="relative aspect-video w-full overflow-hidden">
+          {/* Skeleton shown until image loads */}
+          {!imgLoaded && (
+            <div className="absolute inset-0 bg-muted animate-pulse rounded-md" />
+          )}
           <Image
             src={image}
             alt={article.title || "Cover image"}
             width={600}
             height={400}
             className="aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
+            onLoadingComplete={() => setImgLoaded(true)}
+            placeholder="empty"
           />
         </div>
         <CardHeader>
@@ -50,7 +60,6 @@ function ArticleCard({ article }: { article: Entity }) {
         <CardContent>
           <div className="flex items-center space-x-4">
             <UserAvatar user={article.user!} size={24} />
-
             <div className="space-y-1">
               <p className="text-sm font-medium leading-none">
                 {article.user!.name}
