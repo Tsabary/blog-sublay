@@ -15,6 +15,8 @@ function FeaturedArticle() {
   const { entities } = useEntityList();
   const article = entities?.[0];
   const isLoading = !article;
+
+  // Track when the actual <Image> has finished loading
   const [imgLoaded, setImgLoaded] = useState(false);
 
   const path = article
@@ -32,6 +34,8 @@ function FeaturedArticle() {
     <section className="w-full mt-6 bg-white px-4 md:px-6 min-h-screen flex items-center">
       <div className="max-w-3xl lg:max-w-6xl w-full mx-auto">
         <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px] py-28 lg:py-0 items-center">
+          
+          {/* Text & metadata */}
           <div className="flex flex-col justify-center space-y-4">
             <div className="flex flex-col gap-4 items-start">
               {isLoading ? (
@@ -85,7 +89,7 @@ function FeaturedArticle() {
                     </p>
                   </>
                 )}
-                {article && (
+                {!isLoading && (
                   <>
                     <div className="flex items-center gap-1">
                       <HeartIcon
@@ -109,29 +113,16 @@ function FeaturedArticle() {
                 )}
               </div>
             </div>
-
-            {/* <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              {isLoading ? (
-                <div className="h-10 w-40 rounded bg-muted animate-pulse" />
-              ) : (
-                <Link href={`/articles/${article.shortId}`} passHref>
-                  <Button className="inline-flex items-center justify-center">
-                    Read Article
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-              )}
-            </div> */}
           </div>
 
-          <div className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:mt-0">
-            {/* 3. Skeleton placeholder */}
-            {/** Only show while loading AND before the image has loaded */}
+          {/* Image + skeleton */}
+          <div className="relative mx-auto aspect-video overflow-hidden rounded-xl sm:w-full lg:order-last lg:mt-0">
+            {/* Skeleton shown until image is loaded */}
             {(isLoading || !imgLoaded) && (
               <div className="absolute inset-0 bg-muted animate-pulse rounded-xl" />
             )}
 
-            {/* 4. Next.js Image with onLoadingComplete */}
+            {/* Next.js Image */}
             {!isLoading && article.attachments[0] && (
               <Image
                 src={image}
@@ -139,9 +130,8 @@ function FeaturedArticle() {
                 width={1200}
                 height={600}
                 className="aspect-video object-cover rounded-xl"
-                onLoadingComplete={() => setImgLoaded(true)}
-                // optional: if you want no layout shift
                 placeholder="empty"
+                onLoadingComplete={() => setImgLoaded(true)}
               />
             )}
           </div>
