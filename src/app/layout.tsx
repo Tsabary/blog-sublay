@@ -82,7 +82,9 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-R0WW1RW0XF');
+              gtag('config', 'G-R0WW1RW0XF', {
+  cookie_domain: 'replyke.com'
+});
             `,
           }}
         />
