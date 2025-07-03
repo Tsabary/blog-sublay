@@ -1,6 +1,8 @@
 import type React from "react";
 import { Outfit } from "next/font/google";
 import { Metadata } from "next";
+import Script from "next/script";
+
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -67,6 +69,24 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-R0WW1RW0XF"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-R0WW1RW0XF');
+            `,
+          }}
+        />
+      </head>
       <body className={outfit.className}>
         <PostHogProvider>
           <Toaster />
