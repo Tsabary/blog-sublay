@@ -71,11 +71,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <Script
-          dangerouslySetInnerHTML={{
-            __html: `console.log("🚀 Blog layout loaded – GA should fire now");`,
-          }}
-        />
-        <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-R0WW1RW0XF"
           strategy="afterInteractive"
         />
