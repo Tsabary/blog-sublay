@@ -1,7 +1,7 @@
 import type React from "react";
 import { Outfit } from "next/font/google";
 import { Metadata } from "next";
-// import Script from "next/script";
+import Script from "next/script";
 
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
@@ -70,18 +70,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
+        <Script
           dangerouslySetInnerHTML={{
             __html: `console.log("🚀 Blog layout loaded – GA should fire now");`,
           }}
         />
-        <script
+        <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-R0WW1RW0XF"
-          // strategy="afterInteractive"
+          strategy="afterInteractive"
         />
-        <script
+        <Script
           id="gtag-init"
-          // strategy="afterInteractive"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
