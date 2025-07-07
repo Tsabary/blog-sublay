@@ -50,7 +50,7 @@ function FeaturedArticle() {
                 <div className="h-10 w-3/4 rounded bg-muted animate-pulse" />
               ) : (
                 <Link href={path}>
-                  <h1 className="text-3xl font-bold tracking-tight sm:text-5xl xl:text-6xl/none hover:underline">
+                  <h1 className="text-3xl font-bold tracking-tight sm:text-5xl hover:underline">
                     {article.title}
                   </h1>
                 </Link>
