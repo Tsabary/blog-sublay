@@ -4,6 +4,6 @@ export const CATEGORIES = [
   "announcement",
   "product",
   "comparisons",
-  // "insights",
+  "insights",
   // "updates",
 ];
