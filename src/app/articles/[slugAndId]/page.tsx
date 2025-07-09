@@ -1,21 +1,19 @@
-"use client";
-
-import { handleError } from "@replyke/core";
 import { ReplykeClient } from "@replyke/js";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
-import remarkGfm from "remark-gfm"; // ← add this
+import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeStringify from "rehype-stringify";
 import { Metadata } from "next";
 import { headers } from "next/headers";
+import { notFound, redirect } from "next/navigation";
 
+import { handleError } from "@/lib/handle-error";
 import NavigateHomeButton from "../../../components/article/NavigateHomeButton";
 import Layout from "../../../components/Layout";
 import ArticleImage from "../../../components/article/ArticleImage";
 import ArticleDetails from "../../../components/article/ArticleDetails";
-import { notFound, redirect } from "next/navigation";
 import {
   getArticlePath,
   getArticleSlug,

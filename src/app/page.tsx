@@ -1,8 +1,8 @@
 "use client";
 
+import { EntityListProvider } from "@replyke/core";
 import FeaturedArticle from "../components/home/FeaturedArticle";
 import Layout from "../components/Layout";
-import { EntityListProvider } from "@replyke/core";
 import LatestArticles from "../components/home/LatestArticles";
 
 export default function Home() {

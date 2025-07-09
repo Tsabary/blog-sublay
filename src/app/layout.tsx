@@ -3,12 +3,9 @@ import { Outfit } from "next/font/google";
 import { Metadata } from "next";
 import Script from "next/script";
 
-import { Toaster } from "@/components/ui/sonner";
+import ContextProviders from "../context/context-providers";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { AuthProvider } from "../context/auth-context";
-import PopulatedReplykeProvider from "../context/populated-replyke-provider";
-import { PostHogProvider } from "./providers";
+
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -24,7 +21,6 @@ export const metadata: Metadata = {
     "community",
     "engagement",
     "React comments",
-    "app feedback",
     "user interaction",
     "SaaS social tools",
   ],
@@ -90,21 +86,7 @@ export default function RootLayout({
         />
       </head>
       <body className={outfit.className}>
-        <PostHogProvider>
-          <Toaster />
-          <AuthProvider>
-            <PopulatedReplykeProvider>
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="light"
-                enableSystem
-                disableTransitionOnChange
-              >
-                {children}
-              </ThemeProvider>
-            </PopulatedReplykeProvider>
-          </AuthProvider>
-        </PostHogProvider>
+        <ContextProviders>{children}</ContextProviders>
       </body>
     </html>
   );
