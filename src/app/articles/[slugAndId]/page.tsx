@@ -1,3 +1,5 @@
+"use client";
+
 import { handleError } from "@replyke/core";
 import { ReplykeClient } from "@replyke/js";
 import { unified } from "unified";
