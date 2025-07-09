@@ -1,3 +1,5 @@
+"use client";
+
 import FeaturedArticle from "../components/home/FeaturedArticle";
 import Layout from "../components/Layout";
 import { EntityListProvider } from "@replyke/core";

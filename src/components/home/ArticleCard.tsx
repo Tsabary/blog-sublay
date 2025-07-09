@@ -50,7 +50,7 @@ function ArticleCard({ article }: { article: Entity }) {
           />
         </div>
         <CardHeader>
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <CardTitle className="line-clamp-1">{article.title}</CardTitle>
             <CardDescription className="line-clamp-2">
               {article.metadata.excerpt}
