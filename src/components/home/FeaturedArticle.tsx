@@ -31,7 +31,7 @@ function FeaturedArticle() {
     : "/placeholder.svg";
 
   return (
-    <section className="w-full mt-6 bg-white px-4 md:px-6 min-h-[100dvh] flex items-center">
+    <section className="w-full mt-6 bg-white px-4 md:px-6 min-h-screen flex items-center">
       <div className="max-w-3xl lg:max-w-6xl w-full mx-auto">
         <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px] py-28 lg:py-0 items-center">
           
@@ -129,7 +129,7 @@ function FeaturedArticle() {
                 alt={article.title || "Cover image"}
                 width={1200}
                 height={600}
-                className="aspect-video object-cover rounded-xl"
+                className="aspect-video object-cover rounded-xl w-full"
                 placeholder="empty"
                 onLoadingComplete={() => setImgLoaded(true)}
               />
