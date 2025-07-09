@@ -126,7 +126,8 @@ function FeaturedArticle() {
               <Image
                 src={image}
                 alt={article.title || "Cover image"}
-                fill
+                width={1200}
+                height={600}
                 className="aspect-video object-cover rounded-xl w-full"
                 placeholder="empty"
                 onLoadingComplete={() => setImgLoaded(true)}
