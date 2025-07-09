@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "./auth-context";
