@@ -1,3 +1,5 @@
+"use client";
+
 import { EntityListProvider } from "@replyke/core";
 import React from "react";
 import ArticlesGrid from "../../components/all-articles/ArticlesGrid";
