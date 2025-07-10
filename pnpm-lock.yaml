@@ -105,8 +105,8 @@ importers:
         specifier: 5.0.15
         version: 5.0.15(react@19.1.0)
       '@replyke/js':
-        specifier: 0.0.2
-        version: 0.0.2
+        specifier: 5.0.0
+        version: 5.0.0
       '@replyke/react-js':
         specifier: 5.0.15
         version: 5.0.15(react@19.1.0)
@@ -1814,8 +1814,8 @@ packages:
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
 
-  '@replyke/js@0.0.2':
-    resolution: {integrity: sha512-ayIFtePU7Oy1D4e7hBH32KqUveHtF6xqi3xWUnElJW/mBK+B42G/DfT/EfPoWXJs62BdRUJGig9rRbZupBjQGw==}
+  '@replyke/js@5.0.0':
+    resolution: {integrity: sha512-Ql0tgWrWlYkMIKGD2zUwMQgR1rTKO7ERU5cSpWuFVcr9tuHDK8iFvA3HkEh7NpJ0Bv4ifPPmknekE6/wvQI9Og==}
 
   '@replyke/react-js@5.0.15':
     resolution: {integrity: sha512-N7WtstISvUMECmvaEA4vzSjrLp+214ir22kT4cpgcDZL1AELkR5HcKO+ab6kardg5+GS9s9NKz7Pn0OZdS4dPA==}
@@ -6752,7 +6752,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@replyke/js@0.0.2':
+  '@replyke/js@5.0.0':
     dependencies:
       axios: 1.10.0
     transitivePeerDependencies:
