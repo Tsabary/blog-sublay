@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { ReplykeClient } from "@replyke/js"; // or your own DB helper
 import { getArticlePath } from "../helpers/getArticlePath";
 
+// Revalidate every 3600 seconds (1 hour)
+export const revalidate = 60 * 60;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = "https://blog.replyke.com";
   // Fetch all articles; replace with your real data-fetch logic
@@ -15,6 +18,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${base}/${getArticlePath({ title, shortId })}`,
     lastModified: new Date(updatedAt), // optional but recommended
     changeFrequency: "daily", // optional
-    priority: 0.8, // optional
   }));
 }
