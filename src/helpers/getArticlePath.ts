@@ -20,6 +20,6 @@ export function getArticlePath({
   title: string | null;
   shortId: string;
 }): string {
-  const slugAndId = getArticleSlug({ title });
-  return `/articles/${slugAndId}-${shortId}`;
+  const slug = getArticleSlug({ title });
+  return `/articles/${slug}-${shortId}`;
 }
