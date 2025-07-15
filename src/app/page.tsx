@@ -4,6 +4,7 @@ import { EntityListProvider } from "@replyke/core";
 import FeaturedArticle from "../components/home/FeaturedArticle";
 import Layout from "../components/Layout";
 import LatestArticles from "../components/home/LatestArticles";
+import Subscribe from "../components/home/Subscribe";
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
         <div className="flex-1">
           <FeaturedArticle />
           <LatestArticles />
-          {/* <Subscribe /> */}
+          <Subscribe />
         </div>
       </EntityListProvider>
     </Layout>

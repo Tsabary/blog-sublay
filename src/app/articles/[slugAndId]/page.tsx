@@ -21,6 +21,7 @@ import {
 import ActionsBar from "../../../components/article/ActionsBar";
 import BackToArticlesButton from "../../../components/article/BackToArticlesButton";
 import { convertFilesToProxiedUrl } from "../../../lib/convert-files-to-proxied-url";
+import Subscribe from "../../../components/home/Subscribe";
 
 export const revalidate = 60; // ISR: regenerate at most once per minute
 
@@ -169,7 +170,7 @@ export default async function BlogPost({
           <BackToArticlesButton />
         </article>
         {/* <RelatedArticles/> */}
-        {/* <Subscribe /> */}
+        <Subscribe />
       </div>
     </Layout>
   );

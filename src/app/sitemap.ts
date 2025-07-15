@@ -2,8 +2,6 @@ import type { MetadataRoute } from "next";
 import { ReplykeClient } from "@replyke/js"; // or your own DB helper
 import { getArticlePath } from "../helpers/getArticlePath";
 
-
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = "https://blog.replyke.com";
   // Fetch all articles; replace with your real data-fetch logic
