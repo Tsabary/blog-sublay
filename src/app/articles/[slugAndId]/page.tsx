@@ -156,7 +156,7 @@ export default async function BlogPost({
 
   return (
     <Layout>
-      <div className="flex-1 pt-16 bg-background">
+      <div className="flex-1 pt-22 bg-background">
         <article className="container max-w-3xl py-6 lg:py-12">
           <div className="space-y-4">
             <NavigateHomeButton />

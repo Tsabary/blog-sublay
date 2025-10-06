@@ -9,7 +9,7 @@ import Subscribe from "../../components/home/Subscribe";
 function ArticlesPage() {
   return (
     <Layout>
-      <div className="pt-24 flex flex-col items-center px-8">
+      <div className="pt-30 flex flex-col items-center px-8">
         <div className="w-full max-w-6xl mx-auto">
           <NavigateHomeButton />
         </div>
