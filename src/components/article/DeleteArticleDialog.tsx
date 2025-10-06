@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useEntity } from "@replyke/react-js";
+import { LoaderCircleIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,9 +12,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { useEntity } from "@replyke/core";
-import { LoaderCircleIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 function DeleteArticleDialog({
   showDeleteDialog,

@@ -7,9 +7,9 @@ import dynamic from "next/dynamic";
 import { MessageCircleIcon, Share2Icon } from "lucide-react";
 import { useParams } from "next/navigation";
 import { ShareButton } from "./ShareButton";
-import DiscussionSheet from "./DiscussionSheet";
 import { AdminOptions } from "./AdminOptions";
 import { Button } from "../ui/button";
+import DiscussionSheet from "./DiscussionSheet";
 
 const AnimatedHeartButton = dynamic(() => import("./AnimatedHeartButton"), {
   ssr: false,

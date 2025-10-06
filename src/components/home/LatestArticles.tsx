@@ -1,14 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useEntityList } from "@replyke/react-js";
-import ArticleCard from "./ArticleCard";
 import Link from "next/link";
-import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
+import ArticleCard from "./ArticleCard";
+import { Button } from "../ui/button";
 
 function LatestArticles() {
-  const { entities } = useEntityList();
+  const { entities, fetchEntities } = useEntityList({
+    listId: "latest-articles",
+  });
+
+  useEffect(() => {
+    fetchEntities({ sortBy: "new" }, { sourceId: "blog", limit: 4 });
+  }, []);
 
   if (!entities) return null;
 

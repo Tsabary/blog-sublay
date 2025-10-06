@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useEntity } from "@replyke/core";
+import { useEntity } from "@replyke/react-js";
 import { getArticleSlug } from "../../helpers/getArticlePath";
 import DeleteArticleDialog from "./DeleteArticleDialog";
 

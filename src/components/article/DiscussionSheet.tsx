@@ -1,12 +1,11 @@
-"use client"
+"use client";
 
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useEntity } from "@replyke/react-js";
 import {
-  SocialStyleCallbacks,
-  useSocialComments,
-  useSocialStyle,
-} from "@replyke/comments-social-react-js";
+  ThreadedStyleCallbacks,
+  ThreadedCommentSection,
+} from "@replyke/comments-threaded-react-js";
 import { toast } from "sonner";
 import {
   Sheet,
@@ -16,7 +15,6 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export function DiscussionSheet({
@@ -30,59 +28,11 @@ export function DiscussionSheet({
 
   const { entity } = useEntity();
 
-  const callbacks: SocialStyleCallbacks = {
+  const callbacks: ThreadedStyleCallbacks = {
     loginRequiredCallback: () => {
       toast("Please log in first");
     },
   };
-  const styleConfig = useSocialStyle();
-
-  const { CommentSectionProvider, SortByButton, CommentsFeed, NewCommentForm } =
-    useSocialComments({
-      entityId: entity?.id,
-      styleConfig,
-      callbacks,
-    });
-
-  const sortByOptions = (
-    <div className="flex px-6 items-center gap-1">
-      <h4 className="font-semibold text-base flex-1">Comments</h4>
-      <SortByButton
-        priority="top"
-        activeView={
-          <div className="bg-black py-1 px-2 rounded-md text-white text-xs">
-            Top
-          </div>
-        }
-        nonActiveView={
-          <div className="bg-gray-200 py-1 px-2 rounded-md text-xs">Top</div>
-        }
-      />
-
-      <SortByButton
-        priority="new"
-        activeView={
-          <div className="bg-black py-1 px-2 rounded-md text-white text-xs">
-            New
-          </div>
-        }
-        nonActiveView={
-          <div className="bg-gray-200 py-1 px-2 rounded-md text-xs">New</div>
-        }
-      />
-      <SortByButton
-        priority="old"
-        activeView={
-          <div className="bg-black py-1 px-2 rounded-md text-white text-xs">
-            Old
-          </div>
-        }
-        nonActiveView={
-          <div className="bg-gray-200 py-1 px-2 rounded-md text-xs">Old</div>
-        }
-      />
-    </div>
-  );
 
   const mobileSection = (
     <Drawer
@@ -92,16 +42,7 @@ export function DiscussionSheet({
       }}
     >
       <DrawerContent className="h-screen overflow-hidden flex flex-col p-0 pt-6 bg-white gap-3">
-        <CommentSectionProvider>
-          {sortByOptions}
-          <div className="flex-1 flex flex-col overflow-hidden">
-            <ScrollArea className="flex-1 bg-white">
-              <CommentsFeed />
-              <div className="w-full h-4" />
-            </ScrollArea>
-            <div className="border-t">{isSheetOpen && <NewCommentForm />}</div>
-          </div>
-        </CommentSectionProvider>
+        <ThreadedCommentSection callbacks={callbacks} />
       </DrawerContent>
     </Drawer>
   );
@@ -120,16 +61,7 @@ export function DiscussionSheet({
             <SheetDescription>comment section</SheetDescription>
           </SheetHeader>
         </VisuallyHidden>
-        <CommentSectionProvider>
-          {sortByOptions}
-          <div className="relative flex-1 flex flex-col overflow-hidden">
-            <ScrollArea className="flex-1 bg-white">
-              <CommentsFeed />
-              <div className="w-full h-4" />
-            </ScrollArea>
-            <div className="border-t">{isSheetOpen && <NewCommentForm />}</div>
-          </div>
-        </CommentSectionProvider>
+        <ThreadedCommentSection callbacks={callbacks} />
       </SheetContent>
     </Sheet>
   );

@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Copy, Facebook, Linkedin, Share2, Twitter, Check } from "lucide-react";
+import { Copy, Facebook, Linkedin, Twitter, Check } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,

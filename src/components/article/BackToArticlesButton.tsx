@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "../ui/button";
-import { ArrowLeft, Share2 } from "lucide-react";
 import Link from "next/link";
+import { ArrowLeft, Share2 } from "lucide-react";
+import { Button } from "../ui/button";
 import { ShareButton } from "./ShareButton";
 
 function BackToArticlesButton() {

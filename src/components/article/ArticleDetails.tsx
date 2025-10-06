@@ -1,7 +1,6 @@
-import { Entity } from "@replyke/core";
-import { Calendar, Clock } from "lucide-react";
-import Image from "next/image";
 import React from "react";
+import { Entity } from "@replyke/react-js";
+import { Calendar, Clock } from "lucide-react";
 import { formatDate2 } from "../../lib/time-formatters";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";
 import UserAvatar from "../Layout/Header/UserAvatar";

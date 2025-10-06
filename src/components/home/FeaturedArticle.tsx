@@ -12,7 +12,7 @@ import { getArticlePath } from "../../helpers/getArticlePath";
 import { convertFilesToProxiedUrl } from "../../lib/convert-files-to-proxied-url";
 
 function FeaturedArticle() {
-  const { entities } = useEntityList();
+  const { entities } = useEntityList({ listId: "latest-articles" });
   const article = entities?.[0];
   const isLoading = !article;
 
