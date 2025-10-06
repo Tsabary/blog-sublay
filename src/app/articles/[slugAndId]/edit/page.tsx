@@ -191,11 +191,11 @@ export default function EditPost() {
       }
 
       toast("Success! Your blog post has been updated");
-      const path = getArticlePath({
-        title: updated.title,
-        shortId: updated.shortId,
-      });
-      router.push(path);
+      // const path = getArticlePath({
+      //   title: updated.title,
+      //   shortId: updated.shortId,
+      // });
+      // router.push(path);
     } catch (error) {
       handleError(error, "Failed to update article");
       toast.error(
