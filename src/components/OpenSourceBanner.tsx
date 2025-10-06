@@ -25,7 +25,7 @@ export default function OpenSourceBanner() {
       <div className="flex items-center gap-2">
         <span className="text-orange-500">This blog repo is open source</span>
         <a
-          href="https://github.com/replyke/blog-vercel"
+          href="https://github.com/Tsabary/blog-replyke"
           target="_blank"
           rel="noopener noreferrer"
           className="text-foreground hover:underline font-medium"
