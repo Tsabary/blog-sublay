@@ -18,7 +18,7 @@ function Subscribe() {
             <iframe
               src="https://communityfeature.substack.com/embed"
               width="100%"
-              height="320"
+              height="150"
               frameBorder="0"
               scrolling="no"
             />
