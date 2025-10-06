@@ -16,7 +16,7 @@ function Subscribe() {
           </div>
           <div className="w-full">
             <iframe
-              src="https://yantsab.substack.com/embed"
+              src="https://syntaxandstrategy.substack.com/embed"
               width="100%"
               height="320"
               frameBorder="0"
