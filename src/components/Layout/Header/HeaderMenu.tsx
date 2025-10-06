@@ -51,7 +51,7 @@ const components: {
 
 export function HeaderMenu() {
   return (
-    <NavigationMenu className="text-stone-800">
+    <NavigationMenu className="text-foreground">
       <NavigationMenuList>
         {/* <NavigationMenuItem>
           <NavigationMenuTrigger className="bg-transparent">

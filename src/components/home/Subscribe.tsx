@@ -2,7 +2,7 @@ import React from "react";
 
 function Subscribe() {
   return (
-    <section className="w-full pt-16 lg:pt-24 pb-12 lg:pb-20 bg-white">
+    <section className="w-full pt-16 lg:pt-24 pb-12 lg:pb-20 bg-background">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">

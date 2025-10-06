@@ -41,7 +41,7 @@ export function DiscussionSheet({
         if (!state) onClose();
       }}
     >
-      <DrawerContent className="h-screen overflow-hidden flex flex-col p-0 pt-6 bg-white gap-3">
+      <DrawerContent className="h-screen overflow-hidden flex flex-col p-0 pt-6 bg-background gap-3">
         <ThreadedCommentSection callbacks={callbacks} />
       </DrawerContent>
     </Drawer>
@@ -54,7 +54,7 @@ export function DiscussionSheet({
         if (!state) onClose();
       }}
     >
-      <SheetContent className="h-screen overflow-hidden flex flex-col p-0 pt-6 bg-white">
+      <SheetContent className="h-screen overflow-hidden flex flex-col p-0 pt-6 bg-background">
         <VisuallyHidden>
           <SheetHeader>
             <SheetTitle>comment section</SheetTitle>
