@@ -13,6 +13,7 @@ import dynamic from "next/dynamic";
 import { Loader2, ImageIcon } from "lucide-react";
 import { toast } from "sonner";
 import imageCompression from "browser-image-compression";
+import { redirect, useParams, useRouter } from "next/navigation";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -34,11 +35,9 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { redirect, useParams, useRouter } from "next/navigation";
 import Layout from "@/components/Layout";
 import { getArticlePath } from "@/helpers/getArticlePath";
 import { ACCEPTED_IMAGE_TYPES, CATEGORIES } from "../../../../constants";
-import { convertFilesToProxiedUrl } from "../../../../lib/convert-files-to-proxied-url";
 
 // Prevent SSR issues with the markdown editor
 const MDEditor = dynamic(
@@ -148,16 +147,7 @@ export default function EditPost() {
       const updatePayload: any = {};
       if (title !== entity.title) updatePayload.title = formData.title;
       if (content !== entity.content) updatePayload.content = formData.content;
-      // if (excerpt !== entity.metadata.excerpt)
-      //   updatePayload.metadata = {
-      //     ...(updatePayload.metadata ?? {}),
-      //     excerpt: formData.excerpt,
-      //   };
-      // if (category !== entity.metadata.category)
-      //   updatePayload.metadata = {
-      //     ...(updatePayload.metadata ?? {}),
-      //     category: formData.category,
-      //   };
+
       updatePayload.metadata = {
         ...(updatePayload.metadata ?? {}),
         excerpt: formData.excerpt,
@@ -233,10 +223,8 @@ export default function EditPost() {
           category: entity.metadata.category,
         });
 
-        if (convertFilesToProxiedUrl(entity.attachments?.[0]?.publicPath)) {
-          setInitialImage(
-            convertFilesToProxiedUrl(entity.attachments[0].publicPath)
-          );
+        if (entity.attachments?.[0]?.publicPath) {
+          setInitialImage(entity.attachments?.[0]?.publicPath);
         }
       } catch (err) {
         handleError(err, "Fetching entity failed");

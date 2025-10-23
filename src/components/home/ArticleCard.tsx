@@ -17,7 +17,6 @@ import { formatDate2 } from "../../lib/time-formatters";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";
 import UserAvatar from "../Layout/Header/UserAvatar";
 import { getArticlePath } from "../../helpers/getArticlePath";
-import { convertFilesToProxiedUrl } from "../../lib/convert-files-to-proxied-url";
 
 function ArticleCard({ article }: { article: Entity }) {
   const [imgLoaded, setImgLoaded] = useState(false);
@@ -27,9 +26,7 @@ function ArticleCard({ article }: { article: Entity }) {
     shortId: article.shortId,
   });
 
-  const image = article.attachments[0]?.publicPath
-    ? convertFilesToProxiedUrl(article.attachments[0]?.publicPath)
-    : "/placeholder.svg";
+  const image = article.attachments?.[0]?.publicPath ?? "/placeholder.svg";
 
   return (
     <Link href={path} className="group">

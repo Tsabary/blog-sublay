@@ -11,14 +11,16 @@ import logo from "@/assets/logo.webp";
 import logoR from "@/assets/logo-r.webp";
 import logoWhite from "@/assets/logo-white.webp";
 import logoRwhite from "@/assets/logo-r-white.webp";
+import DiscordButton from "./DiscordButton";
+import GitHubButton from "./GitHubButton";
 
 function Header() {
   const { user } = useUser();
   const { theme } = useTheme();
   return (
     <header className="fixed top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6 py-4">
-      <div className="flex items-center gap-6 mx-auto max-w-6xl">
-        <Link href="https://replyke.com" className="flex gap-2 items-end">
+      <div className="flex items-center gap-4 mx-auto max-w-6xl">
+        <Link href="https://replyke.com" className="flex gap-2 items-end shrink-0">
           <Image
             src={theme === "dark" ? logoWhite : logo}
             alt="logo"
@@ -31,7 +33,7 @@ function Header() {
           />
         </Link>
         <div className="flex-1">
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <HeaderMenu />
           </div>
         </div>
@@ -42,6 +44,8 @@ function Header() {
           </Link>
         )}
 
+        <DiscordButton />
+        <GitHubButton />
         <ThemeToggle />
         <AvatarDropdown />
       </div>

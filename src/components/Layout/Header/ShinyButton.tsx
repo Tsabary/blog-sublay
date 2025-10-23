@@ -1,18 +1,18 @@
 import { cn } from "@/lib/utils";
 
-interface ShinyTextProps {
+interface ShinyButtonProps {
   text: string;
   disabled?: boolean;
   speed?: number;
   className?: string;
 }
 
-const ShinyText = ({
+const ShinyButton = ({
   text,
   disabled = false,
   speed = 5,
   className = "",
-}: ShinyTextProps) => {
+}: ShinyButtonProps) => {
   const animationDuration = `${speed}s`;
 
   return (
@@ -25,4 +25,4 @@ const ShinyText = ({
   );
 };
 
-export default ShinyText;
+export default ShinyButton;

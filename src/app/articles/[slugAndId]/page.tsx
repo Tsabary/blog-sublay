@@ -20,8 +20,6 @@ import {
 } from "../../../helpers/getArticlePath";
 import ActionsBar from "../../../components/article/ActionsBar";
 import BackToArticlesButton from "../../../components/article/BackToArticlesButton";
-import { convertFilesToProxiedUrl } from "../../../lib/convert-files-to-proxied-url";
-import Subscribe from "../../../components/home/Subscribe";
 
 export const revalidate = 60; // ISR: regenerate at most once per minute
 
@@ -67,7 +65,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: convertFilesToProxiedUrl(article.attachments[0].publicPath),
+          url: article.attachments[0].publicPath,
           width: 1200,
           height: 630,
           alt: "Cover photo",
@@ -80,7 +78,7 @@ export async function generateMetadata({
       description: article.metadata.excerpt,
       images: [
         {
-          url: convertFilesToProxiedUrl(article.attachments[0].publicPath),
+          url: article.attachments[0].publicPath,
           alt: "Cover photo",
         },
       ],
@@ -156,22 +154,18 @@ export default async function BlogPost({
 
   return (
     <Layout>
-      <div className="flex-1 pt-22 bg-background">
-        <article className="container max-w-3xl py-6 lg:py-12">
-          <div className="space-y-4">
-            <NavigateHomeButton />
-            <ArticleDetails article={article} />
-            <ActionsBar />
-          </div>
-          <ArticleImage article={article} />
-          <div className="prose prose-gray max-w-none dark:prose-invert">
-            <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
-          </div>
-          <BackToArticlesButton />
-        </article>
-        {/* <RelatedArticles/> */}
-        <Subscribe />
-      </div>
+      <article className="container max-w-3xl flex-1 pt-24 pb-8 bg-background">
+        <div className="space-y-4">
+          <NavigateHomeButton />
+          <ArticleDetails article={article} />
+          <ActionsBar />
+        </div>
+        <ArticleImage article={article} />
+        <div className="prose prose-gray max-w-none dark:prose-invert">
+          <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        </div>
+        <BackToArticlesButton />
+      </article>
     </Layout>
   );
 }

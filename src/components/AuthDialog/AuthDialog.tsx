@@ -61,10 +61,6 @@ export default function AuthDialog({
               Privacy Policy
             </a>
           </p>
-          <p className="mt-2">
-            You may receive occasional product updates and announcements.
-            Unsubscribe anytime.
-          </p>
         </div>
       </DialogContent>
     </Dialog>

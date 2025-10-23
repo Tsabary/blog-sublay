@@ -15,10 +15,6 @@ const AnimatedHeartButton = dynamic(() => import("./AnimatedHeartButton"), {
   ssr: false,
 });
 
-// const DiscussionSheet = dynamic(() => import("./DiscussionSheet"), {
-//   ssr: false,
-// });
-
 function InnerActionsBar() {
   const { user } = useUser();
 

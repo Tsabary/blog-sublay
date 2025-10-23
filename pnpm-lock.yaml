@@ -99,14 +99,14 @@ importers:
         specifier: ^1.2.2
         version: 1.2.3(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@replyke/comments-threaded-react-js':
-        specifier: 6.0.0-beta.9
-        version: 6.0.0-beta.9(@replyke/core@6.0.0-beta.9(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
+        specifier: 6.0.6
+        version: 6.0.6(@replyke/core@6.0.6(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       '@replyke/js':
         specifier: 5.0.0
         version: 5.0.0
       '@replyke/react-js':
-        specifier: 6.0.0-beta.9
-        version: 6.0.0-beta.9(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)
+        specifier: 6.0.6
+        version: 6.0.6(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)
       '@tailwindcss/typography':
         specifier: latest
         version: 0.5.16(tailwindcss@3.4.17)
@@ -1805,41 +1805,41 @@ packages:
       react-redux:
         optional: true
 
-  '@replyke/comments-threaded-core@6.0.0-beta.9':
-    resolution: {integrity: sha512-WnsAG0XDKH3hwL8J+7+EmA7S0YwfdDzZrwTtd7gZI04GqdrDpgLVaj5zaXmzcvowqdTwhB0QuBRU7Mg2Mnthkg==}
+  '@replyke/comments-threaded-core@6.0.6':
+    resolution: {integrity: sha512-ZLwecITT7Z2Fay3SUDHWsL8EydwNTYMVcwDpO7hQntw/vv63THHumxyqy+tQcQuFFPRX5sy8w4pceOH+fsPwsA==}
     peerDependencies:
       '@replyke/core': '>=5'
       react: ^18.0.0 || ^19.0.0
 
-  '@replyke/comments-threaded-react-js@6.0.0-beta.9':
-    resolution: {integrity: sha512-6VXjunOsaFuOG2korGsbm5DKbCdUkdGpxoxGCaLp/myqF0kNreO8iz0TFzMETqioXPf9F/l+12cPQKVzgJK7eA==}
+  '@replyke/comments-threaded-react-js@6.0.6':
+    resolution: {integrity: sha512-pr72zv9NcyG9DwKlvuaZFD6bOHxXwk5qnfgn/UqHtlyaEepla878Go5KbBqTSc2PzHMN4mT5QekdM8xF39RwnA==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^19.0.0
 
-  '@replyke/core@6.0.0-beta.9':
-    resolution: {integrity: sha512-lcrFoWBFa81DgoRbNH8LqPEtn/iu31fUE0DyZ+4j4zo9UkBus/r1mWgMnJfj5RQ0tD2HSZLpa1fuszILWasl5g==}
+  '@replyke/core@6.0.6':
+    resolution: {integrity: sha512-ZVRk0GGGVx4YgboLDzVE/mn3NgoA4M/DmRz1B4C3D+o2LhpH/QRjfdZTxl9HPCDy+DYIEmsR+5PIaMGSQpBvqA==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
 
   '@replyke/js@5.0.0':
     resolution: {integrity: sha512-Ql0tgWrWlYkMIKGD2zUwMQgR1rTKO7ERU5cSpWuFVcr9tuHDK8iFvA3HkEh7NpJ0Bv4ifPPmknekE6/wvQI9Og==}
 
-  '@replyke/react-js@6.0.0-beta.9':
-    resolution: {integrity: sha512-aX8DePl9kIJbIkOROea7uj3NhiGB5j3188go+oo7V3RCPq+LJH25LVc5ntW4U1wPtmkTKg9SU0uBQLMxg6QMMQ==}
+  '@replyke/react-js@6.0.6':
+    resolution: {integrity: sha512-s4NdP+gldvA3TCcphkH5otqhliCLPsEMGbBmfHrxZmPosLTAEx3eqDM+jTnyfn8OSCizHBREqTJ7/++59XjHhQ==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
 
-  '@replyke/ui-core-react-js@6.0.0-beta.9':
-    resolution: {integrity: sha512-1YGVk51vNCwZnI8rGN80Xxf/HjDOHaK1lzDg/slDOE2aJAYQZfASaRoN+6cSyMIHsGBhc5a0zlqE8MAiS9Ek3g==}
+  '@replyke/ui-core-react-js@6.0.6':
+    resolution: {integrity: sha512-MPhMYT/DYPuTH8Yc4UJ4KOFW+EMkJbvOg6RoLaY/VWGdU60r2mEdWGQ0jKJHSfJYyzePwmOxFWk2EMDq+h/WyA==}
     peerDependencies:
       '@replyke/core': '>=5'
       moment: ^2
       react: ^18.0.0 || ^19.0.0
       react-dom: ^19.0.0
 
-  '@replyke/ui-core@6.0.0-beta.9':
-    resolution: {integrity: sha512-CxfT+Ck7MrjJKj6suO4boL4XNw8gX8KVJYebNuv/Z8y5n37WZPkTO119xzKxaIGkk0sVuNpTpQ1oWrY7A1o7jA==}
+  '@replyke/ui-core@6.0.6':
+    resolution: {integrity: sha512-Mb4ySGm6z7n8gHaD8hefdy7Q0yySb0po/5Rg8wWdqB0+ZUs5dcEOUFigQ462a+LTrVTj74HU1DlWHVQFZ/qGKA==}
 
   '@smithy/abort-controller@2.2.0':
     resolution: {integrity: sha512-wRlta7GuLWpTqtFfGo+nZyOO1vEvewdNR1R4rTxpC8XU6vG/NDyrFBhwLZsqg1NUoR1noVaXJPC/7ZK47QCySw==}
@@ -3214,6 +3214,7 @@ packages:
 
   intersection-observer@0.12.2:
     resolution: {integrity: sha512-7m1vEcPCxXYI8HqnL8CKI6siDyD+eIWSwgB3DZA+ZTogxk9I4CDnj4wilt9x/+/QbHI4YG5YZNmC6458/e9Ktg==}
+    deprecated: The Intersection Observer polyfill is no longer needed and can safely be removed. Intersection Observer has been Baseline since 2019.
 
   ipaddr.js@1.9.1:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
@@ -6781,16 +6782,16 @@ snapshots:
       react: 19.1.0
       react-redux: 9.2.0(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)
 
-  '@replyke/comments-threaded-core@6.0.0-beta.9(@replyke/core@6.0.0-beta.9(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(react@19.1.0)':
+  '@replyke/comments-threaded-core@6.0.6(@replyke/core@6.0.6(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(react@19.1.0)':
     dependencies:
-      '@replyke/core': 6.0.0-beta.9(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)
-      '@replyke/ui-core': 6.0.0-beta.9
+      '@replyke/core': 6.0.6(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)
+      '@replyke/ui-core': 6.0.6
       react: 19.1.0
 
-  '@replyke/comments-threaded-react-js@6.0.0-beta.9(@replyke/core@6.0.0-beta.9(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
+  '@replyke/comments-threaded-react-js@6.0.6(@replyke/core@6.0.6(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
     dependencies:
-      '@replyke/comments-threaded-core': 6.0.0-beta.9(@replyke/core@6.0.0-beta.9(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(react@19.1.0)
-      '@replyke/ui-core-react-js': 6.0.0-beta.9(@replyke/core@6.0.0-beta.9(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
+      '@replyke/comments-threaded-core': 6.0.6(@replyke/core@6.0.6(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(react@19.1.0)
+      '@replyke/ui-core-react-js': 6.0.6(@replyke/core@6.0.6(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
     transitivePeerDependencies:
@@ -6798,7 +6799,7 @@ snapshots:
       - moment
       - styled-components
 
-  '@replyke/core@6.0.0-beta.9(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)':
+  '@replyke/core@6.0.6(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)':
     dependencies:
       '@reduxjs/toolkit': 2.9.0(react-redux@9.2.0(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(react@19.1.0)
       axios: 1.10.0
@@ -6817,27 +6818,27 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@replyke/react-js@6.0.0-beta.9(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)':
+  '@replyke/react-js@6.0.6(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)':
     dependencies:
-      '@replyke/core': 6.0.0-beta.9(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)
+      '@replyke/core': 6.0.6(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)
       react: 19.1.0
     transitivePeerDependencies:
       - '@types/react'
       - debug
       - redux
 
-  '@replyke/ui-core-react-js@6.0.0-beta.9(@replyke/core@6.0.0-beta.9(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
+  '@replyke/ui-core-react-js@6.0.6(@replyke/core@6.0.6(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
     dependencies:
       '@giphy/js-fetch-api': 5.7.0
       '@giphy/react-components': 10.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
-      '@replyke/core': 6.0.0-beta.9(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)
+      '@replyke/core': 6.0.6(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)
       moment: 2.30.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
     transitivePeerDependencies:
       - styled-components
 
-  '@replyke/ui-core@6.0.0-beta.9': {}
+  '@replyke/ui-core@6.0.6': {}
 
   '@smithy/abort-controller@2.2.0':
     dependencies:

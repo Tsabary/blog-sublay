@@ -1,18 +1,17 @@
-import React from "react";
 import { Button } from "../ui/button";
 
-function GitHubButton() {
+function GoogleAuthButton() {
   const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
-  const url = BASE_URL + "/internal/auth/github";
+  const url = BASE_URL + "/auth/google";
 
   return (
     <Button variant="outline" type="button" className="w-full" asChild>
       <a href={url}>
-        <img src="/github.svg" className="mr-2 h-4 w-4" />
-        GitHub
+        <img src="/google.svg" className="mr-2 h-4 w-4" />
+        Google
       </a>
     </Button>
   );
 }
 
-export default GitHubButton;
+export default GoogleAuthButton;

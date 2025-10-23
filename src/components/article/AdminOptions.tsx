@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useEntity } from "@replyke/react-js";
 import { MoreHorizontal } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useEntity } from "@replyke/react-js";
 import { getArticleSlug } from "../../helpers/getArticlePath";
 import DeleteArticleDialog from "./DeleteArticleDialog";
 

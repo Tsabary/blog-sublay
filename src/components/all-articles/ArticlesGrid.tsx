@@ -1,12 +1,23 @@
 "use client";
 
 import React, { useRef, useEffect, useCallback } from "react";
-import { useEntityList } from "@replyke/react-js";
-import ArticleCard from "../home/ArticleCard";
+import { EntityListFilters, useEntityList } from "@replyke/react-js";
 import { LoaderCircleIcon } from "lucide-react";
+import ArticleCard from "../home/ArticleCard";
+import ArticleListItem from "../home/ArticleListItem";
+import { ArticleFilters } from "./ArticlesFilters";
 
-function ArticlesGrid() {
-  const { entities, loading, loadMore, hasMore } = useEntityList();
+interface ArticlesGridProps {
+  filters: ArticleFilters;
+  viewMode: "list" | "grid";
+}
+
+function ArticlesGrid({ filters, viewMode }: ArticlesGridProps) {
+  const { entities, loading, loadMore, hasMore, fetchEntities } = useEntityList(
+    {
+      listId: "all-articles",
+    }
+  );
   const isFirstLoad = loading && (!entities || entities.length === 0);
   const observerRef = useRef<IntersectionObserver>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
@@ -21,6 +32,26 @@ function ArticlesGrid() {
     [hasMore, loading, loadMore]
   );
 
+  // Fetch entities when filters change
+  useEffect(() => {
+    const fetchParams: EntityListFilters = { sortBy: filters.sortBy };
+    const options: any = { sourceId: "blog", limit: 12 };
+
+    // Add category filter if selected
+    if (filters.category) {
+      fetchParams.metadataFilters = {
+        includes: { category: filters.category },
+      };
+    }
+
+    // Add search filter if provided
+    if (filters.search) {
+      fetchParams.titleFilters = { includes: filters.search };
+    }
+
+    fetchEntities(fetchParams, options);
+  }, [filters]);
+
   useEffect(() => {
     if (observerRef.current) observerRef.current.disconnect();
     observerRef.current = new IntersectionObserver(handleIntersect, {
@@ -31,31 +62,70 @@ function ArticlesGrid() {
     return () => observerRef.current?.disconnect();
   }, [handleIntersect]);
 
-  return (
-    <section className="flex-1 w-full py-4 bg-muted/50">
-      <div className="container flex flex-col items-center">
-        {/* … header … */}
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
-          {isFirstLoad
-            ? Array.from({ length: 6 }).map((_, idx) => (
-                <div
-                  key={idx}
-                  className="h-60 rounded-md bg-gray-300 animate-pulse"
-                />
-              ))
-            : entities?.map((article) => (
-                <ArticleCard article={article} key={article.id} />
-              ))}
+  // Render landscape list view
+  if (viewMode === "list") {
+    return (
+      <section className="w-full">
+        <div className="flex flex-col gap-6">
+          {isFirstLoad ? (
+            Array.from({ length: 6 }).map((_, idx) => (
+              <div
+                key={idx}
+                className="h-40 rounded-lg bg-muted animate-pulse"
+              />
+            ))
+          ) : entities && entities.length > 0 ? (
+            entities.map((article) => (
+              <ArticleListItem article={article} key={article.id} />
+            ))
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-lg text-muted-foreground">
+                No articles found. Try adjusting your filters.
+              </p>
+            </div>
+          )}
+
+          {/* Sentinel for infinite scroll */}
+          <div ref={sentinelRef} className="h-1 w-full" />
+
+          {/* Loading spinner */}
+          {loading && !isFirstLoad && (
+            <LoaderCircleIcon className="size-6 animate-spin mx-auto my-4" />
+          )}
         </div>
+      </section>
+    );
+  }
 
-        {/* Sentinel for infinite scroll */}
-        <div ref={sentinelRef} className="h-1 w-full" />
-
-        {/* Optional loading spinner */}
-        {loading && (
-          <LoaderCircleIcon className="size-6 animate-spin mx-auto my-4" />
+  // Render grid view
+  return (
+    <section className="w-full">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {isFirstLoad ? (
+          Array.from({ length: 6 }).map((_, idx) => (
+            <div key={idx} className="h-60 rounded-md bg-muted animate-pulse" />
+          ))
+        ) : entities && entities.length > 0 ? (
+          entities.map((article) => (
+            <ArticleCard article={article} key={article.id} />
+          ))
+        ) : (
+          <div className="col-span-full text-center py-12">
+            <p className="text-lg text-muted-foreground">
+              No articles found. Try adjusting your filters.
+            </p>
+          </div>
         )}
       </div>
+
+      {/* Sentinel for infinite scroll */}
+      <div ref={sentinelRef} className="h-1 w-full" />
+
+      {/* Loading spinner */}
+      {loading && !isFirstLoad && (
+        <LoaderCircleIcon className="size-6 animate-spin mx-auto my-4" />
+      )}
     </section>
   );
 }

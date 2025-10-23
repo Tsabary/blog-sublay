@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useAuth as useAuthReplyke, useUser } from "@replyke/react-js";
+import { useUser, useAuth as useAuthReplyke } from "@replyke/react-js";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,14 +11,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import useAuth from "@/hooks/useAuth";
 import UserAvatar from "./UserAvatar";
-import ShinyText from "./ShinyButton";
+import ShinyButton from "./ShinyButton";
 import { AuthDialog } from "../../AuthDialog";
+import useAuth from "../../../hooks/useAuth";
 
 function AvatarDropdown() {
   const { signOut } = useAuth();
   const { signOut: signOutReplyke } = useAuthReplyke();
+
   const { user } = useUser();
   const [open, setOpen] = useState(false);
 
@@ -29,7 +30,7 @@ function AvatarDropdown() {
           onClick={() => setOpen(true)}
           className="bg-rose-600 hover:bg-rose-500 border-4 border-rose-400 transition-colors duration-300 px-2.5 py-1.5 rounded-xl cursor-pointer"
         >
-          <ShinyText
+          <ShinyButton
             text="Get Started"
             disabled={false}
             speed={3}
@@ -74,7 +75,7 @@ function AvatarDropdown() {
         <DropdownMenuItem
           onClick={() => {
             signOut?.();
-            signOutReplyke?.();
+            signOutReplyke();
           }}
           className="cursor-pointer"
         >

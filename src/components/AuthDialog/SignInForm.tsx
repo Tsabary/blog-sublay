@@ -6,10 +6,10 @@ import validator from "validator";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "../ui/separator";
+import GitHubAuthButton from "./GitHubAuthButton";
+import GoogleAuthButton from "./GoogleAuthButton";
 import useAuth from "../../hooks/useAuth";
-import GoogleButton from "./GoogleButton";
-import GitHubButton from "./GitHubButton";
 
 export default function SignInForm({
   setOpen,
@@ -37,10 +37,10 @@ export default function SignInForm({
 
       setIsSubmitting(true);
 
-      await signInWithEmailAndPassword!(
-        credentials.email,
-        credentials.password
-      );
+      await signInWithEmailAndPassword!({
+        email: credentials.email,
+        password: credentials.password,
+      });
       setOpen(false);
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -123,8 +123,8 @@ export default function SignInForm({
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <GitHubButton />
-        <GoogleButton />
+        <GitHubAuthButton />
+        <GoogleAuthButton />
       </div>
     </form>
   );

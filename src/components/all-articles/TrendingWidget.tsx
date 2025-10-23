@@ -1,0 +1,99 @@
+"use client";
+
+import React, { useEffect, useMemo } from "react";
+import Link from "next/link";
+import { useEntityList } from "@replyke/react-js";
+import { TrendingUpIcon } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getArticlePath } from "../../helpers/getArticlePath";
+
+export function TrendingWidget() {
+  const { entities, fetchEntities, loading } = useEntityList({
+    listId: "trending-articles-widget",
+  });
+
+  useEffect(() => {
+    fetchEntities({ sortBy: "new" }, { sourceId: "blog", limit: 20 });
+  }, []);
+
+  // Sort articles by engagement (upvotes + comments)
+  const trendingArticles = useMemo(() => {
+    if (!entities) return [];
+
+    return [...entities]
+      .sort((a, b) => {
+        const engagementA = (a.upvotes?.length || 0) + (a.repliesCount || 0);
+        const engagementB = (b.upvotes?.length || 0) + (b.repliesCount || 0);
+        return engagementB - engagementA;
+      })
+      .slice(0, 5);
+  }, [entities]);
+
+  return (
+    <Card>
+      <CardHeader className="pb-3">
+        <CardTitle className="flex items-center gap-2 text-base">
+          <TrendingUpIcon className="w-4 h-4 text-primary" />
+          Trending This Week
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        {loading ? (
+          Array.from({ length: 5 }).map((_, idx) => (
+            <div key={idx} className="space-y-1.5">
+              <div className="h-3.5 w-full rounded bg-muted animate-pulse" />
+              <div className="h-3 w-3/4 rounded bg-muted animate-pulse" />
+            </div>
+          ))
+        ) : trendingArticles.length === 0 ? (
+          <p className="text-sm text-muted-foreground text-center py-4">
+            No trending articles yet
+          </p>
+        ) : (
+          trendingArticles.map((article, idx) => {
+            const path = getArticlePath({
+              title: article.title,
+              shortId: article.shortId,
+            });
+            const engagement =
+              (article.upvotes?.length || 0) + (article.repliesCount || 0);
+
+            return (
+              <Link
+                key={article.id}
+                href={path}
+                className="block group hover:bg-muted/30 rounded-md p-2 -mx-2 transition-colors"
+              >
+                <div className="flex gap-2.5">
+                  <span className="text-lg font-bold text-muted-foreground/30 leading-none pt-0.5">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-medium text-sm group-hover:text-primary transition-colors line-clamp-2 leading-snug">
+                      {article.title}
+                    </h4>
+                    <div className="flex items-center gap-1.5 mt-1">
+                      <span className="text-xs text-muted-foreground">
+                        {article.user?.name || "Author"}
+                      </span>
+                      {engagement > 0 && (
+                        <>
+                          <span className="text-muted-foreground text-xs">
+                            ·
+                          </span>
+                          <span className="text-xs text-muted-foreground">
+                            {engagement} interactions
+                          </span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            );
+          })
+        )}
+      </CardContent>
+    </Card>
+  );
+}

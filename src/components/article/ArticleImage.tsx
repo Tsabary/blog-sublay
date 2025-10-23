@@ -1,12 +1,9 @@
 import React from "react";
 import { Entity } from "@replyke/react-js";
 import Image from "next/image";
-import { convertFilesToProxiedUrl } from "../../lib/convert-files-to-proxied-url";
 
 function ArticleImage({ article }: { article: Entity }) {
-  const image = article.attachments[0]?.publicPath
-    ? convertFilesToProxiedUrl(article.attachments[0]?.publicPath)
-    : "/placeholder.svg";
+  const image = article.attachments?.[0]?.publicPath ?? "/placeholder.svg";
 
   return (
     <div className="my-8 aspect-video overflow-hidden rounded-lg">

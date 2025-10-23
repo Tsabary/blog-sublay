@@ -16,25 +16,6 @@ function Footer() {
             <h2 className="mb-4 text-3xl font-bold tracking-tight">
               Stay Connected
             </h2>
-            {/* <p className="mb-6 text-muted-foreground">
-              Join our newsletter for the latest updates and exclusive offers.
-            </p>
-            <form className="relative">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                className="pr-12 backdrop-blur-sm"
-              />
-              <Button
-                type="submit"
-                size="icon"
-                className="absolute right-1 top-1 h-8 w-8 rounded-full bg-primary text-primary-foreground transition-transform hover:scale-105"
-              >
-                <Send className="h-4 w-4" />
-                <span className="sr-only">Subscribe</span>
-              </Button>
-            </form>
-            <div className="absolute -right-4 top-0 h-24 w-24 rounded-full bg-primary/10 blur-2xl" /> */}
           </div>
           <div>
             <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
@@ -46,10 +27,10 @@ function Footer() {
                 Documentation
               </a>
               <a
-                href="https://discord.com/invite/REKxnCJzPz"
+                href="https://blog.replyke.com"
                 className="block transition-colors hover:text-primary"
               >
-                Community
+                Blog
               </a>
               <a
                 href="https://roadmap.replyke.com"
@@ -58,22 +39,19 @@ function Footer() {
                 Roadmap
               </a>
               <a
-                href="https://blog.replyke.com"
+                href="https://support.replyke.com"
                 className="block transition-colors hover:text-primary"
               >
-                Blog
+                Support
+              </a>
+              <a
+                href="https://discord.com/invite/REKxnCJzPz"
+                className="block transition-colors hover:text-primary"
+              >
+                Discord
               </a>
             </nav>
           </div>
-          {/* <div>
-            <h3 className="mb-4 text-lg font-semibold">Contact Us</h3>
-            <address className="space-y-2 text-sm not-italic">
-              <p>123 Innovation Street</p>
-              <p>Tech City, TC 12345</p>
-              <p>Phone: (123) 456-7890</p>
-              <p>Email: hello@example.com</p>
-            </address>
-          </div> */}
           <div className="relative">
             <h3 className="mb-4 text-lg font-semibold">Follow Us</h3>
             <div className="mb-6 flex space-x-4">
@@ -115,28 +93,6 @@ function Footer() {
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-              {/* <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <a
-                      href="https://www.linkedin.com/company/replyke"
-                      target="_blank"
-                    >
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="rounded-full cursor-pointer"
-                      >
-                        <Instagram className="h-4 w-4" />
-                        <span className="sr-only">Instagram</span>
-                      </Button>
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Follow us on Instagram</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider> */}
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -179,9 +135,6 @@ function Footer() {
             >
               Terms of Service
             </a>
-            {/* <a href="#" className="transition-colors hover:text-primary">
-              Cookie Settings
-            </a> */}
           </nav>
         </div>
       </div>

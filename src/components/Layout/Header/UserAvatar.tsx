@@ -16,7 +16,9 @@ function UserAvatar({
       style={{
         overflow: "hidden",
         width: size,
+        maxWidth: size,
         height: size,
+        maxHeight: size,
         borderRadius: borderRadius || size,
         borderWidth: 1,
         borderColor: "#E6E6E6",
