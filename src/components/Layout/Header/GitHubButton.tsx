@@ -1,11 +1,6 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import { StarIcon } from "lucide-react";
 import { useTheme } from "next-themes";
-import githubIconBlack from "@/assets/github.svg";
-import githubIconWhite from "@/assets/github-white.svg";
 
 function GitHubButton() {
   const { theme } = useTheme();
@@ -30,8 +25,8 @@ function GitHubButton() {
       target="_blank"
       className="flex items-center px-1.5 py-1 bg-container rounded-xl cursor-pointer text-sm border-2 border-border text-foreground"
     >
-      <Image
-        src={isDarkTheme ? githubIconWhite : githubIconBlack}
+      <img
+        src={isDarkTheme ? "/github-white.svg" : "/github.svg"}
         alt="Github icon"
         className="size-6"
       />
