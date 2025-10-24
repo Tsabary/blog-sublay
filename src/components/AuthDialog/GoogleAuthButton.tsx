@@ -1,7 +1,7 @@
 import { Button } from "../ui/button";
 
 function GoogleAuthButton() {
-  const BASE_URL = process.env.VITE_PUBLIC_SERVER_URL;
+  const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
   const url = BASE_URL + "/internal/auth/google";
 
   return (

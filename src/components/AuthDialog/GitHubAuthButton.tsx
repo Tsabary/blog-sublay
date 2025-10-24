@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 function GitHubAuthButton() {
   const { theme } = useTheme();
 
-  const BASE_URL = process.env.VITE_PUBLIC_SERVER_URL;
+  const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
   const url = BASE_URL + "/internal/auth/github";
 
   const isDarkTheme =
