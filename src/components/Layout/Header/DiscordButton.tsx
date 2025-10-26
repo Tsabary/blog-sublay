@@ -20,7 +20,7 @@ function DiscordButton() {
         alt="Discord icon"
         className="size-6"
       />
-      <div className="ml-2 mr-1">Discord</div>
+      <div className="ml-2 mr-1 hidden md:block">Discord</div>
     </a>
   );
 }
