@@ -139,6 +139,25 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
+    const handleGoogleLogin = async () => {
+    try {
+      window.location.href =
+        process.env.NEXT_PUBLIC_SERVER_URL + "/internal/clients-auth/google";
+    } catch (err: unknown) {
+      handleError(err, "Failed to initiate Google login: ");
+    }
+  };
+
+  const handleGithubLogin = async () => {
+    try {
+      window.location.href =
+        process.env.NEXT_PUBLIC_SERVER_URL + "/internal/clients-auth/github";
+    } catch (err: unknown) {
+      handleError(err, "Failed to initiate GitHub login: ");
+    }
+  };
+
+  
   const deleteAccount = async () => {};
 
   async function updateUserProfile(): Promise<void> {}
@@ -169,6 +188,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         updateUserProfile,
         getNewAccessToken,
         accessToken,
+        handleGoogleLogin,
+        handleGithubLogin,
       }}
     >
       {!loadingInitial && children}
