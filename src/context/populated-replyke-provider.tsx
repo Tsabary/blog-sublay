@@ -15,7 +15,7 @@ function PopulatedReplykeProvider({ children }: { children: React.ReactNode }) {
     const handleSignJwt = async () => {
       if (!client) return;
 
-      const response = await axios.get("/auth/sign-jwt");
+      const response = await axios.get("/clients-auth/sign-jwt");
       const token = response.data;
 
       // Set the signed JWT in the state
