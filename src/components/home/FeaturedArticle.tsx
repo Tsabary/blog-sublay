@@ -60,7 +60,7 @@ function FeaturedArticle() {
                     height={600}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     placeholder="empty"
-                    onLoadingComplete={() => setImgLoaded(true)}
+                    onLoad={() => setImgLoaded(true)}
                   />
                 )}
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { useEntity } from "@replyke/react-js";
 import {
   ThreadedStyleCallbacks,
   ThreadedCommentSection,
@@ -25,8 +24,6 @@ export function DiscussionSheet({
   onClose: () => void;
 }) {
   const isDesktop = useMediaQuery("(min-width: 768px)");
-
-  const { entity } = useEntity();
 
   const callbacks: ThreadedStyleCallbacks = {
     loginRequiredCallback: () => {

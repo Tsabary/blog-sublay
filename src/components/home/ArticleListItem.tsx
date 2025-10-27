@@ -30,10 +30,9 @@ function ArticleListItem({ article }: { article: Entity }) {
           <Image
             src={image}
             alt={article.title || "Cover image"}
-            width={400}
-            height={225}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            onLoadingComplete={() => setImgLoaded(true)}
+            fill={true}
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            onLoad={() => setImgLoaded(true)}
             placeholder="empty"
           />
 
@@ -90,10 +89,9 @@ function ArticleListItem({ article }: { article: Entity }) {
             <Image
               src={image}
               alt={article.title || "Cover image"}
-              width={192}
-              height={180}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              onLoadingComplete={() => setImgLoaded(true)}
+              fill={true}
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              onLoad={() => setImgLoaded(true)}
               placeholder="empty"
             />
           </div>

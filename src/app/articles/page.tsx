@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { LayoutGrid, List } from "lucide-react";
 import ArticlesGrid from "../../components/all-articles/ArticlesGrid";
 import {
@@ -12,7 +13,6 @@ import { TrendingWidget } from "../../components/all-articles/TrendingWidget";
 import Layout from "../../components/Layout";
 import NavigateHomeButton from "../../components/article/NavigateHomeButton";
 import { Button } from "@/components/ui/button";
-import { useSearchParams } from "next/navigation";
 
 function ArticlesPage() {
   const searchParams = useSearchParams();

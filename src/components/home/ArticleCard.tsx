@@ -42,7 +42,7 @@ function ArticleCard({ article }: { article: Entity }) {
             width={600}
             height={400}
             className="aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
-            onLoadingComplete={() => setImgLoaded(true)}
+            onLoad={() => setImgLoaded(true)}
             placeholder="empty"
           />
         </div>
