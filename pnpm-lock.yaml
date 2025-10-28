@@ -98,15 +98,15 @@ importers:
       '@radix-ui/react-visually-hidden':
         specifier: ^1.2.2
         version: 1.2.3(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@replyke/comments-threaded-react-js':
-        specifier: 6.0.8
-        version: 6.0.8(@replyke/core@6.0.8(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       '@replyke/js':
         specifier: 5.0.0
         version: 5.0.0
       '@replyke/react-js':
         specifier: 6.0.8
         version: 6.0.8(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)
+      '@replyke/ui-core-react-js':
+        specifier: ^6.0.8
+        version: 6.0.8(@replyke/core@6.0.8(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       '@tailwindcss/typography':
         specifier: latest
         version: 0.5.16(tailwindcss@3.4.17)
@@ -1805,18 +1805,6 @@ packages:
       react-redux:
         optional: true
 
-  '@replyke/comments-threaded-core@6.0.8':
-    resolution: {integrity: sha512-8Nhm4uFI8SddLvi5pztZqOod6/H15iMAwbQpNQcWaCwYLRxO4KOWBqNY7mu+LxONWRc3CTdN9PopeD/Y7KC0iQ==}
-    peerDependencies:
-      '@replyke/core': '>=5'
-      react: ^18.0.0 || ^19.0.0
-
-  '@replyke/comments-threaded-react-js@6.0.8':
-    resolution: {integrity: sha512-nkijIoJXA5PoVz01fy6cKddEDDLu0aQeJ6ur6T+vT1To/5aNKgiaY7XMlq+bW1WvnMhy+KHlxAwjh1FMUT4iLA==}
-    peerDependencies:
-      react: ^18.0.0 || ^19.0.0
-      react-dom: ^19.0.0
-
   '@replyke/core@6.0.8':
     resolution: {integrity: sha512-4pCmZ04b2JkD7v9Hw8o1nB5lypFqiXLVLz418vABkAt8mJOIB1GaMsnFq6lOOSj7S+/W/EbUGVgnibbtuyaTEA==}
     peerDependencies:
@@ -1837,9 +1825,6 @@ packages:
       moment: ^2
       react: ^18.0.0 || ^19.0.0
       react-dom: ^19.0.0
-
-  '@replyke/ui-core@6.0.8':
-    resolution: {integrity: sha512-HBEIUryn5FcdbSfq/TKIbpbydeLkFiEm3vncs3o2gc2U3vbjIZXrwFDqT7OMeX0XpHvbJifqEuM5/alp+XqqLQ==}
 
   '@smithy/abort-controller@2.2.0':
     resolution: {integrity: sha512-wRlta7GuLWpTqtFfGo+nZyOO1vEvewdNR1R4rTxpC8XU6vG/NDyrFBhwLZsqg1NUoR1noVaXJPC/7ZK47QCySw==}
@@ -6782,23 +6767,6 @@ snapshots:
       react: 19.1.0
       react-redux: 9.2.0(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)
 
-  '@replyke/comments-threaded-core@6.0.8(@replyke/core@6.0.8(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(react@19.1.0)':
-    dependencies:
-      '@replyke/core': 6.0.8(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)
-      '@replyke/ui-core': 6.0.8
-      react: 19.1.0
-
-  '@replyke/comments-threaded-react-js@6.0.8(@replyke/core@6.0.8(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
-    dependencies:
-      '@replyke/comments-threaded-core': 6.0.8(@replyke/core@6.0.8(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(react@19.1.0)
-      '@replyke/ui-core-react-js': 6.0.8(@replyke/core@6.0.8(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-    transitivePeerDependencies:
-      - '@replyke/core'
-      - moment
-      - styled-components
-
   '@replyke/core@6.0.8(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1)':
     dependencies:
       '@reduxjs/toolkit': 2.9.0(react-redux@9.2.0(@types/react@19.1.8)(react@19.1.0)(redux@5.0.1))(react@19.1.0)
@@ -6837,8 +6805,6 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
     transitivePeerDependencies:
       - styled-components
-
-  '@replyke/ui-core@6.0.8': {}
 
   '@smithy/abort-controller@2.2.0':
     dependencies:
