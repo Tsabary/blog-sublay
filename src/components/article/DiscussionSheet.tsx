@@ -1,10 +1,7 @@
 "use client";
 
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import {
-  ThreadedStyleCallbacks,
-  ThreadedCommentSection,
-} from "@replyke/comments-threaded-react-js";
+
 import { toast } from "sonner";
 import {
   Sheet,
@@ -15,6 +12,9 @@ import {
 } from "@/components/ui/sheet";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { ThreadedStyleCallbacks } from "../comments-threaded";
+import ThreadedCommentSection from "../comments-threaded";
+import { useTheme } from "next-themes";
 
 export function DiscussionSheet({
   isSheetOpen,
@@ -23,7 +23,14 @@ export function DiscussionSheet({
   isSheetOpen: boolean;
   onClose: () => void;
 }) {
+  const {theme} = useTheme()
   const isDesktop = useMediaQuery("(min-width: 768px)");
+
+    const isDarkTheme =
+    theme === "system"
+      ? typeof window !== "undefined" &&
+        window.matchMedia?.("(prefers-color-scheme: dark)").matches
+      : theme === "dark";
 
   const callbacks: ThreadedStyleCallbacks = {
     loginRequiredCallback: () => {
@@ -39,7 +46,7 @@ export function DiscussionSheet({
       }}
     >
       <DrawerContent className="h-screen overflow-hidden flex flex-col p-0 pt-6 bg-background gap-3">
-        <ThreadedCommentSection callbacks={callbacks} />
+        <ThreadedCommentSection callbacks={callbacks} theme={isDarkTheme? "dark":"light"} />
       </DrawerContent>
     </Drawer>
   );
