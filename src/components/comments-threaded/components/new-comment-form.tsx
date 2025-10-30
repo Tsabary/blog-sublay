@@ -153,14 +153,14 @@ function NewCommentForm() {
           className={cn(
             // 🎨 CUSTOMIZATION: Comment form styling
             "flex items-end",
-            "bg-white dark:bg-gray-800",
+            "bg-card",
             "rounded-2xl",
             "p-2",
             "transition-all duration-300",
             "shadow-sm",
             hasContent
               ? "border border-blue-300 dark:border-blue-800 shadow-md"
-              : "border border-gray-200 dark:border-gray-600 hover:shadow-md"
+              : "border border-border hover:shadow-md"
           )}
         >
           <textarea
@@ -172,7 +172,7 @@ function NewCommentForm() {
               // 🎨 CUSTOMIZATION: Comment form styling
               "flex-1 p-2",
               "bg-transparent",
-              "text-gray-900 dark:text-gray-50",
+              "text-foreground",
               "text-xs leading-relaxed",
               "outline-none resize-none border-none"
             )}
@@ -188,7 +188,7 @@ function NewCommentForm() {
                 "flex-shrink-0 p-2",
                 "border-none outline-none",
                 "font-normal text-xs",
-                "text-gray-50 dark:text-gray-50",
+                "text-foreground",
                 "cursor-pointer bg-transparent"
               )}
             >
@@ -208,7 +208,7 @@ function NewCommentForm() {
                 "focus-visible:ring-2 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-500 focus-visible:ring-offset-2",
                 hasContent && !isSubmitting
                   ? "bg-blue-600 dark:bg-blue-500 text-white cursor-pointer hover:bg-blue-700 dark:hover:bg-blue-600 hover:shadow-md"
-                  : "bg-gray-200 dark:bg-gray-600 text-gray-400 dark:text-gray-500 cursor-not-allowed"
+                  : "bg-muted text-muted-foreground cursor-not-allowed"
               )}
             >
               <svg

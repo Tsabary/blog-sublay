@@ -71,14 +71,14 @@ function NewReplyForm({
         className={cn(
           // 🎨 CUSTOMIZATION: Reply form styling
           "flex items-end",
-          "bg-white dark:bg-gray-800",
+          "bg-card",
           "rounded-2xl",
           "p-1.5",
           "transition-all duration-300",
           "shadow-sm",
           hasContent
             ? "border border-blue-300 dark:border-blue-900 shadow-md"
-            : "border border-gray-200 dark:border-gray-600 hover:shadow-md"
+            : "border border-border hover:shadow-md"
         )}
       >
         <textarea
@@ -90,7 +90,7 @@ function NewReplyForm({
             // 🎨 CUSTOMIZATION: Reply form textarea styling
             "flex-1 py-1.5 px-2",
             "bg-transparent",
-            "text-gray-900 dark:text-gray-50",
+            "text-foreground",
             "text-xs leading-relaxed",
             "outline-none resize-none border-none"
           )}
@@ -103,12 +103,12 @@ function NewReplyForm({
               // 🎨 CUSTOMIZATION: Cancel button styling
               "px-2 py-1",
               "text-xs",
-              "text-gray-600 dark:text-gray-400",
+              "text-muted-foreground",
               "rounded",
               "transition-colors duration-150",
               "bg-transparent border-none cursor-pointer",
-              "hover:text-gray-800 dark:hover:text-gray-200",
-              "hover:bg-gray-50 dark:hover:bg-gray-700"
+              "hover:text-foreground",
+              "hover:bg-accent"
             )}
             disabled={isSubmitting}
           >
@@ -127,7 +127,7 @@ function NewReplyForm({
               "focus-visible:ring-2 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-500 focus-visible:ring-offset-2",
               hasContent && !isSubmitting
                 ? "bg-blue-600 dark:bg-blue-500 text-white cursor-pointer hover:bg-blue-700 dark:hover:bg-blue-600 hover:shadow-md"
-                : "bg-gray-200 dark:bg-gray-600 text-gray-400 dark:text-gray-500 cursor-not-allowed"
+                : "bg-muted text-muted-foreground cursor-not-allowed"
             )}
           >
             {isSubmitting ? (

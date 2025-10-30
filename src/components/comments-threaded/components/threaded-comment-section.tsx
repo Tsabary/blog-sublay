@@ -117,11 +117,11 @@ function ThreadedCommentSectionInner({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col p-4">
       <div
         className={
           // 🎨 CUSTOMIZATION: Layout styling
-          "flex-1 overflow-y-auto bg-white dark:bg-gray-800 py-2"
+          "flex-1 overflow-y-auto bg-background py-2"
         }
       >
         <CommentsFeed>{children}</CommentsFeed>
@@ -130,7 +130,7 @@ function ThreadedCommentSectionInner({
       <div
         className={
           // 🎨 CUSTOMIZATION: Layout styling
-          "border-t border-gray-200 dark:border-gray-600 pt-2"
+          "border-t border-border pt-2"
         }
       >
         {isVisible && <NewCommentForm />}

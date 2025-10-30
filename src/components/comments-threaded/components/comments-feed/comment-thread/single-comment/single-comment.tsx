@@ -85,7 +85,7 @@ function SingleComment({
             {/* Vertical line extending down from this comment's avatar when it has replies */}
             {hasReplies && !isCollapsed && (
               <div
-                className="absolute w-px bg-gray-300 dark:bg-gray-500 z-0"
+                className="absolute w-px bg-border z-0"
                 style={{
                   // 🎨 CUSTOMIZATION: Threading line position
                   left: "50%",
@@ -103,16 +103,16 @@ function SingleComment({
               // 🎨 CUSTOMIZATION: Spacing
             >
               <div
-                className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"
+                className="flex items-center gap-2 text-xs text-muted-foreground"
                 // 🎨 CUSTOMIZATION: Typography and spacing
               >
                 <span
-                  className="font-medium text-xs text-gray-700 dark:text-gray-300"
+                  className="font-medium text-xs text-foreground"
                   // 🎨 CUSTOMIZATION: Author name styling
                 >
                   {getUserName(comment.user)}
                 </span>
-                <span className="text-gray-500 dark:text-gray-400">•</span>
+                <span className="text-muted-foreground">•</span>
                 <span>{new Date(comment.createdAt).toLocaleDateString()}</span>
                 {isCollapsed && hasReplies && (
                   <span className="text-blue-500 dark:text-blue-400 text-xs">
@@ -133,7 +133,7 @@ function SingleComment({
               <>
                 {comment.content && (
                   <p
-                    className="text-xs text-gray-800 dark:text-gray-200 mb-3 leading-relaxed"
+                    className="text-xs text-foreground mb-3 leading-relaxed"
                     // 🎨 CUSTOMIZATION: Comment body typography
                   >
                     {parseContentWithMentions(
