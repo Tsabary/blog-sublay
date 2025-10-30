@@ -12,8 +12,7 @@ import {
 } from "@/components/ui/sheet";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { ThreadedStyleCallbacks } from "../comments-threaded";
-import ThreadedCommentSection from "../comments-threaded";
+import { ThreadedStyleCallbacks, ThreadedCommentSection } from "../comments-threaded";
 import { useTheme } from "next-themes";
 
 export function DiscussionSheet({
@@ -46,7 +45,7 @@ export function DiscussionSheet({
       }}
     >
       <DrawerContent className="h-screen overflow-hidden flex flex-col p-0 pt-6 bg-background gap-3">
-        <ThreadedCommentSection callbacks={callbacks} theme={isDarkTheme? "dark":"light"} />
+        <ThreadedCommentSection callbacks={callbacks} />
       </DrawerContent>
     </Drawer>
   );

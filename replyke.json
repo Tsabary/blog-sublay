@@ -1,6 +1,6 @@
 {
   "platform": "react",
-  "style": "styled",
+  "style": "tailwind",
   "typescript": true,
   "paths": {
     "components": "src/components",
