@@ -5,7 +5,7 @@ import Script from "next/script";
 
 import ContextProviders from "../context/context-providers";
 import "./globals.css";
-
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -63,28 +63,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID; // Google Tag Manager ID - e.g., 'GTM-XXXXXXX'
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-R0WW1RW0XF"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="gtag-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-R0WW1RW0XF', {
-                cookie_domain: 'replyke.com'
-              });
-            `,
-          }}
-        />
-      </head>
+      <GoogleTagManager gtmId={gtmId!} />
+
       <body className={outfit.className}>
         <ContextProviders>{children}</ContextProviders>
       </body>
