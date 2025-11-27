@@ -1,7 +1,6 @@
 import type React from "react";
 import { Outfit } from "next/font/google";
 import { Metadata } from "next";
-import Script from "next/script";
 
 import ContextProviders from "../context/context-providers";
 import "./globals.css";
