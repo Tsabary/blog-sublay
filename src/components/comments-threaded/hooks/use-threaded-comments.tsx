@@ -1,4 +1,5 @@
 import { ReactNode, useMemo } from "react";
+import { toast } from "sonner";
 import {
   CommentSectionProvider,
   Entity,
@@ -31,9 +32,7 @@ function useThreadedComments({
     () => ({
       // Called when a user tries to perform an action without being logged in
       loginRequiredCallback: () => {
-        // 🔧 CUSTOMIZE: Handle login requirement
-        // Example: router.push('/login?redirect=' + window.location.pathname)
-        alert("Please login to perform this action");
+        toast("Please log in first");
       },
 
       // Called when a user with no username tries to interact with comments

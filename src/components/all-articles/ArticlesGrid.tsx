@@ -34,8 +34,7 @@ function ArticlesGrid({ filters, viewMode }: ArticlesGridProps) {
 
   // Fetch entities when filters change
   useEffect(() => {
-    const fetchParams: EntityListFilters = { sortBy: filters.sortBy };
-    const options: any = { sourceId: "blog", limit: 12 };
+    const fetchParams: Partial<EntityListFilters> = {};
 
     // Add category filter if selected
     if (filters.category) {
@@ -49,7 +48,7 @@ function ArticlesGrid({ filters, viewMode }: ArticlesGridProps) {
       fetchParams.titleFilters = { includes: filters.search };
     }
 
-    fetchEntities(fetchParams, options);
+    fetchEntities(fetchParams, { sortBy: filters.sortBy }, { sourceId: "blog", limit: 12 });
   }, [filters]);
 
   useEffect(() => {

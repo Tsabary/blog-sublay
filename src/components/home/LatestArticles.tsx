@@ -15,7 +15,7 @@ function LatestArticles() {
     entities !== undefined && entities.length === 0 && !loading;
 
   useEffect(() => {
-    fetchEntities({ sortBy: "new" }, { sourceId: "blog", limit: 4 });
+    fetchEntities({}, { sortBy: "new" }, { sourceId: "blog", limit: 4 });
   }, []);
 
   if (!entities) return null;

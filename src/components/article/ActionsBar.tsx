@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { EntityProvider, useEntity, useUser } from "@replyke/react-js";
+import { EntityProvider, useEntity, useUser, useReactionToggle } from "@replyke/react-js";
 import { toast } from "sonner";
 import dynamic from "next/dynamic";
 import { MessageCircleIcon, Share2Icon } from "lucide-react";
@@ -18,12 +18,14 @@ const AnimatedHeartButton = dynamic(() => import("./AnimatedHeartButton"), {
 function InnerActionsBar() {
   const { user } = useUser();
 
-  const {
-    entity: article,
-    userUpvotedEntity,
-    upvoteEntity,
-    removeEntityUpvote,
-  } = useEntity();
+  const { entity: article } = useEntity();
+
+  const { currentReaction, toggleReaction } = useReactionToggle({
+    targetType: "entity",
+    targetId: article?.id,
+    initialReaction: article?.userReaction,
+    initialReactionCounts: article?.reactionCounts,
+  });
 
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
@@ -32,12 +34,7 @@ function InnerActionsBar() {
       toast("Please log in first");
       return;
     }
-
-    if (userUpvotedEntity) {
-      removeEntityUpvote?.();
-    } else {
-      upvoteEntity?.();
-    }
+    toggleReaction({ reactionType: "upvote" });
   };
 
   return (
@@ -49,7 +46,7 @@ function InnerActionsBar() {
       <div className="border-t border-b flex py-1">
         <div className="flex items-center gap-1 mr-4">
           <AnimatedHeartButton
-            liked={!!userUpvotedEntity}
+            liked={currentReaction === "upvote"}
             onClick={handleLike}
           />
 

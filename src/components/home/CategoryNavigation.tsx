@@ -12,7 +12,7 @@ function CategoryNavigation() {
   });
 
   useEffect(() => {
-    fetchEntities({ sortBy: "new" }, { sourceId: "blog", limit: 50 });
+    fetchEntities({}, { sortBy: "new" }, { sourceId: "blog", limit: 50 });
   }, []);
 
   // Extract unique categories with counts

@@ -12,7 +12,7 @@ function TrendingArticles() {
   });
 
   useEffect(() => {
-    fetchEntities({ sortBy: "new" }, { sourceId: "blog", limit: 20 });
+    fetchEntities({}, { sortBy: "new" }, { sourceId: "blog", limit: 20 });
   }, []);
 
   // Sort articles by engagement (upvotes + comments)

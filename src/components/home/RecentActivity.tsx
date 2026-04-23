@@ -21,11 +21,11 @@ function RecentActivity() {
         page: 1,
         limit: 5,
         sortBy: "new",
-        includeEntity: true,
+        include: "entity",
         sourceId: "blog",
       });
 
-      setComments(latest);
+      setComments(latest.data);
     };
     fetchData();
   }, []);
@@ -48,16 +48,16 @@ function RecentActivity() {
               <div className="flex gap-2.5">
                 <UserAvatar
                   user={{
-                    id: comment.user.id,
-                    name: comment.user.name,
-                    avatar: comment.user.avatar,
+                    id: comment.user?.id ?? "",
+                    name: comment.user?.name ?? null,
+                    avatar: comment.user?.avatar ?? null,
                   }}
                   size={28}
                 />
                 <div className="flex-1 min-w-0 space-y-0.5">
                   <div className="flex items-baseline gap-1.5 flex-wrap">
                     <span className="text-xs font-medium">
-                      {comment.user.name}
+                      {comment.user?.name}
                     </span>
                     <span className="text-xs text-muted-foreground">
                       {formatDistanceToNow(comment.createdAt, {
