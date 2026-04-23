@@ -5,7 +5,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Github } from "lucide-react";
+import { GithubIcon } from "@/components/icons/GithubIcon";
 import { TwitterIcon } from "@/components/icons/TwitterIcon";
 import { LinkedinIcon } from "@/components/icons/LinkedinIcon";
 
@@ -66,7 +66,7 @@ function Footer() {
                         size="icon"
                         className="rounded-full cursor-pointer"
                       >
-                        <Github className="h-4 w-4" />
+                        <GithubIcon className="h-4 w-4" />
                         <span className="sr-only">Github</span>
                       </Button>
                     </a>

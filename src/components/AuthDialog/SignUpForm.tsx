@@ -129,11 +129,10 @@ export default function SignupForm({
 
       setIsSubmitting(true);
 
-      await signUpWithEmailAndPassword!({
-        email: credentials.email,
-        password: credentials.password,
-        username: credentials.username,
-      });
+      await signUpWithEmailAndPassword!(
+        credentials.email,
+        credentials.password
+      );
       setOpen(false);
     } catch (err: unknown) {
       if (err instanceof Error) {

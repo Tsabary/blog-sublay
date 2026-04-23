@@ -37,10 +37,10 @@ export default function SignInForm({
 
       setIsSubmitting(true);
 
-      await signInWithEmailAndPassword!({
-        email: credentials.email,
-        password: credentials.password,
-      });
+      await signInWithEmailAndPassword!(
+        credentials.email,
+        credentials.password
+      );
       setOpen(false);
     } catch (err: unknown) {
       if (err instanceof Error) {
