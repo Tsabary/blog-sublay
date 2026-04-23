@@ -27,7 +27,7 @@ function PopulatedReplykeProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <ReplykeProvider
-      projectId={process.env.NEXT_PUBLIC_REPLYKE_PROJECT_ID}
+      projectId={process.env.NEXT_PUBLIC_REPLYKE_PROJECT_ID!}
       signedToken={signedToken}
     >
       {children}

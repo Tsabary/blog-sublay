@@ -5,7 +5,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Github } from "lucide-react";
+import { TwitterIcon } from "@/components/icons/TwitterIcon";
+import { LinkedinIcon } from "@/components/icons/LinkedinIcon";
 
 function Footer() {
   return (
@@ -83,7 +85,7 @@ function Footer() {
                         size="icon"
                         className="rounded-full cursor-pointer"
                       >
-                        <Twitter className="h-4 w-4" />
+                        <TwitterIcon className="h-4 w-4" />
                         <span className="sr-only">Twitter</span>
                       </Button>
                     </a>
@@ -105,7 +107,7 @@ function Footer() {
                         size="icon"
                         className="rounded-full cursor-pointer"
                       >
-                        <Linkedin className="h-4 w-4" />
+                        <LinkedinIcon className="h-4 w-4" />
                         <span className="sr-only">LinkedIn</span>
                       </Button>
                     </a>

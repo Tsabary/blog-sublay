@@ -2,7 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Copy, Facebook, Linkedin, Twitter, Check } from "lucide-react";
+import { Copy, Check } from "lucide-react";
+import { TwitterIcon } from "@/components/icons/TwitterIcon";
+import { LinkedinIcon } from "@/components/icons/LinkedinIcon";
+import { FacebookIcon } from "@/components/icons/FacebookIcon";
 
 import {
   DropdownMenu,
@@ -10,7 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 
 export function ShareButton({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -34,13 +37,13 @@ export function ShareButton({ children }: { children: React.ReactNode }) {
 
   const shareLinks = {
     twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-      fullUrl
+      fullUrl,
     )}`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-      fullUrl
+      fullUrl,
     )}`,
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      fullUrl
+      fullUrl,
     )}`,
   };
 
@@ -48,15 +51,12 @@ export function ShareButton({ children }: { children: React.ReactNode }) {
     try {
       await navigator.clipboard.writeText(fullUrl);
       setCopied(true);
-      toast({
-        title: "Link copied",
+      toast.success("Link copied", {
         description: "The link has been copied to your clipboard",
       });
     } catch (err) {
-      toast({
-        title: "Failed to copy",
+      toast.error("Failed to copy", {
         description: "Could not copy the link to your clipboard",
-        variant: "destructive",
       });
     }
   };
@@ -71,15 +71,15 @@ export function ShareButton({ children }: { children: React.ReactNode }) {
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => handleShare("twitter")}>
-          <Twitter className="h-4 w-4 mr-2" />
+          <TwitterIcon className="h-4 w-4 mr-2" />
           Share on X
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleShare("linkedin")}>
-          <Linkedin className="h-4 w-4 mr-2" />
+          <LinkedinIcon className="h-4 w-4 mr-2" />
           Share on LinkedIn
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleShare("facebook")}>
-          <Facebook className="h-4 w-4 mr-2" />
+          <FacebookIcon className="h-4 w-4 mr-2" />
           Share on Facebook
         </DropdownMenuItem>
         <DropdownMenuItem onClick={copyToClipboard}>
