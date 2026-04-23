@@ -2,7 +2,7 @@ import React, { useRef, useState, useCallback, useEffect } from "react";
 import {
   useCommentSection,
   useUser,
-  useMentions,
+  useUserMentions,
   useProject,
   handleError,
 } from "@replyke/react-js";
@@ -39,7 +39,7 @@ function NewCommentForm() {
     mentions,
     addMention,
     resetMentions,
-  } = useMentions({
+  } = useUserMentions({
     content: textAreaRef.current?.value || "",
     setContent: (value: string) => {
       if (textAreaRef.current) {
@@ -57,23 +57,43 @@ function NewCommentForm() {
       e?.preventDefault();
 
       const textArea = textAreaRef.current;
-      if (!textArea || !hasContent || isSubmitting) return;
+      if (!textArea || isSubmitting) return;
+
+      if (!hasContent) {
+        callbacks?.commentTooShortCallback?.();
+        return;
+      }
 
       if (!user) {
         callbacks?.loginRequiredCallback();
         return;
       }
 
+      if (!user.username && callbacks?.usernameRequiredCallback) {
+        callbacks.usernameRequiredCallback();
+        return;
+      }
+
       const tempContent = textArea.value.trim();
+      const tempMentions = mentions;
+
+      // Clear optimistically before the API call
+      textArea.value = "";
+      setContent("");
+      resetMentions();
       setIsSubmitting(true);
 
       try {
-        await createComment?.({ content: tempContent, mentions });
-        textArea.value = "";
-        setContent("");
-        resetMentions();
+        const result = await createComment?.({ content: tempContent, mentions: tempMentions });
+        if (result === undefined) {
+          // SDK handled the failure and removed the optimistic comment; restore textarea
+          textArea.value = tempContent;
+          setContent(tempContent);
+        }
       } catch (error) {
         console.error("Error creating comment:", error);
+        textArea.value = tempContent;
+        setContent(tempContent);
       } finally {
         setIsSubmitting(false);
       }
@@ -98,6 +118,18 @@ function NewCommentForm() {
       altText: string | undefined;
       aspectRatio: number;
     }) => {
+      if (!user) {
+        callbacks?.loginRequiredCallback?.();
+        setIsGiphyVisible(false);
+        return;
+      }
+
+      if (!user.username && callbacks?.usernameRequiredCallback) {
+        callbacks.usernameRequiredCallback();
+        setIsGiphyVisible(false);
+        return;
+      }
+
       const textArea = textAreaRef.current;
       if (!textArea) throw new Error("Can not find textarea");
 
@@ -112,7 +144,7 @@ function NewCommentForm() {
         handleError(err, "Creating comment failed: ");
       }
     },
-    [createComment, mentions, resetMentions]
+    [createComment, mentions, resetMentions, user, callbacks]
   );
 
   // Add keyboard event handler for Enter key
@@ -153,14 +185,14 @@ function NewCommentForm() {
           className={cn(
             // 🎨 CUSTOMIZATION: Comment form styling
             "flex items-end",
-            "bg-card",
+            "bg-white dark:bg-gray-800",
             "rounded-2xl",
             "p-2",
             "transition-all duration-300",
             "shadow-sm",
             hasContent
               ? "border border-blue-300 dark:border-blue-800 shadow-md"
-              : "border border-border hover:shadow-md"
+              : "border border-gray-200 dark:border-gray-600 hover:shadow-md"
           )}
         >
           <textarea
@@ -172,7 +204,7 @@ function NewCommentForm() {
               // 🎨 CUSTOMIZATION: Comment form styling
               "flex-1 p-2",
               "bg-transparent",
-              "text-foreground",
+              "text-gray-900 dark:text-gray-50",
               "text-xs leading-relaxed",
               "outline-none resize-none border-none"
             )}
@@ -188,7 +220,7 @@ function NewCommentForm() {
                 "flex-shrink-0 p-2",
                 "border-none outline-none",
                 "font-normal text-xs",
-                "text-foreground",
+                "text-gray-50 dark:text-gray-50",
                 "cursor-pointer bg-transparent"
               )}
             >
@@ -208,7 +240,7 @@ function NewCommentForm() {
                 "focus-visible:ring-2 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-500 focus-visible:ring-offset-2",
                 hasContent && !isSubmitting
                   ? "bg-blue-600 dark:bg-blue-500 text-white cursor-pointer hover:bg-blue-700 dark:hover:bg-blue-600 hover:shadow-md"
-                  : "bg-muted text-muted-foreground cursor-not-allowed"
+                  : "bg-gray-200 dark:bg-gray-600 text-gray-400 dark:text-gray-500 cursor-not-allowed"
               )}
             >
               <svg

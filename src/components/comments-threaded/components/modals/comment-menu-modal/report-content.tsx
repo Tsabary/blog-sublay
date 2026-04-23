@@ -33,6 +33,10 @@ function ReportContent({ resetView }: { resetView: () => void }) {
         callbacks?.loginRequiredCallback?.();
         return;
       }
+      if (!user.username && callbacks?.usernameRequiredCallback) {
+        callbacks.usernameRequiredCallback();
+        return;
+      }
       setSubmitting(true);
       await createCommentReport({ targetId: optionsComment.id, reason });
       closeCommentOptionsModal?.();
@@ -48,7 +52,7 @@ function ReportContent({ resetView }: { resetView: () => void }) {
   return (
     <div className="p-6 w-full">
       <div className="flex items-center gap-4">
-        <FlagIcon size={24} color="currentColor" className="text-gray-900 dark:text-gray-50" />
+        <FlagIcon size={24} color="currentColor" />
         <span className="text-2xl text-gray-900 dark:text-gray-50">Submit a report</span>
       </div>
       <p className="mt-6 text-gray-700 dark:text-gray-300">

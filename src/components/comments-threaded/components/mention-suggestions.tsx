@@ -1,4 +1,4 @@
-import { User } from "@replyke/react-js";
+import { User, useCommentSection } from "@replyke/react-js";
 import { UserAvatar, UserMentionSkeleton } from "@replyke/ui-core-react-js";
 
 interface MentionSuggestionsProps {
@@ -14,11 +14,13 @@ function MentionSuggestions({
   mentionSuggestions,
   handleMentionClick,
 }: MentionSuggestionsProps) {
+  const { callbacks } = useCommentSection();
+
   if (!isMentionActive) return null;
 
   return (
     <div
-      className="absolute bottom-full left-0 right-0 z-50 bg-card rounded-xl border border-border shadow-lg max-h-[200px] overflow-y-auto mb-2"
+      className="absolute bottom-full left-0 right-0 z-50 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-600 shadow-lg max-h-[200px] overflow-y-auto mb-2"
     >
       <div className="p-3">
         {isLoadingMentions ? (
@@ -32,16 +34,22 @@ function MentionSuggestions({
             {mentionSuggestions.map((user) => (
               <div
                 key={user.id}
-                onClick={() => handleMentionClick(user)}
-                className="cursor-pointer flex items-center gap-3 p-2 rounded-lg transition-colors duration-150 hover:bg-accent"
+                onClick={() => {
+                  if (!user.username) {
+                    callbacks?.userCantBeMentionedCallback?.();
+                    return;
+                  }
+                  handleMentionClick(user);
+                }}
+                className="cursor-pointer flex items-center gap-3 p-2 rounded-lg transition-colors duration-150 hover:bg-gray-50 dark:hover:bg-gray-700"
               >
                 <UserAvatar user={user} size={32} />
                 <div className="flex flex-col gap-0.5">
-                  <div className="text-sm font-medium text-foreground">
+                  <div className="text-sm font-medium text-gray-900 dark:text-gray-50">
                     @{user.username}
                   </div>
                   {user.name && (
-                    <div className="text-xs font-normal text-muted-foreground">
+                    <div className="text-xs font-normal text-gray-500 dark:text-gray-400">
                       {user.name}
                     </div>
                   )}
@@ -50,7 +58,7 @@ function MentionSuggestions({
             ))}
           </div>
         ) : (
-          <div className="py-4 text-center text-muted-foreground text-sm">
+          <div className="py-4 text-center text-gray-500 dark:text-gray-400 text-sm">
             No users found
           </div>
         )}

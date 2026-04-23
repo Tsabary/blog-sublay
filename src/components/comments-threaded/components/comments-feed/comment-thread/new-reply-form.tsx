@@ -21,23 +21,45 @@ function NewReplyForm({
   const { createComment, callbacks } = useCommentSection();
 
   const handleReply = async () => {
-    if (!replyContent.trim() || isSubmitting) return;
+    if (isSubmitting) return;
+
+    if (!replyContent.trim()) {
+      callbacks?.commentTooShortCallback?.();
+      return;
+    }
 
     if (!user) {
       callbacks?.loginRequiredCallback();
       return;
     }
+
+    if (!user.username && callbacks?.usernameRequiredCallback) {
+      callbacks.usernameRequiredCallback();
+      return;
+    }
+
+    const tempContent = replyContent.trim();
+
+    // Clear optimistically before the API call
+    setReplyContent("");
+    setShowReplyForm(false);
     setIsSubmitting(true);
+
     try {
-      await createComment?.({
-        content: replyContent.trim(),
+      const result = await createComment?.({
+        content: tempContent,
         parentId: comment.id,
         mentions: [],
       });
-      setReplyContent("");
-      setShowReplyForm(false);
+      if (result === undefined) {
+        // SDK handled the failure and removed the optimistic comment; restore form
+        setReplyContent(tempContent);
+        setShowReplyForm(true);
+      }
     } catch (error) {
       console.error("Error creating reply:", error);
+      setReplyContent(tempContent);
+      setShowReplyForm(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -71,14 +93,14 @@ function NewReplyForm({
         className={cn(
           // 🎨 CUSTOMIZATION: Reply form styling
           "flex items-end",
-          "bg-card",
+          "bg-white dark:bg-gray-800",
           "rounded-2xl",
           "p-1.5",
           "transition-all duration-300",
           "shadow-sm",
           hasContent
             ? "border border-blue-300 dark:border-blue-900 shadow-md"
-            : "border border-border hover:shadow-md"
+            : "border border-gray-200 dark:border-gray-600 hover:shadow-md"
         )}
       >
         <textarea
@@ -90,7 +112,7 @@ function NewReplyForm({
             // 🎨 CUSTOMIZATION: Reply form textarea styling
             "flex-1 py-1.5 px-2",
             "bg-transparent",
-            "text-foreground",
+            "text-gray-900 dark:text-gray-50",
             "text-xs leading-relaxed",
             "outline-none resize-none border-none"
           )}
@@ -103,12 +125,12 @@ function NewReplyForm({
               // 🎨 CUSTOMIZATION: Cancel button styling
               "px-2 py-1",
               "text-xs",
-              "text-muted-foreground",
+              "text-gray-600 dark:text-gray-400",
               "rounded",
               "transition-colors duration-150",
               "bg-transparent border-none cursor-pointer",
-              "hover:text-foreground",
-              "hover:bg-accent"
+              "hover:text-gray-800 dark:hover:text-gray-200",
+              "hover:bg-gray-50 dark:hover:bg-gray-700"
             )}
             disabled={isSubmitting}
           >
@@ -127,7 +149,7 @@ function NewReplyForm({
               "focus-visible:ring-2 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-500 focus-visible:ring-offset-2",
               hasContent && !isSubmitting
                 ? "bg-blue-600 dark:bg-blue-500 text-white cursor-pointer hover:bg-blue-700 dark:hover:bg-blue-600 hover:shadow-md"
-                : "bg-muted text-muted-foreground cursor-not-allowed"
+                : "bg-gray-200 dark:bg-gray-600 text-gray-400 dark:text-gray-500 cursor-not-allowed"
             )}
           >
             {isSubmitting ? (

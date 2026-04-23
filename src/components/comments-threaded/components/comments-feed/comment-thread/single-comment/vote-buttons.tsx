@@ -2,61 +2,39 @@ import {
   useCommentSection,
   useUser,
   Comment as CommentType,
-  useCommentVotes,
+  useReactionToggle,
 } from "@replyke/react-js";
 import { cn } from "@/lib/utils";
 
 interface VoteButtonsProps {
   comment: CommentType;
-  setComment: React.Dispatch<React.SetStateAction<CommentType>>;
   size?: "small" | "normal";
 }
 
 function VoteButtons({
   comment,
-  setComment,
   size = "small",
 }: VoteButtonsProps) {
   const { user } = useUser();
   const { callbacks } = useCommentSection();
 
-  const {
-    upvoteComment,
-    downvoteComment,
-    removeCommentUpvote,
-    removeCommentDownvote,
-  } = useCommentVotes({
-    comment,
-    setComment,
+  const { currentReaction, reactionCounts, toggleReaction } = useReactionToggle({
+    targetType: "comment",
+    targetId: comment.id,
+    initialReaction: comment.userReaction,
+    initialReactionCounts: comment.reactionCounts,
   });
 
-  const upvotes = comment.upvotes?.length || 0;
-  const downvotes = comment.downvotes?.length || 0;
-  const netScore = upvotes - downvotes;
+  const netScore = (reactionCounts.upvote || 0) - (reactionCounts.downvote || 0);
 
-  // Check if user has voted on this comment
-  const userUpvotedComment = !!(user && comment.upvotes.includes(user.id));
-  const userDownvotedComment = !!(user && comment.downvotes.includes(user.id));
-  const userVote: "up" | "down" | null = userUpvotedComment
+  const userVote: "up" | "down" | null = currentReaction === "upvote"
     ? "up"
-    : userDownvotedComment
+    : currentReaction === "downvote"
     ? "down"
     : null;
 
   const handleVote = (voteType: "up" | "down") => {
-    if (voteType === "up") {
-      if (userUpvotedComment) {
-        removeCommentUpvote?.();
-      } else {
-        upvoteComment?.();
-      }
-    } else {
-      if (userDownvotedComment) {
-        removeCommentDownvote?.();
-      } else {
-        downvoteComment?.();
-      }
-    }
+    toggleReaction({ reactionType: voteType === "up" ? "upvote" : "downvote" });
   };
 
   // 🎨 CUSTOMIZATION: Vote button sizing
@@ -69,7 +47,7 @@ function VoteButtons({
       className={cn(
         // 🎨 CUSTOMIZATION: Vote button container styling
         "inline-flex items-center",
-        "bg-muted",
+        "bg-gray-50 dark:bg-gray-700",
         "rounded-full",
         paddingClass,
         "gap-1"
@@ -79,10 +57,12 @@ function VoteButtons({
       <button
         onClick={() => {
           if (!user) {
-            (
-              callbacks?.loginRequiredCallback ||
-              (() => alert("Please login first."))
-            )();
+
+              callbacks?.loginRequiredCallback?.();
+            return;
+          }
+          if (!user.username && callbacks?.usernameRequiredCallback) {
+            callbacks.usernameRequiredCallback();
             return;
           }
           handleVote("up");
@@ -95,7 +75,7 @@ function VoteButtons({
           "border-none cursor-pointer",
           userVote === "up"
             ? "bg-blue-500 dark:bg-blue-400 text-white"
-            : "bg-transparent text-muted-foreground hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950"
+            : "bg-transparent text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950"
         )}
         title="Upvote"
       >
@@ -124,7 +104,7 @@ function VoteButtons({
             ? "text-blue-500 dark:text-blue-400"
             : netScore < 0
             ? "text-red-500 dark:text-red-400"
-            : "text-foreground"
+            : "text-gray-700 dark:text-gray-300"
         )}
       >
         {netScore}
@@ -134,10 +114,12 @@ function VoteButtons({
       <button
         onClick={() => {
           if (!user) {
-            (
-              callbacks?.loginRequiredCallback ||
-              (() => alert("Please login first."))
-            )();
+
+              callbacks?.loginRequiredCallback?.();
+            return;
+          }
+          if (!user.username && callbacks?.usernameRequiredCallback) {
+            callbacks.usernameRequiredCallback();
             return;
           }
           handleVote("down");
@@ -150,7 +132,7 @@ function VoteButtons({
           "border-none cursor-pointer",
           userVote === "down"
             ? "bg-red-500 dark:bg-red-400 text-white"
-            : "bg-transparent text-muted-foreground hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950"
+            : "bg-transparent text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950"
         )}
         title="Downvote"
       >

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   Comment as CommentType,
+  UserMention,
   getUserName,
   useCommentSection,
   useUser,
@@ -38,7 +39,7 @@ function SingleComment({
 }: SingleCommentProps) {
   const { user } = useUser();
   const { callbacks, highlightedComment } = useCommentSection();
-  const [comment, setComment] = useState(commentFromSection);
+  const [comment] = useState(commentFromSection);
   const [showReplyForm, setShowReplyForm] = useState(false);
 
   const maxDepth = 6; // Limit visual nesting depth
@@ -74,9 +75,18 @@ function SingleComment({
             className="flex-shrink-0 mr-3 relative mt-1"
             // 🎨 CUSTOMIZATION: Spacing
           >
-            <div className="relative z-10">
+            <div
+              className="relative z-10 cursor-pointer"
+              onClick={() => {
+                if (user?.id === comment.user?.id) {
+                  callbacks?.currentUserClickCallback?.();
+                } else {
+                  callbacks?.otherUserClickCallback?.(comment.user?.id ?? "", comment.user?.foreignId);
+                }
+              }}
+            >
               <UserAvatar
-                user={comment.user}
+                user={comment.user ?? {}}
                 // 🎨 CUSTOMIZATION: Avatar styling (Default: 24px)
                 borderRadius={24}
                 size={24}
@@ -85,7 +95,7 @@ function SingleComment({
             {/* Vertical line extending down from this comment's avatar when it has replies */}
             {hasReplies && !isCollapsed && (
               <div
-                className="absolute w-px bg-border z-0"
+                className="absolute w-px bg-gray-300 dark:bg-gray-500 z-0"
                 style={{
                   // 🎨 CUSTOMIZATION: Threading line position
                   left: "50%",
@@ -103,16 +113,23 @@ function SingleComment({
               // 🎨 CUSTOMIZATION: Spacing
             >
               <div
-                className="flex items-center gap-2 text-xs text-muted-foreground"
+                className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"
                 // 🎨 CUSTOMIZATION: Typography and spacing
               >
                 <span
-                  className="font-medium text-xs text-foreground"
+                  className="font-medium text-xs text-gray-700 dark:text-gray-300 cursor-pointer hover:underline"
                   // 🎨 CUSTOMIZATION: Author name styling
+                  onClick={() => {
+                    if (user?.id === comment.user?.id) {
+                      callbacks?.currentUserClickCallback?.();
+                    } else {
+                      callbacks?.otherUserClickCallback?.(comment.user?.id ?? "", comment.user?.foreignId);
+                    }
+                  }}
                 >
-                  {getUserName(comment.user)}
+                  {getUserName(comment.user ?? {})}
                 </span>
-                <span className="text-muted-foreground">•</span>
+                <span className="text-gray-500 dark:text-gray-400">•</span>
                 <span>{new Date(comment.createdAt).toLocaleDateString()}</span>
                 {isCollapsed && hasReplies && (
                   <span className="text-blue-500 dark:text-blue-400 text-xs">
@@ -133,12 +150,14 @@ function SingleComment({
               <>
                 {comment.content && (
                   <p
-                    className="text-xs text-foreground mb-3 leading-relaxed"
+                    className="text-xs text-gray-800 dark:text-gray-200 mb-3 leading-relaxed"
                     // 🎨 CUSTOMIZATION: Comment body typography
                   >
                     {parseContentWithMentions(
                       comment.content,
-                      comment.mentions,
+                      comment.mentions
+                        ?.filter((m): m is UserMention => 'username' in m)
+                        .map((m) => ({ id: m.id, foreignId: m.foreignId ?? undefined, username: m.username })),
                       user?.id,
                       callbacks?.currentUserClickCallback,
                       callbacks?.otherUserClickCallback
@@ -178,7 +197,6 @@ function SingleComment({
                   <div className="flex-shrink-0">
                     <VoteButtons
                       comment={comment}
-                      setComment={setComment}
                       size="small"
                     />
                   </div>
