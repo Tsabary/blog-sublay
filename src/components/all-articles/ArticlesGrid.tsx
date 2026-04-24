@@ -16,7 +16,7 @@ function ArticlesGrid({ filters, viewMode }: ArticlesGridProps) {
   const { entities, loading, loadMore, hasMore, fetchEntities } = useEntityList(
     {
       listId: "all-articles",
-    }
+    },
   );
   const isFirstLoad = loading && (!entities || entities.length === 0);
   const observerRef = useRef<IntersectionObserver>(null);
@@ -29,7 +29,7 @@ function ArticlesGrid({ filters, viewMode }: ArticlesGridProps) {
         loadMore?.();
       }
     },
-    [hasMore, loading, loadMore]
+    [hasMore, loading, loadMore],
   );
 
   // Fetch entities when filters change
@@ -48,7 +48,11 @@ function ArticlesGrid({ filters, viewMode }: ArticlesGridProps) {
       fetchParams.titleFilters = { includes: filters.search };
     }
 
-    fetchEntities(fetchParams, { sortBy: filters.sortBy }, { sourceId: "blog", limit: 12 });
+    fetchEntities(
+      fetchParams,
+      { sortBy: filters.sortBy },
+      { sourceId: "blog", limit: 12, include: ["files", "saved", "user"] },
+    );
   }, [filters]);
 
   useEffect(() => {

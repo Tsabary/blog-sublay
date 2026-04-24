@@ -12,7 +12,11 @@ function CategoryNavigation() {
   });
 
   useEffect(() => {
-    fetchEntities({}, { sortBy: "new" }, { sourceId: "blog", limit: 50 });
+    fetchEntities(
+      {},
+      { sortBy: "new" },
+      { sourceId: "blog", limit: 50, include: ["files", "saved", "user"] },
+    );
   }, []);
 
   // Extract unique categories with counts
@@ -72,9 +76,7 @@ function CategoryNavigation() {
             >
               {category.name}
               {category.count > 1 && (
-                <span className="ml-1 opacity-70">
-                  {category.count}
-                </span>
+                <span className="ml-1 opacity-70">{category.count}</span>
               )}
             </Badge>
           </Link>

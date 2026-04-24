@@ -113,7 +113,7 @@ function FeaturedArticle() {
                         ) : (
                           <>
                             <p className="text-sm font-medium text-white">
-                              {article.user!.name || "Author"}
+                              {article.user?.name || "Author"}
                             </p>
                             <p className="text-sm text-white/80">
                               {formatDate2(new Date(article.createdAt))} ·{" "}
