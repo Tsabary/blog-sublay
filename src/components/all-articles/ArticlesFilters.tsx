@@ -11,7 +11,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -62,22 +61,19 @@ export function ArticlesFilters({
   const hasActiveFilters = filters.category || filters.search;
 
   return (
-    <Card className="p-3 md:p-4">
-      <div className="flex items-center gap-2">
+    <div className="flex items-center gap-3">
         {/* Search */}
         <form
           onSubmit={handleSearchSubmit}
-          className="flex gap-2 flex-1 min-w-0"
+          className="relative flex-1 min-w-0"
         >
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
           <Input
             placeholder="Search articles..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            className="h-9 flex-1 min-w-0"
+            className="h-9 pl-9 flex-1 min-w-0"
           />
-          <Button type="submit" size="sm" variant="outline" className="shrink-0">
-            <Search className="w-4 h-4" />
-          </Button>
         </form>
 
         {/* Sort By - Icon dropdown on mobile, tabs on desktop */}
@@ -201,7 +197,6 @@ export function ArticlesFilters({
             <span className="hidden md:inline">Clear</span>
           </Button>
         )}
-      </div>
-    </Card>
+    </div>
   );
 }

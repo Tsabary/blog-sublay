@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { HeartIcon, MessageCircleIcon } from "lucide-react";
+import { MessageCircleIcon } from "lucide-react";
+import ReactionSummary from "../article/ReactionSummary";
 import {
   Card,
   CardContent,
@@ -46,18 +47,18 @@ function ArticleCard({ article }: { article: Entity }) {
             placeholder="empty"
           />
         </div>
-        <CardHeader>
-          <div className="space-y-1.5">
-            <CardTitle className="line-clamp-1">{article.title}</CardTitle>
-            <CardDescription className="line-clamp-2">
+        <CardHeader className="px-4 pt-4 pb-2">
+          <div className="space-y-1">
+            <CardTitle className="line-clamp-1 text-base">{article.title}</CardTitle>
+            <CardDescription className="line-clamp-2 text-sm">
               {article.metadata.excerpt}
             </CardDescription>
           </div>
         </CardHeader>
-        <CardContent>
-          <div className="flex items-center space-x-4">
-            <UserAvatar user={article.user!} size={24} />
-            <div className="space-y-1">
+        <CardContent className="px-4 py-2">
+          <div className="flex items-center space-x-3">
+            <UserAvatar user={article.user!} size={22} />
+            <div className="space-y-0.5">
               <p className="text-sm font-medium leading-none">
                 {article.user!.name}
               </p>
@@ -69,18 +70,13 @@ function ArticleCard({ article }: { article: Entity }) {
             </div>
           </div>
         </CardContent>
-        <CardFooter className="gap-3">
+        <CardFooter className="px-4 pb-4 pt-2 gap-3">
           <div className="flex items-center text-sm text-muted-foreground">
             <span className="inline-block rounded-full bg-muted px-2 py-1 text-xs">
               {article.metadata.category}
             </span>
           </div>
-          <div className="flex items-center gap-1">
-            <HeartIcon className="size-3.5 text-gray-400" fill="#9ca3af" />
-            <span className="text-sm text-gray-400">
-              {article.upvotes.length}
-            </span>
-          </div>
+          <ReactionSummary reactionCounts={article.reactionCounts} />
           <div className="flex items-center gap-1">
             <MessageCircleIcon
               className="size-3.5 text-gray-400"

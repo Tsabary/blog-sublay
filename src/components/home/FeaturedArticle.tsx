@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Entity, useEntityList } from "@replyke/react-js";
-import { HeartIcon, MessageCircleIcon } from "lucide-react";
+import { MessageCircleIcon } from "lucide-react";
+import ReactionSummary from "../article/ReactionSummary";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";
 import { formatDate2 } from "../../lib/time-formatters";
 import UserAvatar from "../Layout/Header/UserAvatar";
@@ -123,15 +124,7 @@ function FeaturedArticle() {
                               min read
                             </p>
                             <div className="flex items-center gap-3">
-                              <div className="flex items-center gap-1">
-                                <HeartIcon
-                                  className="size-4 text-white/70"
-                                  fill="rgba(255,255,255,0.7)"
-                                />
-                                <span className="text-sm text-white/80">
-                                  {article.upvotes.length}
-                                </span>
-                              </div>
+                              <ReactionSummary reactionCounts={article.reactionCounts} className="text-white/80" />
                               <div className="flex items-center gap-1">
                                 <MessageCircleIcon
                                   className="size-4 text-white/70"
@@ -210,15 +203,7 @@ function FeaturedArticle() {
                   {/* Stats */}
                   {!loading && (
                     <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-1">
-                        <HeartIcon
-                          className="size-4 text-muted-foreground"
-                          fill="currentColor"
-                        />
-                        <span className="text-xs text-muted-foreground">
-                          {article.upvotes.length}
-                        </span>
-                      </div>
+                      <ReactionSummary reactionCounts={article.reactionCounts} />
                       <div className="flex items-center gap-1">
                         <MessageCircleIcon
                           className="size-4 text-muted-foreground"

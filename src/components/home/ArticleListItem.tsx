@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { HeartIcon, MessageCircleIcon } from "lucide-react";
+import { MessageCircleIcon } from "lucide-react";
+import ReactionSummary from "../article/ReactionSummary";
 import { Entity } from "@replyke/react-js";
 import { formatDate2 } from "../../lib/time-formatters";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";
@@ -65,10 +66,7 @@ function ArticleListItem({ article }: { article: Entity }) {
                 </span>
                 <span className="text-white/60">·</span>
                 <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1">
-                    <HeartIcon className="size-3 text-white/70" fill="rgba(255,255,255,0.7)" />
-                    <span className="text-xs">{article.upvotes.length}</span>
-                  </div>
+                  <ReactionSummary reactionCounts={article.reactionCounts} className="text-white/80" />
                   <div className="flex items-center gap-1">
                     <MessageCircleIcon className="size-3 text-white/70" fill="rgba(255,255,255,0.7)" />
                     <span className="text-xs">{article.repliesCount}</span>
@@ -123,12 +121,7 @@ function ArticleListItem({ article }: { article: Entity }) {
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1">
-                  <HeartIcon className="size-3.5 text-gray-400" fill="#9ca3af" />
-                  <span className="text-xs text-gray-400">
-                    {article.upvotes.length}
-                  </span>
-                </div>
+                <ReactionSummary reactionCounts={article.reactionCounts} />
                 <div className="flex items-center gap-1">
                   <MessageCircleIcon
                     className="size-3.5 text-gray-400"

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { LayoutGrid, List } from "lucide-react";
 import ArticlesGrid from "../../components/all-articles/ArticlesGrid";
@@ -36,7 +36,7 @@ function ArticlesPage() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 md:px-6 pt-24 pb-12">
+      <div className="container mx-auto max-w-6xl px-4 md:px-6 pt-24 pb-12">
         {/* Header */}
         <div className="mb-8">
           <NavigateHomeButton />

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { EntityListFilters, useEntityList } from "@replyke/react-js";
 import { LoaderCircleIcon } from "lucide-react";
 import ArticleCard from "../home/ArticleCard";
