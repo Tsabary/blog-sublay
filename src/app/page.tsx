@@ -8,7 +8,7 @@ import Sidebar from "../components/home/Sidebar";
 export default function Home() {
   return (
     <Layout>
-      <div className="container mx-auto px-4 md:px-6 pb-12">
+      <div className="container mx-auto px-4 md:px-6 pb-12 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 lg:gap-12">
           {/* Main Content */}
           <main className="min-w-0">
