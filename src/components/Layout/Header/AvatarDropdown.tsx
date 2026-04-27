@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { useUser, useAuth as useAuthReplyke } from "@replyke/react-js";
+import { useAuth as useAuthReplyke, useUser } from "@replyke/react-js";
+import { LoaderCircleIcon } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,35 +11,44 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import useAuth from "@/hooks/useAuth";
 import UserAvatar from "./UserAvatar";
 import ShinyButton from "./ShinyButton";
-import { AuthDialog } from "../../AuthDialog";
-import useAuth from "../../../hooks/useAuth";
 
 function AvatarDropdown() {
   const { signOut } = useAuth();
-  const { signOut: signOutReplyke } = useAuthReplyke();
-
+  const { signOut: signOutReplyke, initialized } = useAuthReplyke();
   const { user } = useUser();
-  const [open, setOpen] = useState(false);
 
-  if (!user)
+  if (!initialized) {
     return (
-      <>
+      <Button variant="outline" size="icon" className="rounded-full" disabled>
+        <LoaderCircleIcon className="animate-spin" />
+      </Button>
+    );
+  }
+
+  if (!user) {
+    return (
+      <Link
+        href="https://dash.replyke.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Button
-          onClick={() => setOpen(true)}
+          asChild
           className="bg-rose-600 hover:bg-rose-500 border-4 border-rose-400 transition-colors duration-300 px-2.5 py-1.5 rounded-xl cursor-pointer"
         >
           <ShinyButton
-            text="Get Started"
+            text="Start for free"
             disabled={false}
             speed={3}
             className="font-semibold whitespace-nowrap text-white"
           />
         </Button>
-        <AuthDialog open={open} setOpen={setOpen} />
-      </>
+      </Link>
     );
+  }
 
   return (
     <DropdownMenu>
@@ -53,17 +62,9 @@ function AvatarDropdown() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {/* <DropdownMenuLabel>My Account</DropdownMenuLabel> */}
-        {/* <DropdownMenuItem onClick={() => navigate("/")}>
-          New Style
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => navigate("/styles")}>
-          My Styles
-        </DropdownMenuItem> */}
+        <p className="text-xs text-muted-foreground p-2.5">{user.email}</p>
 
-        <p className="text-xs text-gray-400 p-2.5">{user.email}</p>
-
-        {user && ["admin", "editor"].includes(user.role) && (
+        {["admin", "editor"].includes(user.role) && (
           <DropdownMenuItem className="cursor-pointer" asChild>
             <Link href="/create-post">Create post</Link>
           </DropdownMenuItem>
@@ -75,7 +76,7 @@ function AvatarDropdown() {
         <DropdownMenuItem
           onClick={() => {
             signOut?.();
-            signOutReplyke();
+            signOutReplyke?.();
           }}
           className="cursor-pointer"
         >
