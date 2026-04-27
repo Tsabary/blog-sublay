@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     password: string
   ) => {
     try {
-      const path = `/clients-auth/sign-up`;
+      const path = `/dashboard/clients-auth/sign-up`;
 
       const response = await axios.post(
         path,
@@ -90,7 +90,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signOut = async () => {
     try {
-      const path = `/clients-auth/sign-out`;
+      const path = `/dashboard/clients-auth/sign-out`;
 
       await axios.post(path, undefined, { withCredentials: true });
       setAccessToken(null);
@@ -106,7 +106,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       throw new Error("Didn't authenticate using email and password");
 
     try {
-      const path = `/clients-auth/change-password`;
+      const path = `/dashboard/clients-auth/change-password`;
 
       await axios.post(
         path,
@@ -123,7 +123,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const getNewAccessToken = useCallback(async () => {
     try {
-      const path = `/clients-auth/request-new-access-token`;
+      const path = `/dashboard/clients-auth/request-new-access-token`;
 
       const response = await axios.post(path, undefined, {
         withCredentials: true,
@@ -142,7 +142,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const handleGoogleLogin = async () => {
     try {
       window.location.href =
-        process.env.NEXT_PUBLIC_SERVER_URL + "/internal/clients-auth/google";
+        process.env.NEXT_PUBLIC_SERVER_URL + "/dashboard/clients-auth/google";
     } catch (err: unknown) {
       handleError(err, "Failed to initiate Google login: ");
     }
@@ -151,7 +151,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const handleGithubLogin = async () => {
     try {
       window.location.href =
-        process.env.NEXT_PUBLIC_SERVER_URL + "/internal/clients-auth/github";
+        process.env.NEXT_PUBLIC_SERVER_URL + "/dashboard/clients-auth/github";
     } catch (err: unknown) {
       handleError(err, "Failed to initiate GitHub login: ");
     }
