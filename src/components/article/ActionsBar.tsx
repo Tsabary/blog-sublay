@@ -34,12 +34,12 @@ function ReactionSection({ entity }: { entity: Entity }) {
     },
   );
 
-  const handleReact = (reactionType: string) => {
+  const handleReact = (reactionType: ReactionType) => {
     if (!user) {
       toast("Please log in first");
       return;
     }
-    toggleReaction({ reactionType: reactionType as ReactionType });
+    toggleReaction({ reactionType });
   };
 
   return (

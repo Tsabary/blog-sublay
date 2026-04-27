@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { HeartIcon } from "lucide-react";
+import { ReactionType } from "@replyke/react-js";
 
 const REACTIONS = [
   { type: "like", emoji: "❤️", label: "Like" },
@@ -11,7 +12,14 @@ const REACTIONS = [
   { type: "funny", emoji: "😂", label: "Funny" },
 ] as const;
 
-const PARTICLE_COLORS = ["#ff2056", "#ff6b8a", "#ffc0cb", "#ff8c69", "#ffb347", "#ff6347"];
+const PARTICLE_COLORS = [
+  "#ff2056",
+  "#ff6b8a",
+  "#ffc0cb",
+  "#ff8c69",
+  "#ffb347",
+  "#ff6347",
+];
 
 function ParticleBurst() {
   return (
@@ -53,9 +61,9 @@ function TriggerEmoji({ reaction }: { reaction: string | null | undefined }) {
 }
 
 interface ReactionPickerProps {
-  currentReaction: string | null;
+  currentReaction: ReactionType | null;
   reactionCounts: Partial<Record<string, number>>;
-  onReact: (reactionType: string) => void;
+  onReact: (reactionType: ReactionType) => void;
 }
 
 export default function ReactionPicker({
@@ -72,7 +80,7 @@ export default function ReactionPicker({
 
   const totalCount = Object.values(reactionCounts).reduce<number>(
     (acc, v) => acc + (v ?? 0),
-    0
+    0,
   );
 
   const triggerBurst = () => {
@@ -112,12 +120,12 @@ export default function ReactionPicker({
       setShowPicker(false);
       return;
     }
-    const type = currentReaction || "like";
+    const type: ReactionType = currentReaction || "like";
     onReact(type);
     if (!currentReaction) triggerBurst();
   };
 
-  const handlePickerReact = (type: string) => {
+  const handlePickerReact = (type: ReactionType) => {
     const isAdding = type !== currentReaction;
     onReact(type);
     if (isAdding) triggerBurst();
@@ -178,7 +186,11 @@ export default function ReactionPicker({
           onTouchMove={onTouchEnd}
           whileTap={{ scale: 0.88 }}
           className="relative cursor-pointer flex items-center justify-center p-2.5 text-gray-400 group-hover/reaction:text-gray-600 transition-colors"
-          aria-label={currentReaction ? `Reacting with ${currentReaction}` : "Add reaction"}
+          aria-label={
+            currentReaction
+              ? `Reacting with ${currentReaction}`
+              : "Add reaction"
+          }
         >
           <AnimatePresence mode="wait">
             <motion.span
