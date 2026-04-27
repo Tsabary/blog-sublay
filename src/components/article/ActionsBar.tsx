@@ -1,7 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { EntityProvider, useEntity, useUser, useReactionToggle, ReactionType } from "@replyke/react-js";
+import {
+  Entity,
+  EntityProvider,
+  useEntity,
+  useUser,
+  useReactionToggle,
+  ReactionType,
+  useAuth,
+} from "@replyke/react-js";
 import { toast } from "sonner";
 import dynamic from "next/dynamic";
 import { MessageCircleIcon, Share2Icon } from "lucide-react";
@@ -11,21 +19,20 @@ import { AdminOptions } from "./AdminOptions";
 import { Button } from "../ui/button";
 import DiscussionSheet from "./DiscussionSheet";
 
-const ReactionPicker = dynamic(() => import("./ReactionPicker"), { ssr: false });
+const ReactionPicker = dynamic(() => import("./ReactionPicker"), {
+  ssr: false,
+});
 
-function InnerActionsBar() {
+function ReactionSection({ entity }: { entity: Entity }) {
   const { user } = useUser();
-
-  const { entity: article } = useEntity();
-
-  const { currentReaction, reactionCounts, toggleReaction } = useReactionToggle({
-    targetType: "entity",
-    targetId: article?.id,
-    initialReaction: article?.userReaction,
-    initialReactionCounts: article?.reactionCounts,
-  });
-
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const { currentReaction, reactionCounts, toggleReaction } = useReactionToggle(
+    {
+      targetType: "entity",
+      targetId: entity.id,
+      initialReaction: entity.userReaction,
+      initialReactionCounts: entity.reactionCounts,
+    },
+  );
 
   const handleReact = (reactionType: string) => {
     if (!user) {
@@ -36,6 +43,21 @@ function InnerActionsBar() {
   };
 
   return (
+    <ReactionPicker
+      currentReaction={currentReaction}
+      reactionCounts={reactionCounts}
+      onReact={handleReact}
+    />
+  );
+}
+
+function InnerActionsBar() {
+  const { user } = useUser();
+  const { initialized } = useAuth();
+  const { entity } = useEntity();
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  return (
     <>
       <DiscussionSheet
         isSheetOpen={isSheetOpen}
@@ -44,17 +66,15 @@ function InnerActionsBar() {
       <div className="border-t border-b flex items-center gap-2 py-1">
         {/* Left: engagement actions */}
         <div className="flex items-center gap-3">
-          <ReactionPicker
-            currentReaction={currentReaction}
-            reactionCounts={reactionCounts}
-            onReact={handleReact}
-          />
+          {entity && initialized && <ReactionSection entity={entity} />}
           <button
             onClick={() => setIsSheetOpen(true)}
             className="flex items-center gap-1.5 text-gray-400 hover:text-gray-600 transition-colors p-2.5"
           >
             <MessageCircleIcon className="size-4.5" />
-            <span className="text-sm tabular-nums">{article?.repliesCount ?? 0}</span>
+            <span className="text-sm tabular-nums">
+              {entity?.repliesCount ?? 0}
+            </span>
           </button>
         </div>
 

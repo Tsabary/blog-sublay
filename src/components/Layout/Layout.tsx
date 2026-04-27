@@ -15,7 +15,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <Header />
       </div>
 
-      <main className={`flex-1 ${bannerDismissed ? "pt-24" : "pt-32"}`}>
+      <main className={`flex-1 ${bannerDismissed ? "pt-20 md:pt-24" : "pt-28 md:pt-32"}`}>
         {children}
       </main>
       <Footer />

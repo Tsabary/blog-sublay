@@ -10,11 +10,13 @@ const REACTION_EMOJI: Record<string, string> = {
 interface ReactionSummaryProps {
   reactionCounts: Entity["reactionCounts"];
   className?: string;
+  textClassName?: string;
 }
 
 export default function ReactionSummary({
   reactionCounts,
   className = "",
+  textClassName = "text-muted-foreground",
 }: ReactionSummaryProps) {
   const counts = reactionCounts ?? {};
 
@@ -32,7 +34,7 @@ export default function ReactionSummary({
   return (
     <span className={`flex items-center gap-1 ${className}`}>
       <span className="leading-none">{topEmojis.join("")}</span>
-      <span className="text-xs text-muted-foreground">{total} reactions</span>
+      <span className={`text-xs ${textClassName}`}>{total} {total === 1 ? "reaction" : "reactions"}</span>
     </span>
   );
 }

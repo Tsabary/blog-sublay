@@ -124,11 +124,11 @@ function FeaturedArticle() {
                               min read
                             </p>
                             <div className="flex items-center gap-3">
-                              <ReactionSummary reactionCounts={article.reactionCounts} className="text-white/80" />
+                              <ReactionSummary reactionCounts={article.reactionCounts} className="text-white/80" textClassName="text-white/80" />
                               <div className="flex items-center gap-1">
                                 <MessageCircleIcon
-                                  className="size-4 text-white/70"
-                                  fill="rgba(255,255,255,0.7)"
+                                  className="size-4 text-white/80"
+                                  fill="currentColor"
                                 />
                                 <span className="text-sm text-white/80">
                                   {article.repliesCount}
@@ -145,14 +145,30 @@ function FeaturedArticle() {
 
               {/* Mobile Content Below Image - All content separated */}
               <div className="md:hidden bg-card border border-t-0 rounded-b-xl p-5 space-y-4">
-                {/* Category Badge */}
-                {loading ? (
-                  <div className="h-6 w-24 rounded bg-muted animate-pulse" />
-                ) : (
-                  <div className="inline-block rounded-full bg-muted px-3 py-1 text-xs font-medium">
-                    {article.metadata.category}
-                  </div>
-                )}
+                {/* Category Badge + Stats */}
+                <div className="flex items-center justify-between">
+                  {loading ? (
+                    <div className="h-6 w-24 rounded bg-muted animate-pulse" />
+                  ) : (
+                    <div className="inline-block rounded-full bg-muted px-3 py-1 text-xs font-medium">
+                      {article.metadata.category}
+                    </div>
+                  )}
+                  {!loading && (
+                    <div className="flex items-center gap-3">
+                      <ReactionSummary reactionCounts={article.reactionCounts} />
+                      <div className="flex items-center gap-1">
+                        <MessageCircleIcon
+                          className="size-4 text-muted-foreground"
+                          fill="currentColor"
+                        />
+                        <span className="text-xs text-muted-foreground">
+                          {article.repliesCount}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
 
                 {/* Title */}
                 {loading ? (
@@ -200,21 +216,6 @@ function FeaturedArticle() {
                       </>
                     )}
                   </div>
-                  {/* Stats */}
-                  {!loading && (
-                    <div className="flex items-center gap-3">
-                      <ReactionSummary reactionCounts={article.reactionCounts} />
-                      <div className="flex items-center gap-1">
-                        <MessageCircleIcon
-                          className="size-4 text-muted-foreground"
-                          fill="currentColor"
-                        />
-                        <span className="text-xs text-muted-foreground">
-                          {article.repliesCount}
-                        </span>
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>

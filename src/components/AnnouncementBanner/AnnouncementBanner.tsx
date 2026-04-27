@@ -14,7 +14,7 @@ export function AnnouncementBanner({ onDismiss }: AnnouncementBannerProps) {
   if (dismissed) return null;
 
   return (
-    <div className="relative z-30 w-full bg-rose-600 text-white text-sm py-2 px-4 flex items-center justify-center gap-2 text-center">
+    <div className="relative z-30 w-full bg-rose-600 text-white text-xs sm:text-sm py-2 px-4 flex items-center justify-center gap-2 text-center">
       <span>
         This blog is implemented with Replyke v7.{" "}
         <Link

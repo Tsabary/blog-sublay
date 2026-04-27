@@ -124,40 +124,19 @@ const Header = () => {
                   </a>
                 </li>
               ))}
-              <li>
-                <a
-                  href="https://discord.gg/REKxnCJzPz"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground block duration-150"
-                  onClick={() => setMenuState(false)}
-                >
-                  Discord
-                </a>
-              </li>
-              {user && ["admin", "editor"].includes(user.role) && (
-                <li>
-                  <Link
-                    href="/create-post"
-                    className="text-muted-foreground hover:text-foreground block duration-150"
-                    onClick={() => setMenuState(false)}
-                  >
-                    + Create Post
-                  </Link>
-                </li>
-              )}
-              <li>
-                <a
-                  href="https://dash.replyke.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground block duration-150"
-                  onClick={() => setMenuState(false)}
-                >
-                  {user ? "Dashboard" : "Start for free"}
-                </a>
-              </li>
             </ul>
+
+            {user && ["admin", "editor"].includes(user.role) && (
+              <div className="mt-4 pt-4 border-t border-border">
+                <Link
+                  href="/create-post"
+                  className="text-sm font-medium hover:text-foreground block duration-150"
+                  onClick={() => setMenuState(false)}
+                >
+                  + Create Post
+                </Link>
+              </div>
+            )}
 
             <div className="flex items-center justify-between mt-5 pt-4 border-t border-border">
               <div className="-ml-2.5">

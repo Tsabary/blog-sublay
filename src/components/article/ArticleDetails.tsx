@@ -13,7 +13,7 @@ function ArticleDetails({ article }: { article: Entity }) {
           {article.metadata.category}
         </span>
       </div>
-      <h1 className="text-4xl font-bold lg:text-5xl tracking-tight">
+      <h1 className="text-2xl font-bold sm:text-4xl lg:text-5xl tracking-tight">
         {article.title}
       </h1>
       <h2 className="text-lg lg:text-xl tracking-tight text-gray-500">
