@@ -36,7 +36,7 @@ function ArticlesPage() {
 
   return (
     <Layout>
-      <div className="container mx-auto max-w-6xl px-4 md:px-6 pt-24 pb-12">
+      <div className="container mx-auto max-w-6xl px-4 md:px-6 pb-12">
         {/* Header */}
         <div className="mb-8">
           <NavigateHomeButton />

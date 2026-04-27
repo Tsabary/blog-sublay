@@ -236,7 +236,7 @@ export default function EditPost() {
 
   return (
     <Layout>
-      <div className="container py-10 max-w-5xl pt-30">
+      <div className="container py-10 max-w-5xl">
         <h1 className="text-3xl font-bold mb-8">Edit Blog Post</h1>
 
         <form onSubmit={handleSubmit}>

@@ -154,7 +154,7 @@ export default async function BlogPost({
 
   return (
     <Layout>
-      <article className="container mx-auto max-w-3xl flex-1 pt-24 pb-8 bg-background">
+      <article className="container mx-auto max-w-3xl flex-1 pb-8 bg-background">
         <div className="space-y-4">
           <NavigateHomeButton />
           <ArticleDetails article={article} />

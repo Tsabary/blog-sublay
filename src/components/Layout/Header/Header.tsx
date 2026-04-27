@@ -18,7 +18,7 @@ function Header() {
   const { user } = useUser();
   const { theme } = useTheme();
   return (
-    <header className="fixed top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6 py-4">
+    <header className="w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6 py-4">
       <div className="flex items-center gap-4 mx-auto max-w-6xl">
         <Link href="https://replyke.com" className="flex gap-2 items-end shrink-0">
           <Image
