@@ -36,21 +36,14 @@ export const metadata: Metadata = {
     title: "Add Social Features to Your App in Minutes | Sublay",
     description:
       "Sublay makes it easy to add comments, votes, feeds, notifications, and more – everything you need to build a modern community inside your app.",
-    images: [
-      {
-        url: "https://sublay.io/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Sublay OG Image",
-      },
-    ],
+    // og:image is supplied by app/opengraph-image.tsx (file-based convention).
   },
   twitter: {
     card: "summary_large_image",
     title: "Add Social Features to Your App in Minutes | Sublay",
     description:
       "Add comments, votes, feeds & more to your app with Sublay. Engage users & grow community without complex setup.",
-    images: [{ url: "https://sublay.io/og-image.png", alt: "Sublay Image" }],
+    // twitter:image is supplied by app/twitter-image.tsx (file-based convention).
     site: "@sublay_io",
     creator: "@yantsab",
   },
