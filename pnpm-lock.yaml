@@ -101,7 +101,7 @@ importers:
       '@radix-ui/react-visually-hidden':
         specifier: ^1.2.4
         version: 1.2.4(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
-      '@replyke/js':
+      '@sublay/js':
         specifier: 5.0.0
         version: 5.0.0
       '@sublay/react-js':
@@ -2054,9 +2054,6 @@ packages:
       react-redux:
         optional: true
 
-  '@replyke/js@5.0.0':
-    resolution: {integrity: sha512-Ql0tgWrWlYkMIKGD2zUwMQgR1rTKO7ERU5cSpWuFVcr9tuHDK8iFvA3HkEh7NpJ0Bv4ifPPmknekE6/wvQI9Og==}
-
   '@sindresorhus/is@7.2.0':
     resolution: {integrity: sha512-P1Cz1dWaFfR4IR+U13mqqiGsLFf1KbayybWwdd2vfctdV6hDpUkgCY0nKOLLTMSoRd/jJNjtbqzf13K8DCCXQw==}
     engines: {node: '>=18'}
@@ -2291,6 +2288,9 @@ packages:
       '@reduxjs/toolkit': ^2.0.0
       react: ^18.0.0 || ^19.0.0
       react-redux: ^9.0.0
+
+  '@sublay/js@5.0.0':
+    resolution: {integrity: sha512-VRtIB0yxx7L5tRIziwTXzGL0uitCWe1pqazaEOSiJnzXI626oC0YBwB4Esi9QbCWwToyo3cOHpUY4ZFglcGW8A==}
 
   '@sublay/react-js@7.0.3':
     resolution: {integrity: sha512-cc3okUBCd3qhZNv7bqB4J2+NXR8ovVlywK42p+OCJHQffNH5Lf+W3Bw5dyAHHTkfy2CrCsSHSdXjWsuX/IAxOA==}
@@ -6817,12 +6817,6 @@ snapshots:
       react: 19.2.5
       react-redux: 9.2.0(@types/react@19.2.14)(react@19.2.5)(redux@5.0.1)
 
-  '@replyke/js@5.0.0':
-    dependencies:
-      axios: 1.15.2
-    transitivePeerDependencies:
-      - debug
-
   '@sindresorhus/is@7.2.0': {}
 
   '@smithy/chunked-blob-reader-native@4.2.3':
@@ -7180,6 +7174,12 @@ snapshots:
       - debug
       - supports-color
       - utf-8-validate
+
+  '@sublay/js@5.0.0':
+    dependencies:
+      axios: 1.15.2
+    transitivePeerDependencies:
+      - debug
 
   '@sublay/react-js@7.0.3(@reduxjs/toolkit@2.11.2(react-redux@9.2.0(@types/react@19.2.14)(react@19.2.5)(redux@5.0.1))(react@19.2.5))(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react-redux@9.2.0(@types/react@19.2.14)(react@19.2.5)(redux@5.0.1))(react@19.2.5)':
     dependencies:

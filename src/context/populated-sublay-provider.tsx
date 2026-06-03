@@ -5,7 +5,7 @@ import { SublayProvider } from "@sublay/react-js";
 import useAuth from "../hooks/useAuth";
 import useAxiosPrivate from "../config/useAxiosPrivate";
 
-function PopulatedReplykeProvider({ children }: { children: React.ReactNode }) {
+function PopulatedSublayProvider({ children }: { children: React.ReactNode }) {
   const { client } = useAuth();
   const axios = useAxiosPrivate();
 
@@ -35,4 +35,4 @@ function PopulatedReplykeProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default PopulatedReplykeProvider;
+export default PopulatedSublayProvider;

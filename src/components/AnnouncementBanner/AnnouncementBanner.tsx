@@ -18,7 +18,7 @@ export function AnnouncementBanner({ onDismiss }: AnnouncementBannerProps) {
       <span>
         This blog is implemented with Sublay v7.{" "}
         <Link
-          href="https://github.com/Tsabary/blog-replyke"
+          href="https://github.com/Tsabary/blog-sublay"
           target="_blank"
           rel="noopener noreferrer"
           className="underline underline-offset-2 font-medium hover:text-white/80 transition-colors"

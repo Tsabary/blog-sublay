@@ -1,4 +1,4 @@
-import { ReplykeClient } from "@replyke/js";
+import { SublayClient } from "@sublay/js";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
@@ -41,7 +41,7 @@ export async function generateMetadata({
   if (hyphen < 0) return { alternates: { canonical: baseUrl } };
 
   const shortId = slugAndId.slice(hyphen + 1);
-  const client = await ReplykeClient.init({
+  const client = await SublayClient.init({
     projectId: process.env.NEXT_PUBLIC_SUBLAY_PROJECT_ID!,
   });
   const article = await client.entities.fetchEntityByShortId({ shortId });
@@ -105,10 +105,10 @@ export default async function BlogPost({
   let article;
 
   try {
-    const replykeClient = await ReplykeClient.init({
+    const sublayClient = await SublayClient.init({
       projectId: process.env.NEXT_PUBLIC_SUBLAY_PROJECT_ID!,
     });
-    article = await replykeClient.entities.fetchEntityByShortId({ shortId });
+    article = await sublayClient.entities.fetchEntityByShortId({ shortId });
   } catch (networkError) {
     // only catches init/fetch failures
     handleError(networkError, "Failed to fetch article");

@@ -41,7 +41,7 @@
     "@radix-ui/react-toggle-group": "1.1.11",
     "@radix-ui/react-tooltip": "1.2.8",
     "@radix-ui/react-visually-hidden": "^1.2.4",
-    "@replyke/js": "5.0.0",
+    "@sublay/js": "5.0.0",
     "@sublay/react-js": "^7.0.3",
     "@sublay/ui-core-react-js": "^7.0.0",
     "@tailwindcss/typography": "latest",

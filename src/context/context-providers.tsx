@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "./auth-context";
-import PopulatedReplykeProvider from "./populated-replyke-provider";
+import PopulatedSublayProvider from "./populated-sublay-provider";
 import { PostHogProvider } from "./posthog-provider";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -11,7 +11,7 @@ function ContextProviders({ children }: { children: React.ReactNode }) {
       <Toaster />
       <PostHogProvider>
         <AuthProvider>
-          <PopulatedReplykeProvider>
+          <PopulatedSublayProvider>
             <ThemeProvider
               attribute="class"
               defaultTheme="light"
@@ -20,7 +20,7 @@ function ContextProviders({ children }: { children: React.ReactNode }) {
             >
               {children}
             </ThemeProvider>
-          </PopulatedReplykeProvider>
+          </PopulatedSublayProvider>
         </AuthProvider>
       </PostHogProvider>
     </>

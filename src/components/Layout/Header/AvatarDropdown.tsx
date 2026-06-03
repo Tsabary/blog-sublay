@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useAuth as useAuthReplyke, useUser } from "@sublay/react-js";
+import { useAuth as useAuthSublay, useUser } from "@sublay/react-js";
 import { LoaderCircleIcon } from "lucide-react";
 import {
   DropdownMenu,
@@ -17,7 +17,7 @@ import ShinyButton from "./ShinyButton";
 
 function AvatarDropdown() {
   const { signOut } = useAuth();
-  const { signOut: signOutReplyke, initialized } = useAuthReplyke();
+  const { signOut: signOutSublay, initialized } = useAuthSublay();
   const { user } = useUser();
 
   if (!initialized) {
@@ -76,7 +76,7 @@ function AvatarDropdown() {
         <DropdownMenuItem
           onClick={() => {
             signOut?.();
-            signOutReplyke?.();
+            signOutSublay?.();
           }}
           className="cursor-pointer"
         >
