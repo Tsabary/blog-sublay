@@ -63,27 +63,13 @@ export async function generateMetadata({
       description: article.metadata.excerpt,
       url: canonicalUrl, // adjust if needed
       type: "website",
-      images: [
-        {
-          url: article.attachments[0].publicPath,
-          width: 1200,
-          height: 630,
-          alt: "Cover photo",
-        },
-      ],
+      // og:image is supplied by ./opengraph-image.tsx (branded title card).
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
       description: article.metadata.excerpt,
-      images: [
-        {
-          url: article.attachments[0].publicPath,
-          alt: "Cover photo",
-        },
-      ],
-      // site: "",
-      // creator: "",
+      // twitter:image is supplied by ./twitter-image.tsx (branded title card).
     },
   };
 }
