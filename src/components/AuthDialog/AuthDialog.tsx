@@ -46,7 +46,7 @@ export default function AuthDialog({
           <p>By continuing, you agree to our</p>
           <p>
             <a
-              href="https://replyke.com/terms-of-service.html"
+              href="https://sublay.io/terms-of-service.html"
               target="_blank"
               className="underline hover:text-primary"
             >
@@ -54,7 +54,7 @@ export default function AuthDialog({
             </a>{" "}
             &{" "}
             <a
-              href="https://replyke.com/privacy-policy.html"
+              href="https://sublay.io/privacy-policy.html"
               target="_blank"
               className="underline hover:text-primary"
             >

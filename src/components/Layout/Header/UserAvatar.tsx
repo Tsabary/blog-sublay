@@ -1,4 +1,4 @@
-import { User } from "@replyke/react-js";
+import { User } from "@sublay/react-js";
 
 function UserAvatar({
   user,

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useAuth as useAuthReplyke, useUser } from "@replyke/react-js";
+import { useAuth as useAuthReplyke, useUser } from "@sublay/react-js";
 import { LoaderCircleIcon } from "lucide-react";
 import {
   DropdownMenu,
@@ -31,7 +31,7 @@ function AvatarDropdown() {
   if (!user) {
     return (
       <Link
-        href="https://dash.replyke.com"
+        href="https://dash.sublay.io"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -70,7 +70,7 @@ function AvatarDropdown() {
           </DropdownMenuItem>
         )}
         <DropdownMenuItem className="cursor-pointer" asChild>
-          <a href="https://dash.replyke.com">Go to Dashboard</a>
+          <a href="https://dash.sublay.io">Go to Dashboard</a>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem

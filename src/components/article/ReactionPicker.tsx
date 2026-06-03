@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { HeartIcon } from "lucide-react";
-import { ReactionType } from "@replyke/react-js";
+import { ReactionType } from "@sublay/react-js";
 
 const REACTIONS = [
   { type: "like", emoji: "❤️", label: "Like" },

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useEntity } from "@replyke/react-js";
+import { useEntity } from "@sublay/react-js";
 import { MoreHorizontal } from "lucide-react";
 
 import { Button } from "@/components/ui/button";

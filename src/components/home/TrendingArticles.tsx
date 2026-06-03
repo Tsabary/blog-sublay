@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
-import { useEntityList } from "@replyke/react-js";
+import { useEntityList } from "@sublay/react-js";
 import { TrendingUpIcon } from "lucide-react";
 import { getArticlePath } from "../../helpers/getArticlePath";
 

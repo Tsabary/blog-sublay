@@ -5,7 +5,7 @@ import Link from "next/link";
 import { MessageCircleIcon } from "lucide-react";
 import UserAvatar from "../Layout/Header/UserAvatar";
 import { formatDistanceToNow } from "date-fns";
-import { Comment, useFetchManyComments } from "@replyke/react-js";
+import { Comment, useFetchManyComments } from "@sublay/react-js";
 import { getArticlePath } from "../../helpers/getArticlePath";
 
 function RecentActivity() {
@@ -16,7 +16,7 @@ function RecentActivity() {
   React.useEffect(() => {
     // Simulate fetching comments
     const fetchData = async () => {
-      // In real implementation, fetch from Replyke API
+      // In real implementation, fetch from Sublay API
       const latest = await fetchComments({
         page: 1,
         limit: 5,

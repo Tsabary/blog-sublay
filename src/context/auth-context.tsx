@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, createContext, useCallback } from "react";
-import { handleError } from "@replyke/react-js";
+import { handleError } from "@sublay/react-js";
 
 import axios from "@/config/axios";
 import { Client } from "@/types/Client";

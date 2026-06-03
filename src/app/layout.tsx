@@ -9,11 +9,11 @@ import { GoogleTagManager } from "@next/third-parties/google";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Add Social Features to Your App in Minutes | Replyke",
+  title: "Add Social Features to Your App in Minutes | Sublay",
   description:
-    "Add powerful community features to your app with Replyke - boost user engagement, reduce churn, and grow brand loyalty - no complicated setup required.",
+    "Add powerful community features to your app with Sublay - boost user engagement, reduce churn, and grow brand loyalty - no complicated setup required.",
   keywords: [
-    "Replyke",
+    "Sublay",
     "social features",
     "comments",
     "voting",
@@ -23,35 +23,35 @@ export const metadata: Metadata = {
     "user interaction",
     "SaaS social tools",
   ],
-  authors: [{ name: "Replyke Team" }],
+  authors: [{ name: "Sublay Team" }],
   alternates: {
-    canonical: "https://replyke.com", // change if this is a subpage
+    canonical: "https://sublay.io", // change if this is a subpage
   },
   icons: {
-    icon: "/favicon.ico", // must be a valid path or URL
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
   openGraph: {
     type: "website",
-    url: "https://replyke.com/",
-    title: "Add Social Features to Your App in Minutes | Replyke",
+    url: "https://sublay.io/",
+    title: "Add Social Features to Your App in Minutes | Sublay",
     description:
-      "Replyke makes it easy to add comments, votes, feeds, notifications, and more – everything you need to build a modern community inside your app.",
+      "Sublay makes it easy to add comments, votes, feeds, notifications, and more – everything you need to build a modern community inside your app.",
     images: [
       {
-        url: "https://replyke.com/og-image.png",
+        url: "https://sublay.io/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Replyke OG Image",
+        alt: "Sublay OG Image",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Add Social Features to Your App in Minutes | Replyke",
+    title: "Add Social Features to Your App in Minutes | Sublay",
     description:
-      "Add comments, votes, feeds & more to your app with Replyke. Engage users & grow community without complex setup.",
-    images: [{ url: "https://replyke.com/og-image.png", alt: "Replyke Image" }],
-    site: "@ReplykeJs",
+      "Add comments, votes, feeds & more to your app with Sublay. Engage users & grow community without complex setup.",
+    images: [{ url: "https://sublay.io/og-image.png", alt: "Sublay Image" }],
+    site: "@sublay_io",
     creator: "@yantsab",
   },
 };

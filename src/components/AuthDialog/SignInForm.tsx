@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { handleError } from "@replyke/react-js";
+import { handleError } from "@sublay/react-js";
 import validator from "validator";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -78,7 +78,7 @@ export default function SignInForm({
               email: event.target.value.trim(),
             }))
           }
-          placeholder="name@replyke.com"
+          placeholder="name@sublay.io"
           required
         />
       </div>

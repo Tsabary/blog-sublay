@@ -6,7 +6,7 @@ import {
   useCreateEntity,
   useUploadFile,
   useUser,
-} from "@replyke/react-js";
+} from "@sublay/react-js";
 import dynamic from "next/dynamic";
 import { Loader2, ImageIcon } from "lucide-react";
 import { toast } from "sonner";

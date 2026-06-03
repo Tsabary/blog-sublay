@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { ReplykeProvider } from "@replyke/react-js";
+import { SublayProvider } from "@sublay/react-js";
 import useAuth from "../hooks/useAuth";
 import useAxiosPrivate from "../config/useAxiosPrivate";
 
@@ -26,12 +26,12 @@ function PopulatedReplykeProvider({ children }: { children: React.ReactNode }) {
   }, [client, axios]);
 
   return (
-    <ReplykeProvider
-      projectId={process.env.NEXT_PUBLIC_REPLYKE_PROJECT_ID!}
+    <SublayProvider
+      projectId={process.env.NEXT_PUBLIC_SUBLAY_PROJECT_ID!}
       signedToken={signedToken}
     >
       {children}
-    </ReplykeProvider>
+    </SublayProvider>
   );
 }
 

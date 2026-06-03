@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { useCheckUsernameAvailability } from "@replyke/react-js";
+import { useCheckUsernameAvailability } from "@sublay/react-js";
 import validator from "validator";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -164,7 +164,7 @@ export default function SignupForm({
         <Input
           id="email-signup"
           type="email"
-          placeholder="name@replyke.com"
+          placeholder="name@sublay.io"
           autoComplete="email"
           onChange={(event) =>
             setCredentials((cs) => ({

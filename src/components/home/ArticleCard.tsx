@@ -13,7 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Entity } from "@replyke/react-js";
+import { Entity } from "@sublay/react-js";
 import { formatDate2 } from "../../lib/time-formatters";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";
 import UserAvatar from "../Layout/Header/UserAvatar";

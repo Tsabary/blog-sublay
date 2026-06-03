@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useEntityList } from "@replyke/react-js";
+import { useEntityList } from "@sublay/react-js";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import ArticleListItem from "./ArticleListItem";

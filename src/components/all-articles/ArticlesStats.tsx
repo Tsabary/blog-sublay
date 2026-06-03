@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { Entity } from "@replyke/react-js";
+import { Entity } from "@sublay/react-js";
 import { FileText, TrendingUp, MessageCircle, Heart } from "lucide-react";
 
 interface ArticlesStatsProps {

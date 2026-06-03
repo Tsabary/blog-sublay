@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MessageCircleIcon } from "lucide-react";
 import ReactionSummary from "../article/ReactionSummary";
-import { Entity } from "@replyke/react-js";
+import { Entity } from "@sublay/react-js";
 import { formatDate2 } from "../../lib/time-formatters";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";
 import { getArticlePath } from "../../helpers/getArticlePath";

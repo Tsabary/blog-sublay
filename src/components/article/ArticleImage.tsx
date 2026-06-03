@@ -1,5 +1,5 @@
 import React from "react";
-import { Entity } from "@replyke/react-js";
+import { Entity } from "@sublay/react-js";
 import Image from "next/image";
 
 function ArticleImage({ article }: { article: Entity }) {

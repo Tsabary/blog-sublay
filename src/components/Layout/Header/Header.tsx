@@ -2,31 +2,24 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useUser } from "@replyke/react-js";
-import { useTheme } from "next-themes";
+import { useUser } from "@sublay/react-js";
 import AvatarDropdown from "./AvatarDropdown";
 import GitHubButton from "./GitHubButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import logo from "@/assets/logo.webp";
-import logoR from "@/assets/logo-r.webp";
-import logoWhite from "@/assets/logo-white.webp";
-import logoRwhite from "@/assets/logo-r-white.webp";
 
 const navLinks = [
-  { label: "Docs", href: "https://docs.replyke.com", external: true },
-  { label: "Playground", href: "https://play.replyke.com", external: true },
-  { label: "Roadmap", href: "https://roadmap.replyke.com", external: true },
+  { label: "Docs", href: "https://docs.sublay.io", external: true },
+  { label: "Playground", href: "https://play.sublay.io", external: true },
+  { label: "Roadmap", href: "https://roadmap.sublay.io", external: true },
 ];
 
 const Header = () => {
   const [menuState, setMenuState] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
   const { user } = useUser();
-  const { resolvedTheme } = useTheme();
 
   React.useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -50,17 +43,19 @@ const Header = () => {
           <div className="relative flex items-center justify-between py-3 lg:py-4">
             {/* Left: logo + desktop nav */}
             <div className="flex items-center gap-6">
-              <Link href="https://replyke.com" aria-label="home" className="flex items-center">
-                <Image
-                  src={resolvedTheme === "dark" ? logoWhite : logo}
-                  alt="logo"
-                  className="w-auto h-8 hidden lg:block"
+              <Link
+                href="https://sublay.io"
+                aria-label="home"
+                className="flex items-center gap-2 shrink-0"
+              >
+                <img
+                  src="/favicon.svg"
+                  alt="Sublay"
+                  className="h-7 w-auto shrink-0"
                 />
-                <Image
-                  src={resolvedTheme === "dark" ? logoRwhite : logoR}
-                  alt="logo"
-                  className="w-auto h-8 block lg:hidden"
-                />
+                <span className="text-xl md:text-2xl font-bold tracking-tight">
+                  Sublay
+                </span>
               </Link>
 
               <ul className="hidden lg:flex items-center gap-1 text-sm">

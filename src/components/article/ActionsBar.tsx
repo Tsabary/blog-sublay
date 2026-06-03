@@ -9,7 +9,7 @@ import {
   useReactionToggle,
   ReactionType,
   useAuth,
-} from "@replyke/react-js";
+} from "@sublay/react-js";
 import { toast } from "sonner";
 import dynamic from "next/dynamic";
 import { MessageCircleIcon, Share2Icon } from "lucide-react";

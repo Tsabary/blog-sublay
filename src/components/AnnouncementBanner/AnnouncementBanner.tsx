@@ -16,7 +16,7 @@ export function AnnouncementBanner({ onDismiss }: AnnouncementBannerProps) {
   return (
     <div className="relative z-30 w-full bg-rose-600 text-white text-xs sm:text-sm py-2 px-4 flex items-center justify-center gap-2 text-center">
       <span>
-        This blog is implemented with Replyke v7.{" "}
+        This blog is implemented with Sublay v7.{" "}
         <Link
           href="https://github.com/Tsabary/blog-replyke"
           target="_blank"

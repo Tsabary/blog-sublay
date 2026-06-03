@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useEntity } from "@replyke/react-js";
+import { useEntity } from "@sublay/react-js";
 import { LoaderCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import {

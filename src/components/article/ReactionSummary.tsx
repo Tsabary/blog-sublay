@@ -1,4 +1,4 @@
-import { Entity } from "@replyke/react-js";
+import { Entity } from "@sublay/react-js";
 
 const REACTION_EMOJI: Record<string, string> = {
   like: "❤️",

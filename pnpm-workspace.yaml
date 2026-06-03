@@ -1,0 +1,10 @@
+allowBuilds:
+  core-js: set this to true or false
+  esbuild: set this to true or false
+  protobufjs: set this to true or false
+  sharp: set this to true or false
+  workerd: set this to true or false
+minimumReleaseAgeExclude:
+  - '@sublay/core@7.0.3'
+  - '@sublay/react-js@7.0.3'
+  - '@sublay/ui-core-react-js@7.0.0'

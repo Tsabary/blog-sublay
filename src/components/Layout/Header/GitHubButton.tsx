@@ -9,7 +9,7 @@ function GitHubButton() {
   const [stars, setStars] = useState(null);
 
   useEffect(() => {
-    fetch("https://api.github.com/repos/replyke/monorepo")
+    fetch("https://api.github.com/repos/sublay-io/monorepo")
       .then((res) => res.json())
       .then((data) => setStars(data.stargazers_count))
       .catch((err) => console.error("Failed to fetch star count:", err));
@@ -17,7 +17,7 @@ function GitHubButton() {
 
   return (
     <a
-      href="https://github.com/replyke/monorepo"
+      href="https://github.com/sublay-io/monorepo"
       target="_blank"
       rel="noopener noreferrer"
       className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg cursor-pointer text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors duration-150"

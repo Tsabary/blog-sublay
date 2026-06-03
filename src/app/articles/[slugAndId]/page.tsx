@@ -42,7 +42,7 @@ export async function generateMetadata({
 
   const shortId = slugAndId.slice(hyphen + 1);
   const client = await ReplykeClient.init({
-    projectId: process.env.NEXT_PUBLIC_REPLYKE_PROJECT_ID!,
+    projectId: process.env.NEXT_PUBLIC_SUBLAY_PROJECT_ID!,
   });
   const article = await client.entities.fetchEntityByShortId({ shortId });
   if (!article)
@@ -106,7 +106,7 @@ export default async function BlogPost({
 
   try {
     const replykeClient = await ReplykeClient.init({
-      projectId: process.env.NEXT_PUBLIC_REPLYKE_PROJECT_ID!,
+      projectId: process.env.NEXT_PUBLIC_SUBLAY_PROJECT_ID!,
     });
     article = await replykeClient.entities.fetchEntityByShortId({ shortId });
   } catch (networkError) {

@@ -23,25 +23,25 @@ function Footer() {
             <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
             <nav className="space-y-2 text-sm">
               <a
-                href="https://docs.replyke.com"
+                href="https://docs.sublay.io"
                 className="block transition-colors hover:text-primary"
               >
                 Documentation
               </a>
               <a
-                href="https://blog.replyke.com"
+                href="https://blog.sublay.io"
                 className="block transition-colors hover:text-primary"
               >
                 Blog
               </a>
               <a
-                href="https://roadmap.replyke.com"
+                href="https://roadmap.sublay.io"
                 className="block transition-colors hover:text-primary"
               >
                 Roadmap
               </a>
               <a
-                href="https://support.replyke.com"
+                href="https://support.sublay.io"
                 className="block transition-colors hover:text-primary"
               >
                 Support
@@ -60,7 +60,7 @@ function Footer() {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <a href="https://github.com/replyke" target="_blank">
+                    <a href="https://github.com/sublay-io" target="_blank">
                       <Button
                         variant="outline"
                         size="icon"
@@ -79,7 +79,7 @@ function Footer() {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <a href="https://x.com/replykejs" target="_blank">
+                    <a href="https://x.com/sublay_io" target="_blank">
                       <Button
                         variant="outline"
                         size="icon"
@@ -99,7 +99,7 @@ function Footer() {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <a
-                      href="https://www.linkedin.com/company/replyke"
+                      href="https://www.linkedin.com/company/sublay"
                       target="_blank"
                     >
                       <Button
@@ -122,17 +122,17 @@ function Footer() {
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center md:flex-row">
           <p className="text-sm text-muted-foreground">
-            © 2023-{new Date().getFullYear()} Replyke. All rights reserved.
+            © 2023-{new Date().getFullYear()} Sublay. All rights reserved.
           </p>
           <nav className="flex gap-4 text-sm">
             <a
-              href="https://replyke.com/privacy-policy.html"
+              href="https://sublay.io/privacy-policy.html"
               className="transition-colors hover:text-primary hover:underline"
             >
               Privacy Policy
             </a>
             <a
-              href="https://replyke.com/terms-of-service.html"
+              href="https://sublay.io/terms-of-service.html"
               className="transition-colors hover:text-primary hover:underline"
             >
               Terms of Service

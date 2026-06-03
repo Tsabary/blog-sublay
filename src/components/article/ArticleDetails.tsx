@@ -1,5 +1,5 @@
 import React from "react";
-import { Entity } from "@replyke/react-js";
+import { Entity } from "@sublay/react-js";
 import { Calendar, Clock } from "lucide-react";
 import { formatDate2 } from "../../lib/time-formatters";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";

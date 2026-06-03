@@ -1,14 +1,14 @@
 export function convertFilesToProxiedUrl(url: string): string {
   const SUPABASE_PUBLIC_PREFIX =
     "supabase.co/storage/v1/object/public/projects-public/";
-  const PROXY_PREFIX = "https://api.replyke.com/internal/files/";
+  const PROXY_PREFIX = "https://api.sublay.io/internal/files/";
 
   try {
     const parsed = new URL(url);
 
     // Already proxied?
     if (
-      parsed.hostname === "api.replyke.com" &&
+      parsed.hostname === "api.sublay.io" &&
       parsed.pathname.startsWith("/internal/files/")
     ) {
       return url;

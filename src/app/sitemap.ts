@@ -4,10 +4,10 @@ import { getArticlePath } from "../helpers/getArticlePath";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Replace with your URL
-  const base = "https://blog.replyke.com";
+  const base = "https://blog.sublay.io";
 
   const client = await ReplykeClient.init({
-    projectId: process.env.NEXT_PUBLIC_REPLYKE_PROJECT_ID!,
+    projectId: process.env.NEXT_PUBLIC_SUBLAY_PROJECT_ID!,
   });
   const articles: { title: string; shortId: string; updatedAt: string }[] =
     await client.entities.fetchManyEntities({ limit: 1000, sourceId: "blog" });

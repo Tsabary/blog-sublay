@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Entity, useEntityList } from "@replyke/react-js";
+import { Entity, useEntityList } from "@sublay/react-js";
 import { MessageCircleIcon } from "lucide-react";
 import ReactionSummary from "../article/ReactionSummary";
 import calculateReadingTimeFromMarkdown from "../../helpers/calculateReadingTimeFromMarkdown";
