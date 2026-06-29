@@ -9,6 +9,7 @@ import NewCommentForm from "../components/new-comment-form";
 import CommentMenuModal from "../components/modals/comment-menu-modal/comment-menu-modal";
 import CommentMenuModalOwner from "../components/modals/comment-menu-modal-owner/comment-menu-modal-owner";
 import { UIStateProvider } from "../context/ui-state-context";
+import useAuth from "@/hooks/useAuth";
 
 function useThreadedComments({
   entity,
@@ -25,6 +26,7 @@ function useThreadedComments({
   createIfNotFound?: boolean;
   highlightedCommentId?: string | null;
 }) {
+  const { openAuthDialog } = useAuth();
 
   // 🔧 CUSTOMIZE: Callback handlers for user interactions
   // Replace these placeholder implementations with your own logic
@@ -32,7 +34,8 @@ function useThreadedComments({
     () => ({
       // Called when a user tries to perform an action without being logged in
       loginRequiredCallback: () => {
-        toast("Please log in first");
+        toast("Please log in to join the discussion");
+        openAuthDialog?.();
       },
 
       // Called when a user with no username tries to interact with comments
@@ -73,7 +76,7 @@ function useThreadedComments({
         console.log(`Navigate to user ${userId} profile`, { foreignId });
       },
     }),
-    []
+    [openAuthDialog]
   );
   const MemoizedCommentSectionProvider = useMemo(() => {
     return ({ children }: { children: ReactNode }) => (

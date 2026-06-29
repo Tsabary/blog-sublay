@@ -14,6 +14,10 @@ type AuthContextProps = {
     React.SetStateAction<string | null | undefined>
   >;
 
+  authDialogOpen: boolean;
+  setAuthDialogOpen: (open: boolean) => void;
+  openAuthDialog: () => void;
+
   signUpWithEmailAndPassword: (
     email: string,
     password: string
@@ -39,6 +43,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string | null>();
 
   const [loadingInitial, setLoadingInitial] = useState<boolean>(true);
+  const [authDialogOpen, setAuthDialogOpen] = useState<boolean>(false);
+  const openAuthDialog = useCallback(() => setAuthDialogOpen(true), []);
 
   const signUpWithEmailAndPassword = async (
     email: string,
@@ -179,6 +185,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setClient,
 
         setAccessToken,
+
+        authDialogOpen,
+        setAuthDialogOpen,
+        openAuthDialog,
 
         signUpWithEmailAndPassword,
         signInWithEmailAndPassword,
