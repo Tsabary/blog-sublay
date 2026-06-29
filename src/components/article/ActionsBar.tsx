@@ -18,6 +18,7 @@ import { ShareButton } from "./ShareButton";
 import { AdminOptions } from "./AdminOptions";
 import { Button } from "../ui/button";
 import DiscussionSheet from "./DiscussionSheet";
+import useBlogAuth from "@/hooks/useAuth";
 
 const ReactionPicker = dynamic(() => import("./ReactionPicker"), {
   ssr: false,
@@ -25,6 +26,7 @@ const ReactionPicker = dynamic(() => import("./ReactionPicker"), {
 
 function ReactionSection({ entity }: { entity: Entity }) {
   const { user } = useUser();
+  const { openAuthDialog } = useBlogAuth();
   const { currentReaction, reactionCounts, toggleReaction } = useReactionToggle(
     {
       targetType: "entity",
@@ -36,7 +38,8 @@ function ReactionSection({ entity }: { entity: Entity }) {
 
   const handleReact = (reactionType: ReactionType) => {
     if (!user) {
-      toast("Please log in first");
+      toast("Please log in to react");
+      openAuthDialog?.();
       return;
     }
     toggleReaction({ reactionType });

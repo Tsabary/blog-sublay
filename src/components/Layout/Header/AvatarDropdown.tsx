@@ -16,7 +16,7 @@ import UserAvatar from "./UserAvatar";
 import ShinyButton from "./ShinyButton";
 
 function AvatarDropdown() {
-  const { signOut } = useAuth();
+  const { signOut, openAuthDialog } = useAuth();
   const { signOut: signOutSublay, initialized } = useAuthSublay();
   const { user } = useUser();
 
@@ -30,23 +30,17 @@ function AvatarDropdown() {
 
   if (!user) {
     return (
-      <Link
-        href="https://dash.sublay.io"
-        target="_blank"
-        rel="noopener noreferrer"
+      <Button
+        onClick={() => openAuthDialog?.()}
+        className="bg-rose-600 hover:bg-rose-500 border-4 border-rose-400 transition-colors duration-300 px-2.5 py-1.5 rounded-xl cursor-pointer"
       >
-        <Button
-          asChild
-          className="bg-rose-600 hover:bg-rose-500 border-4 border-rose-400 transition-colors duration-300 px-2.5 py-1.5 rounded-xl cursor-pointer"
-        >
-          <ShinyButton
-            text="Start for free"
-            disabled={false}
-            speed={3}
-            className="font-semibold whitespace-nowrap text-white"
-          />
-        </Button>
-      </Link>
+        <ShinyButton
+          text="Sign in"
+          disabled={false}
+          speed={3}
+          className="font-semibold whitespace-nowrap text-white"
+        />
+      </Button>
     );
   }
 

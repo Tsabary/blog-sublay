@@ -4,9 +4,10 @@ import React, { useEffect, useState } from "react";
 import { SublayProvider } from "@sublay/react-js";
 import useAuth from "../hooks/useAuth";
 import useAxiosPrivate from "../config/useAxiosPrivate";
+import { AuthDialog } from "@/components/AuthDialog";
 
 function PopulatedSublayProvider({ children }: { children: React.ReactNode }) {
-  const { client } = useAuth();
+  const { client, authDialogOpen, setAuthDialogOpen } = useAuth();
   const axios = useAxiosPrivate();
 
   const [signedToken, setSignedToken] = useState<string>();
@@ -31,6 +32,10 @@ function PopulatedSublayProvider({ children }: { children: React.ReactNode }) {
       signedToken={signedToken}
     >
       {children}
+      <AuthDialog
+        open={!!authDialogOpen}
+        setOpen={setAuthDialogOpen ?? (() => {})}
+      />
     </SublayProvider>
   );
 }

@@ -9,6 +9,7 @@ import { useUser } from "@sublay/react-js";
 import AvatarDropdown from "./AvatarDropdown";
 import GitHubButton from "./GitHubButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import useAuth from "@/hooks/useAuth";
 
 const navLinks = [
   { label: "Docs", href: "https://docs.sublay.io", external: true },
@@ -20,6 +21,7 @@ const Header = () => {
   const [menuState, setMenuState] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
   const { user } = useUser();
+  const { openAuthDialog } = useAuth();
 
   React.useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -130,6 +132,20 @@ const Header = () => {
                 >
                   + Create Post
                 </Link>
+              </div>
+            )}
+
+            {!user && (
+              <div className="mt-4 pt-4 border-t border-border">
+                <Button
+                  className="w-full bg-rose-600 hover:bg-rose-500 text-white"
+                  onClick={() => {
+                    setMenuState(false);
+                    openAuthDialog?.();
+                  }}
+                >
+                  Sign in
+                </Button>
               </div>
             )}
 
