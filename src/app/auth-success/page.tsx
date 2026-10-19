@@ -1,33 +1,20 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import useAuth from "../../hooks/useAuth";
 
+// Google/GitHub sign-in lands here after the server has set the refresh
+// cookie. The access token and account are fetched with that cookie rather
+// than read from this page's URL, so nothing sensitive is ever in the address
+// bar or browser history.
 function AuthSuccessPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const { setClient, setAccessToken } = useAuth();
+  const { getNewAccessToken } = useAuth();
 
   useEffect(() => {
-    const accessToken = searchParams.get("accessToken");
-    const id = searchParams.get("id");
-    const email = searchParams.get("email");
-    const name = searchParams.get("name");
-    const avatar = searchParams.get("avatar");
-
-    if (!id) return;
-
-    setAccessToken?.(accessToken);
-    setClient?.({
-      id,
-      email: email || undefined,
-      name: name || undefined,
-      avatar: avatar || undefined,
-    });
-
-    router.push("/");
-  }, [searchParams, setAccessToken, setClient, router]);
+    getNewAccessToken?.().finally(() => router.replace("/"));
+  }, [getNewAccessToken, router]);
 
   return null;
 }
